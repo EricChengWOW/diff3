@@ -7,13 +7,14 @@ class KITTIOdometryDataset(torch.utils.data.Dataset):
     PyTorch Dataset for KITTI Odometry dataset SE(3) data.
     """
 
-    def __init__(self, folder_path, seq_len=128):
+    def __init__(self, folder_path, seq_len=128, stride=1):
         """
         Args:
             folder_path (str): Path to the folder containing KITTI odometry .txt pose files.
         """
         self.folder_path = folder_path
         self.seq_len = seq_len
+        self.stride = stride
         self.files = [os.path.join(folder_path, f) for f in os.listdir(folder_path) if f.endswith('.txt')]
         self.files.sort()  # Ensure consistent ordering of files
 
@@ -41,11 +42,14 @@ class KITTIOdometryDataset(torch.utils.data.Dataset):
                 se3 = np.eye(4)
                 se3[:3, :4] = pose
                 poses.append(se3)
+
+        self.points = poses
         
         ### 
         trajectories = []
-        for i in range(len(poses) - self.seq_len):
-            trajectories.append(np.stack(poses[i:i+self.seq_len]))
+        for i in range((len(poses) - self.seq_len) // self.stride):
+            start = i * self.stride
+            trajectories.append(np.stack(poses[start : start+self.seq_len]))
 
         return trajectories
 
@@ -67,3 +71,6 @@ class KITTIOdometryDataset(torch.utils.data.Dataset):
         """
         traj = self.traj[idx]
         return torch.tensor(traj, dtype=torch.float32)
+
+    def get_point(self, idx):
+        return self.points[idx]

@@ -30,13 +30,14 @@ class RobotcarDataset(torch.utils.data.Dataset):
     PyTorch Dataset for Oxford Robot Car dataset SE(3) data.
     """
 
-    def __init__(self, folder_path, seq_len=128):
+    def __init__(self, folder_path, seq_len=128, stride=1):
         """
         Args:
             folder_path (str): Path to the folder containing Robot car .csv files.
         """
         self.folder_path = folder_path
         self.seq_len = seq_len
+        self.stride = stride
         self.files = [os.path.join(folder_path, f) for f in os.listdir(folder_path) if f.endswith('.csv')]
         self.files.sort()  # Ensure consistent ordering of files
 
@@ -58,14 +59,14 @@ class RobotcarDataset(torch.utils.data.Dataset):
             list: List of SE(3) matrices (as NumPy arrays) from the file.
         """
         ins_data = pd.read_csv(file_path)
-        print(ins_data.info())
         poses = ins_data.apply(compute_se3, axis=1)
-        print(poses)
+        self.points = poses
         
         ### 
         trajectories = []
-        for i in range(len(poses) - self.seq_len):
-            trajectories.append(np.stack(poses[i:i+self.seq_len]))
+        for i in range((len(poses) - self.seq_len) // self.stride):
+            start = i * self.stride
+            trajectories.append(np.stack(poses[start : start+self.seq_len]))
 
         return trajectories
 
@@ -87,3 +88,6 @@ class RobotcarDataset(torch.utils.data.Dataset):
         """
         traj = self.traj[idx]
         return torch.tensor(traj, dtype=torch.float32)
+    
+    def get_point(self, idx):
+        return self.points[idx]
