@@ -1,0 +1,8 @@
+# Ignore compiled Python files
+*.pyc
+
+# Ignore __pycache__ directories
+__pycache__/
+
+# Ignore everything in the ManifoldDiff/__pycache__ directory
+ManifoldDiff/__pycache__/
