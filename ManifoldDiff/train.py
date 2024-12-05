@@ -138,7 +138,7 @@ def main():
         raise "Dataset type not supported"
 
     if args.model_type == "Transformer":
-        model = DoubleTransformerEncoderUnet(dim=args.hidden_dim, num_heads=args.n_heads).to(args.device)
+        model = DoubleTransformerEncoderUnet(dim=args.hidden_dim, num_heads=args.n_heads, num_layers=args.n_layers, unet_layer=args.unet_layer).to(args.device)
         diffusion = SE3Diffusion_3(model, trans_scale=args.scale_trans, timesteps=args.num_timesteps)
         optimizer = torch.optim.Adam(model.parameters(), lr=args.learning_rate)
         scheduler = CosineAnnealingLR(optimizer, T_max=args.num_epochs, eta_min=args.learning_rate * 0.1)

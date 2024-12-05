@@ -30,6 +30,7 @@ def parse_arguments():
     parser.add_argument("--device", type=str, default="cuda", help="Device to use for computation, e.g., 'cuda' or 'cpu' (default: 'cuda').")
     parser.add_argument("--save_path", type=str, required=True, help="File to save the output image sample")
     parser.add_argument("--model_path", type=str, required=True, help="The model checkpoint path")
+    parser.add_argument("--unet_layer", type=int, default=4, help="Layers of unet dim changes")
 
     return parser.parse_args()
 
@@ -38,9 +39,9 @@ def main():
 
     # Initialize the model
     if args.model_type == "Transformer":
-        loaded_model = DoubleTransformerEncoderUnet(dim=args.hidden_dim, num_heads=args.n_heads).to(args.device)
+        loaded_model = DoubleTransformerEncoderUnet(dim=args.hidden_dim, num_heads=args.n_heads, num_layers=args.n_layers, unet_layer=args.unet_layer).to(args.device)
     else:
-        loaded_model = DoubleUnet(dim=args.hidden_dim).cuda()
+        loaded_model = DoubleUnet(dim=args.hidden_dim, unet_layer=args.unet_layer).cuda()
 
     # Load the saved weights
     loaded_model.load_state_dict(torch.load(args.model_path))
