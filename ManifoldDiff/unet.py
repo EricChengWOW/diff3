@@ -254,10 +254,14 @@ class Unet(nn.Module):
         return self.final_conv(x)
 
 class DoubleUnet(nn.Module):
-    def __init__(self, dim, time_dim=64, channels=3):
+    def __init__(self, dim, time_dim=64, channels=3, unet_layer=4):
         super().__init__()
-        self.unet1 = Unet(dim=dim, channels=channels)
-        self.unet2 = Unet(dim=dim, channels=channels)
+        self.name = "Unet"
+        self.dims = [1]
+        for i in range(unet_layer-1):
+          self.dims.append(self.dims[-1] * 2)
+        self.unet1 = Unet(dim=dim, channels=channels, dim_mults=tuple(self.dims))
+        self.unet2 = Unet(dim=dim, channels=channels, dim_mults=tuple(self.dims))
         self.final_conv = nn.Conv1d(dim * 2, channels, 1)  # Combine both outputs from U-Nets
 
     def forward(self, data1, data2, time):

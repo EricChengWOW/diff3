@@ -82,6 +82,41 @@ class SE3Diffusion:
     def unscale_rot(self, rot):
         """Unscale the rotation component."""
         return rot / self.scale_r
+    
+    def sample_igso3(
+            self,
+            t: float,
+            n_samples: float=1):
+        """Uses the inverse cdf to sample an angle of rotation from IGSO(3).
+
+        Args:
+            t: continuous time in [0, 1].
+            n_samples: number of samples to draw.
+
+        Returns:
+            [n_samples] angles of rotation.
+        """
+        # if not torch.isscalar(t):
+        #     raise ValueError(f'{t} must be a scalar.')
+        x = torch.random.rand(n_samples)
+        return torch.interp(x, self._cdf[self.t_to_idx(t)], self.discrete_omega)
+
+    def sample(
+            self,
+            t: float,
+            n_samples: float=1):
+        """Generates rotation vector(s) from IGSO(3).
+
+        Args:
+            t: continuous time in [0, 1].
+            n_sample: number of samples to generate.
+
+        Returns:
+            [n_samples, 3] axis-angle rotation vectors sampled from IGSO(3).
+        """
+        x = np.random.randn(n_samples, 3)
+        x /= np.linalg.norm(x, axis=-1, keepdims=True)
+        return x * self.sample_igso3(t, n_samples=n_samples)[:, None]
 
     def perturb(self, rotations, translations, t, noise_rot, noise_trans):
         """
@@ -98,12 +133,17 @@ class SE3Diffusion:
 
         perturbed_trans = torch.exp(-1/2*self.marginal_b_t(t)) * translations + \
                           noise_trans * torch.sqrt(1 - torch.exp(-self.marginal_b_t(t)))
-        perturbed_rot   = torch.exp(-1/2*self.marginal_b_t(t)) * rotations + \
-                          noise_rot * torch.sqrt(1 - torch.exp(-self.marginal_b_t(t)))
+        
+        sampled_rots = self.sample(t, n_samples=rotations.size(0))
+
+        # Right multiply.
+        perturbed_rot = compose_rotvec(rotations, sampled_rots)
+        # perturbed_rot   = torch.exp(-1/2*self.marginal_b_t(t)) * rotations + \
+        #                   noise_rot * torch.sqrt(1 - torch.exp(-self.marginal_b_t(t)))
 
         return perturbed_rot, perturbed_trans
     
-    def reverse_marginal(self, t, t_index, rot, trans, model, batch_size, noise_scale=1.0, return_score=False):
+    def reverse_marginal(self, t, t_index, rot, trans, model, batch_size, noise_scale=1.0, return_score=False, eps=1e-6):
         if t_index == 0:
             z = (torch.zeros(rot.shape, device=rot.device), torch.zeros(trans.shape, device=trans.device))
         else:
@@ -126,13 +166,17 @@ class SE3Diffusion:
         perturb_rot = (f_t_rot - g_t**2 * rot_score) * dt + g_t * np.sqrt(dt) * z
 
         trans -= perturb_trans
-        rot -= perturb_rot
+
+        rot = compose_rotvec(
+            rot,
+            perturb_rot
+        )
 
         rot = self.unscale_rot(rot)
         trans = self.unscale_trans(trans)
 
         if return_score:
-            return rot, trans, rot_score, trans_score
+            return rot, trans, perturb_rot, perturb_trans
 
         return rot, trans
 
