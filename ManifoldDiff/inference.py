@@ -1,9 +1,6 @@
 from utils import *
-from r3_diffuser import R3Diffuser, R3Conf
 from unet import *
-from se3_diffuser import *
-from se3_diffuser_2 import *
-from se3_diffuser_3 import *
+from DDPM_Diff import *
 from transformer import *
 import matplotlib.pyplot as plt
 import numpy as np
@@ -44,12 +41,12 @@ def main():
         loaded_model = DoubleUnet(dim=args.hidden_dim, unet_layer=args.unet_layer).cuda()
 
     # Load the saved weights
-    loaded_model.load_state_dict(torch.load(args.model_path))
+    loaded_model.load_state_dict(torch.load(args.model_path, weights_only=True))
 
     # Set the model to evaluation mode
     loaded_model.eval()
 
-    diffusion = SE3Diffusion_3(loaded_model, trans_scale=args.scale_trans)
+    diffusion = DDPM_Diff(loaded_model, trans_scale=args.scale_trans)
     generated_se3 = diffusion.sample((args.batch_size, args.n, 3), args.device, num_steps=args.num_timesteps)
 
     # print("Generated SE(3) sequence:")

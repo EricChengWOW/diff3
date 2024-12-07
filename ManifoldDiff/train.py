@@ -13,12 +13,11 @@ sys.path.append('/content/drive/MyDrive/10623/ManifoldDiff/')
 from utils import *
 from unet import *
 from transformer import *
-from se3_diffuser import *
-from se3_diffuser_2 import *
-from se3_diffuser_3 import *
+from DDPM_Diff import *
 from KITTI_dataset import KITTIOdometryDataset
 from Oxford_Robotcar_dataset import RobotcarDataset
 from L_dataset import LDataset
+from T_dataset import TDataset
 
 import argparse
 
@@ -49,6 +48,7 @@ def parse_arguments():
     parser.add_argument('--shuffle', action='store_true', help='Enable shuffling of data (default: False)')
     parser.add_argument('--center', action='store_true', help='Center each trajectory in data set')
     parser.add_argument("--learning_rate", type=float, default=1e-5, help="Training optimizer learning rate")
+    parser.add_argument("--wandb", action='store_true', help="Log training loss to wandb")
 
     return parser.parse_args()
 
@@ -134,23 +134,27 @@ def main():
         dataset = LDataset(seq_len=args.n)
         dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
         print("Training on L shape for ", len(dataloader), " batches")
+    elif args.dataset == "T":
+        dataset = TDataset(seq_len=args.n)
+        dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
+        print("Training on T shape for ", len(dataloader), " batches")
     else:
         raise "Dataset type not supported"
 
     if args.model_type == "Transformer":
         model = DoubleTransformerEncoderUnet(dim=args.hidden_dim, num_heads=args.n_heads, num_layers=args.n_layers, unet_layer=args.unet_layer).to(args.device)
-        diffusion = SE3Diffusion_3(model, trans_scale=args.scale_trans, timesteps=args.num_timesteps)
+        diffusion = DDPM_Diff(model, trans_scale=args.scale_trans, timesteps=args.num_timesteps)
         optimizer = torch.optim.Adam(model.parameters(), lr=args.learning_rate)
         scheduler = CosineAnnealingLR(optimizer, T_max=args.num_epochs, eta_min=args.learning_rate * 0.1)
         run_name = "Diffusion_" + args.model_type + "_" + args.dataset + "_Epoch" + str(args.num_epochs)
-        diffusion.train(dataloader, optimizer, args.device, num_timesteps=args.num_timesteps, epochs=args.num_epochs, project_name="Diff3", run_name=run_name)
+        diffusion.train(dataloader, optimizer, args.device, num_timesteps=args.num_timesteps, epochs=args.num_epochs, log_wandb=args.wandb, project_name="Diff3", run_name=run_name)
     else:
         model = DoubleUnet(dim=args.hidden_dim, unet_layer=args.unet_layer).to(args.device)
-        diffusion = SE3Diffusion_3(model, trans_scale=args.scale_trans)
+        diffusion = DDPM_Diff(model, trans_scale=args.scale_trans)
         optimizer = torch.optim.Adam(model.parameters(), lr=args.learning_rate)
         scheduler = CosineAnnealingLR(optimizer, T_max=args.num_epochs, eta_min=args.learning_rate * 0.1)
         run_name = "Diffusion_" + args.model_type + "_" + args.dataset + "_Epoch" + str(args.num_epochs)
-        diffusion.train(dataloader, optimizer, args.device, epochs=args.num_epochs, project_name="Diff3", run_name=run_name)
+        diffusion.train(dataloader, optimizer, args.device, epochs=args.num_epochs, log_wandb=args.wandb, project_name="Diff3", run_name=run_name)
 
     # Save the model's state_dict
     torch.save(model.state_dict(), args.save_path)

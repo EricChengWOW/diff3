@@ -82,6 +82,9 @@ class RobotcarDataset(torch.utils.data.Dataset):
             else:
                 trajectories.append(traj)
 
+        for i in range(len(trajectories)):
+            trajectories[i] /= np.max(trajectories[i])
+
         return trajectories
 
     def __len__(self):
