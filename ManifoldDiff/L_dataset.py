@@ -4,7 +4,7 @@ import numpy as np
 
 class LDataset(torch.utils.data.Dataset):
     """
-    PyTorch Dataset for Oxford Robot Car dataset SE(3) data.
+    PyTorch Dataset for synthetic L-shaped SE(3) data.
     """
 
     def __init__(self, seq_len=128, size=500):
@@ -20,6 +20,7 @@ class LDataset(torch.utils.data.Dataset):
         self.traj[:, :, :3, 3] = self.L
 
         self.traj[:, :, :3, 3] = self.rotate_and_scale(self.traj[:, :, :3, 3])
+        self.add_rotations()
 
     def random_rotation_matrix(self):
         """Generate a random 3D rotation matrix using quaternions."""
@@ -41,14 +42,7 @@ class LDataset(torch.utils.data.Dataset):
 
     def rotate_and_scale(self, array):
         """
-        Rotate each L,3,1 group in the array of shape [N, L, 3, 1]
-        by the same random rotation for each N.
-        
-        Parameters:
-            array (np.ndarray): Input array of shape [N, L, 3, 1].
-            
-        Returns:
-            np.ndarray: Transformed array of the same shape.
+        Rotate and scale trajectory.
         """
         N, L, _ = array.shape
         array = array.reshape(N, L, 3, 1)
@@ -63,6 +57,29 @@ class LDataset(torch.utils.data.Dataset):
         
         transformed = transformed.reshape(N, L, 3)
         return transformed
+
+    def direction_to_rotation_matrix(self, direction):
+        """Convert a direction vector to a rotation matrix."""
+        z = direction / np.linalg.norm(direction)
+        x = np.array([1, 0, 0]) if abs(z[0]) < 0.9 else np.array([0, 1, 0])
+        x = np.cross(x, z)
+        x /= np.linalg.norm(x)
+        y = np.cross(z, x)
+        return np.column_stack((x, y, z))
+
+    def add_rotations(self):
+        """
+        Add rotation matrices based on directions between consecutive points.
+        """
+        for n in range(self.traj.shape[0]):
+            for i in range(self.traj.shape[1] - 1):
+                # Compute direction to the next point
+                direction = self.traj[n, i + 1, :3, 3] - self.traj[n, i, :3, 3]
+                R = self.direction_to_rotation_matrix(direction)
+                self.traj[n, i, :3, :3] = R
+
+            # Set the rotation of the last point to be the same as the previous
+            self.traj[n, -1, :3, :3] = self.traj[n, -2, :3, :3]
 
     def __len__(self):
         """

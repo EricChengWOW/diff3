@@ -256,13 +256,13 @@ def main():
         plt.savefig(path, dpi=300, bbox_inches='tight')
         plt.close()
 
-    save_plot(in_eps_t1, out_eps_t1, metric="eps", path=args.save_folder + "/eps.png")
-    save_plot(in_eps_t2, out_eps_t2, metric="eps2", path=args.save_folder + "/eps2.png")
-    save_plot(in_eps_t3, out_eps_t3, metric="eps3", path=args.save_folder + "/eps3.png")
+    save_plot(in_eps_t1, out_eps_t1, metric="eps_trans", path=args.save_folder + "/eps_trans.png")
+    save_plot(in_eps_t2, out_eps_t2, metric="eps_trans2", path=args.save_folder + "/eps_trans2.png")
+    save_plot(in_eps_t3, out_eps_t3, metric="eps_trans3", path=args.save_folder + "/eps_trans3.png")
 
-    save_plot(in_deps_t1, out_deps_t1, metric="deps", path=args.save_folder + "/deps.png")
-    save_plot(in_deps_t2, out_deps_t2, metric="deps2", path=args.save_folder + "/deps2.png")
-    save_plot(in_deps_t3, out_deps_t3, metric="deps3", path=args.save_folder + "/deps3.png")
+    save_plot(in_deps_t1, out_deps_t1, metric="deps_trans", path=args.save_folder + "/deps_trans.png")
+    save_plot(in_deps_t2, out_deps_t2, metric="deps_trans", path=args.save_folder + "/deps_trans.png")
+    save_plot(in_deps_t3, out_deps_t3, metric="deps_trans", path=args.save_folder + "/deps_trans.png")
 
 if __name__ == "__main__":
     main()

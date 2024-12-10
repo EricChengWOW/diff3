@@ -260,9 +260,8 @@ class DoubleUnet(nn.Module):
         self.dims = [1]
         for i in range(unet_layer-1):
           self.dims.append(self.dims[-1] * 2)
-        self.unet1 = Unet(dim=dim, channels=channels, dim_mults=tuple(self.dims))
-        self.unet2 = Unet(dim=dim, channels=channels, dim_mults=tuple(self.dims))
-        self.final_conv = nn.Conv1d(dim * 2, channels, 1)  # Combine both outputs from U-Nets
+        self.unet1 = Unet(dim=dim, channels=3, dim_mults=tuple(self.dims))
+        self.unet2 = Unet(dim=dim, channels=9, out_dim=3, dim_mults=tuple(self.dims))
 
     def forward(self, data1, data2, time):
         # Forward pass through both U-Nets

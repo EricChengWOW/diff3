@@ -14,6 +14,7 @@ from utils import *
 from unet import *
 from transformer import *
 from DDPM_Diff import *
+from DDPM_Continuous_Diff import *
 from KITTI_dataset import KITTIOdometryDataset
 from Oxford_Robotcar_dataset import RobotcarDataset
 from L_dataset import LDataset
@@ -49,75 +50,9 @@ def parse_arguments():
     parser.add_argument('--center', action='store_true', help='Center each trajectory in data set')
     parser.add_argument("--learning_rate", type=float, default=1e-5, help="Training optimizer learning rate")
     parser.add_argument("--wandb", action='store_true', help="Log training loss to wandb")
+    parser.add_argument("--diffusion_type", type=str, default="DDPM", help="The Diffusion algorithm and scheduler to use [DDPM, DDPM_Continuous]")
 
     return parser.parse_args()
-
-def train_se3_diffusion(model, diffusion, dataloader, optimizer, n=128, num_timesteps=20, num_epochs=100, project_name="SE3_Diffusion"):
-    """
-    Args:
-        model: SE3ScoreNetwork instance.
-        diffusion: SE3Diffusion instance.
-        dataloader: dataloader of SE(3) sequences [B, n, 4, 4].
-        optimizer: Optimizer for the score network.
-        n: seq length
-        num_epochs: Number of training epochs.
-        project_name: Name of the wandb project.
-    """
-    # Initialize wandb
-    wandb.init(project=project_name, config={"num_epochs": num_epochs, "learning_rate": optimizer.param_groups[0]["lr"]})
-
-    for epoch in range(num_epochs):
-        total_loss = 0
-
-        # Use tqdm to show progress for the current epoch
-        epoch_progress = tqdm(dataloader, desc=f"Epoch {epoch + 1}/{num_epochs}", leave=False)
-
-        for batch in epoch_progress:
-            # Extract SE(3) components
-            batch = batch.to(diffusion.device)
-            rotations = batch[:, :, :3, :3]  # [B, n, 3, 3]
-            rotations = matrix_to_so3(rotations)  # [B, n, 3]
-            translations = batch[:, :, :3, 3]  # [B, n, 3]
-
-            # Sample t and perturb SE(3)
-            t = torch.randint(0, num_timesteps, (rotations.shape[0],), device=rotations.device) * (1 / (num_timesteps - 1))
-            t_bc = t.reshape(t.size(0),1,1).broadcast_to(translations.shape)
-            noise_rot, noise_trans = sample_noise((rotations.shape[0], n, 3), device=rotations.device)
-
-            rot_xt, trans_xt = diffusion.perturb(rotations, translations, t_bc, noise_rot, noise_trans)
-
-            # Get scores
-            rot_score, trans_score = model(rot_xt.transpose(1, 2), trans_xt.transpose(1, 2), t)
-            rot_score = rot_score.transpose(1, 2)
-            trans_score = trans_score.transpose(1, 2)
-
-            # Compute loss
-            loss_rot = F.l1_loss(rot_score, noise_rot)
-            # print(trans_xt.mean(), trans_score.mean(), trans_score_real.mean())
-            loss_trans = F.l1_loss(trans_score, noise_trans)
-            loss = loss_trans + loss_rot
-
-            # Update model
-            optimizer.zero_grad()
-            loss.backward()
-            optimizer.step()
-
-            total_loss += loss.item()
-
-            # Update tqdm progress bar with current loss
-            epoch_progress.set_postfix(loss=loss.item())
-
-        # Calculate average loss for the epoch
-        avg_loss = total_loss / len(dataloader)
-
-        # Log to wandb
-        wandb.log({"epoch": epoch + 1, "loss": avg_loss})
-
-        # Print epoch loss
-        print(f"Epoch {epoch + 1}/{num_epochs}, Loss: {avg_loss:.4f}")
-
-    # Finish wandb logging
-    wandb.finish()
 
 def main():
     args = parse_arguments()
@@ -143,18 +78,17 @@ def main():
 
     if args.model_type == "Transformer":
         model = DoubleTransformerEncoderUnet(dim=args.hidden_dim, num_heads=args.n_heads, num_layers=args.n_layers, unet_layer=args.unet_layer).to(args.device)
-        diffusion = DDPM_Diff(model, trans_scale=args.scale_trans, timesteps=args.num_timesteps)
-        optimizer = torch.optim.Adam(model.parameters(), lr=args.learning_rate)
-        scheduler = CosineAnnealingLR(optimizer, T_max=args.num_epochs, eta_min=args.learning_rate * 0.1)
-        run_name = "Diffusion_" + args.model_type + "_" + args.dataset + "_Epoch" + str(args.num_epochs)
-        diffusion.train(dataloader, optimizer, args.device, num_timesteps=args.num_timesteps, epochs=args.num_epochs, log_wandb=args.wandb, project_name="Diff3", run_name=run_name)
     else:
         model = DoubleUnet(dim=args.hidden_dim, unet_layer=args.unet_layer).to(args.device)
-        diffusion = DDPM_Diff(model, trans_scale=args.scale_trans)
-        optimizer = torch.optim.Adam(model.parameters(), lr=args.learning_rate)
-        scheduler = CosineAnnealingLR(optimizer, T_max=args.num_epochs, eta_min=args.learning_rate * 0.1)
-        run_name = "Diffusion_" + args.model_type + "_" + args.dataset + "_Epoch" + str(args.num_epochs)
-        diffusion.train(dataloader, optimizer, args.device, epochs=args.num_epochs, log_wandb=args.wandb, project_name="Diff3", run_name=run_name)
+    
+    if args.diffusion_type == "DDPM":
+        diffusion = DDPM_Diff(model, trans_scale=args.scale_trans, seq_len=args.n)
+    else:
+        diffusion = DDPM_Continuous_Diff(model, trans_scale=args.scale_trans, seq_len=args.n)
+    optimizer = torch.optim.Adam(model.parameters(), lr=args.learning_rate)
+    scheduler = CosineAnnealingLR(optimizer, T_max=args.num_epochs, eta_min=args.learning_rate * 0.1)
+    run_name = "Diffusion_" + args.model_type + "_" + args.dataset + "_Epoch" + str(args.num_epochs)
+    diffusion.train(dataloader, optimizer, args.device, num_timesteps=args.num_timesteps, epochs=args.num_epochs, log_wandb=args.wandb, project_name="Diff3", run_name=run_name)
 
     # Save the model's state_dict
     torch.save(model.state_dict(), args.save_path)
