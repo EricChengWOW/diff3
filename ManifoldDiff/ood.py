@@ -94,8 +94,10 @@ def diffusion_metrics(diffusion, dataloader, args, loaded_model):
 
         batch = batch.to(args.device)
         rotations = batch[:, :, :3, :3]  # [B, n, 3, 3]
-        rotations = matrix_to_so3(rotations)  # [B, n, 3]
+        # rotations = matrix_to_so3(rotations)  # [B, n, 3]
         translations = batch[:, :, :3, 3]  # [B, n, 3]
+
+        B, L, _ = translations.shape
 
         score_norm_t1 = torch.zeros((batch.size(0),), device=args.device)
         score_norm_r1 = torch.zeros((batch.size(0),), device=args.device)
@@ -118,25 +120,31 @@ def diffusion_metrics(diffusion, dataloader, args, loaded_model):
         prev_score_t = None
         prev_score_r = None
 
+        trans_init = torch.randn_like(translations)
+        v_T = torch.randn(B,L,3, device=translations.device)
+        rot_init = so3_exp_map(v_T)
+
         for t in range(args.num_timesteps):
             t_tensor = torch.full((batch.size(0),), t, device=args.device)
 
-            trans_init = torch.randn_like(translations)
-            (trans_t, _), (rot_t, _) = diffusion.forward_process(translations, rotations, t_tensor, trans_init=trans_init)
+            # trans_init = torch.randn_like(translations)
+            (trans_t, _), (rot_t, _) = diffusion.forward_process(translations, rotations, t_tensor, trans_init=trans_init, rot_init=rot_init)
 
             if loaded_model.name == "Unet":
-                translations = translations.transpose(1,2)
-                rotations = rotations.transpose(1,2)
+                trans_t = trans_t.transpose(1,2)
+                rot_t = rot_t.reshape(B, L, 9)
+                rot_t = rot_t.transpose(1,2)
 
             # Predict scores using the score model
             with torch.no_grad():
-                trans_score, rot_score = loaded_model(translations, rotations, t_tensor)
+                trans_score, rot_score = loaded_model(trans_t, rot_t, t_tensor)
 
             if loaded_model.name == "Unet":
                 trans_score = trans_score.transpose(1,2)
                 rot_score = rot_score.transpose(1,2)
-                translations = translations.transpose(1,2)
-                rotations = rotations.transpose(1,2)
+                trans_t = trans_t.transpose(1,2)
+                rot_t = rot_t.transpose(1,2)
+                rot_t = rot_t.reshape(B, L, 3, 3)
 
             score_norm_t1 += torch.norm(trans_score, dim=(-2, -1))
             score_norm_r1 += torch.norm(rot_score, dim=(-2, -1))
@@ -243,7 +251,7 @@ def main():
     test_points = np.column_stack([out_eps_t1, out_eps_t2, out_eps_t3, out_deps_t1, out_deps_t2, out_deps_t3])
 
     probs = gmm.score_samples(test_points)
-    print(probs)
+    # print(probs)
 
     def save_plot(in_data, out_data, metric="eps", path = "temp.png"):
         plt.hist([in_data, out_data], bins=50, color=['skyblue', 'orange'], edgecolor='black', label=['In', 'Out'])

@@ -174,3 +174,124 @@ def matrix_to_rotvec(mat):
 
 def rotvec_to_quat(rotvec):
     return Rotation.from_rotvec(rotvec).as_quat()
+
+def extract(a, t, x_shape):
+    """
+    Extracts the tensor at the given time step.
+    Args:
+        a: A tensor contains the values of all time steps.
+        t: The time step to extract.
+        x_shape: The reference shape.
+    Returns:
+        The extracted tensor.
+    """
+    b, *_ = t.shape
+    out = a.gather(-1, t)
+    return out.reshape(b, *((1,) * (len(x_shape) - 1)))
+
+def cosine_schedule(timesteps, s=0.008):
+    """
+    Defines the cosine schedule for the diffusion process
+    Args:
+        timesteps: The number of timesteps.
+        s: The strength of the schedule.
+    Returns:
+        The computed alpha.
+    """
+    steps = timesteps + 1
+    x = torch.linspace(0, steps, steps)
+    alphas_cumprod = torch.cos(((x / steps) + s) / (1 + s) * torch.pi * 0.5) ** 2
+    alphas_cumprod = alphas_cumprod / alphas_cumprod[0]
+    alphas = alphas_cumprod[1:] / alphas_cumprod[:-1]
+    return torch.clip(alphas, 0.001, 1)
+
+def skew_symmetric(v):
+    """Construct the skew-symmetric matrix S(v) from a vector v = (x,y,z)."""
+    x, y, z = v[..., 0], v[..., 1], v[..., 2]
+    zero = torch.zeros_like(x)
+    return torch.stack([
+        torch.stack([zero, -z, y], dim=-1),
+        torch.stack([z, zero, -x], dim=-1),
+        torch.stack([-y, x, zero], dim=-1)
+    ], dim=-2)
+
+def so3_exp_map(v):
+    """
+    Exponential map from so(3) to SO(3).
+
+    v: (..., 3) batch of vectors in R^3 (tangent space).
+    Returns: (..., 3, 3) batch of rotation matrices in SO(3).
+    """
+    theta = torch.norm(v, dim=-1, keepdim=True)
+    theta_clamped = theta.clamp(min=1e-8)
+    V = skew_symmetric(v)  # (B,L,3,3)
+    B, L = v.shape[0], v.shape[1]
+    I = torch.eye(3, device=v.device).expand(B,L,3,3)
+    sin_theta = torch.sin(theta)
+    cos_theta = torch.cos(theta)
+    sin_div = (sin_theta / theta_clamped).unsqueeze(-1)
+    term2 = sin_div * V
+    one_minus_cos_div = ((1 - cos_theta) / (theta_clamped**2)).unsqueeze(-1)
+    term3 = one_minus_cos_div * (V @ V)
+    R = I + term2 + term3
+    return R
+
+def so3_log_map(R):
+    """
+    Logarithm map from SO(3) to so(3).
+
+    R: (..., 3, 3) batch of rotation matrices in SO(3).
+    Returns: (..., 3) batch of tangent vectors.
+    """
+    trace_R = R[...,0,0] + R[...,1,1] + R[...,2,2]
+    cos_theta = (trace_R - 1.) / 2.
+    cos_theta = cos_theta.clamp(-1+1e-7, 1-1e-7)
+    theta = torch.acos(cos_theta)
+    theta_clamped = theta.clamp(min=1e-8)
+
+    R_T = R.transpose(-1,-2)
+    Q = (R - R_T) / 2.0
+    x = (Q[...,2,1] - Q[...,1,2]) / 2
+    y = (Q[...,0,2] - Q[...,2,0]) / 2
+    z = (Q[...,1,0] - Q[...,0,1]) / 2
+    v = torch.stack([x, y, z], dim=-1)  # (B,L,3)
+
+    sin_theta = torch.sin(theta_clamped)
+    scale = (theta / sin_theta).unsqueeze(-1)
+    v = v * scale
+    return v
+
+def so3_interpolate(x, y, gamma):
+    """
+    Geodesic interpolation on SO(3): 
+    lambda(gamma, x) = exp(gamma log(x))
+    
+    Here we just scale the tangent vector of x by gamma.
+    
+    x: (..., 3, 3) rotation matrix
+    y: not needed here if we just scale from identity to x.
+    gamma: scalar or (...,) shape broadcastable factor
+    """
+    v = so3_log_map(x)  # (...,3)
+    new_v = gamma * v
+    return so3_exp_map(new_v)
+
+def rotation_distance_loss(R_pred, R_true):
+    """
+    Compute the rotation distance loss between two batches of rotation matrices.
+
+    Args:
+        P: Predicted rotation matrices of shape (B, L, 3, 3).
+        Q: True rotation matrices of shape (B, L, 3, 3).
+
+    Returns:
+        Loss value (mean rotation distance in radians).
+    """
+    Rt = R_pred.transpose(-1,-2)
+    M = Rt @ R_true
+    trace_val = M[...,0,0] + M[...,1,1] + M[...,2,2]
+    # Clip for numerical stability
+    cos_theta = (trace_val - 1.0)/2.0
+    cos_theta = cos_theta.clamp(-1+1e-7, 1-1e-7)
+    theta = torch.acos(cos_theta)  # (B,)
+    return (theta**2).mean()

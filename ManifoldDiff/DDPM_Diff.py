@@ -14,131 +14,12 @@ from scipy.linalg import expm, logm
 
 from utils import *
 
-def extract(a, t, x_shape):
-    """
-    Extracts the tensor at the given time step.
-    Args:
-        a: A tensor contains the values of all time steps.
-        t: The time step to extract.
-        x_shape: The reference shape.
-    Returns:
-        The extracted tensor.
-    """
-    b, *_ = t.shape
-    out = a.gather(-1, t)
-    return out.reshape(b, *((1,) * (len(x_shape) - 1)))
 
-def cosine_schedule(timesteps, s=0.008):
-    """
-    Defines the cosine schedule for the diffusion process
-    Args:
-        timesteps: The number of timesteps.
-        s: The strength of the schedule.
-    Returns:
-        The computed alpha.
-    """
-    steps = timesteps + 1
-    x = torch.linspace(0, steps, steps)
-    alphas_cumprod = torch.cos(((x / steps) + s) / (1 + s) * torch.pi * 0.5) ** 2
-    alphas_cumprod = alphas_cumprod / alphas_cumprod[0]
-    alphas = alphas_cumprod[1:] / alphas_cumprod[:-1]
-    return torch.clip(alphas, 0.001, 1)
-
-def skew_symmetric(v):
-    """Construct the skew-symmetric matrix S(v) from a vector v = (x,y,z)."""
-    x, y, z = v[..., 0], v[..., 1], v[..., 2]
-    zero = torch.zeros_like(x)
-    return torch.stack([
-        torch.stack([zero, -z, y], dim=-1),
-        torch.stack([z, zero, -x], dim=-1),
-        torch.stack([-y, x, zero], dim=-1)
-    ], dim=-2)
-
-def so3_exp_map(v):
-    """
-    Exponential map from so(3) to SO(3).
-
-    v: (..., 3) batch of vectors in R^3 (tangent space).
-    Returns: (..., 3, 3) batch of rotation matrices in SO(3).
-    """
-    theta = torch.norm(v, dim=-1, keepdim=True)
-    theta_clamped = theta.clamp(min=1e-8)
-    V = skew_symmetric(v)  # (B,L,3,3)
-    B, L = v.shape[0], v.shape[1]
-    I = torch.eye(3, device=v.device).expand(B,L,3,3)
-    sin_theta = torch.sin(theta)
-    cos_theta = torch.cos(theta)
-    sin_div = (sin_theta / theta_clamped).unsqueeze(-1)
-    term2 = sin_div * V
-    one_minus_cos_div = ((1 - cos_theta) / (theta_clamped**2)).unsqueeze(-1)
-    term3 = one_minus_cos_div * (V @ V)
-    R = I + term2 + term3
-    return R
-
-def so3_log_map(R):
-    """
-    Logarithm map from SO(3) to so(3).
-
-    R: (..., 3, 3) batch of rotation matrices in SO(3).
-    Returns: (..., 3) batch of tangent vectors.
-    """
-    trace_R = R[...,0,0] + R[...,1,1] + R[...,2,2]
-    cos_theta = (trace_R - 1.) / 2.
-    cos_theta = cos_theta.clamp(-1+1e-7, 1-1e-7)
-    theta = torch.acos(cos_theta)
-    theta_clamped = theta.clamp(min=1e-8)
-
-    R_T = R.transpose(-1,-2)
-    Q = (R - R_T) / 2.0
-    x = (Q[...,2,1] - Q[...,1,2]) / 2
-    y = (Q[...,0,2] - Q[...,2,0]) / 2
-    z = (Q[...,1,0] - Q[...,0,1]) / 2
-    v = torch.stack([x, y, z], dim=-1)  # (B,L,3)
-
-    sin_theta = torch.sin(theta_clamped)
-    scale = (theta / sin_theta).unsqueeze(-1)
-    v = v * scale
-    return v
-
-def so3_interpolate(x, y, gamma):
-    """
-    Geodesic interpolation on SO(3): 
-    lambda(gamma, x) = exp(gamma log(x))
-    
-    Here we just scale the tangent vector of x by gamma.
-    
-    x: (..., 3, 3) rotation matrix
-    y: not needed here if we just scale from identity to x.
-    gamma: scalar or (...,) shape broadcastable factor
-    """
-    v = so3_log_map(x)  # (...,3)
-    new_v = gamma * v
-    return so3_exp_map(new_v)
-
-def rotation_distance_loss(R_pred, R_true):
-    """
-    Compute the rotation distance loss between two batches of rotation matrices.
-
-    Args:
-        P: Predicted rotation matrices of shape (B, L, 3, 3).
-        Q: True rotation matrices of shape (B, L, 3, 3).
-
-    Returns:
-        Loss value (mean rotation distance in radians).
-    """
-    Rt = R_pred.transpose(-1,-2)
-    M = Rt @ R_true
-    trace_val = M[...,0,0] + M[...,1,1] + M[...,2,2]
-    # Clip for numerical stability
-    cos_theta = (trace_val - 1.0)/2.0
-    cos_theta = cos_theta.clamp(-1+1e-7, 1-1e-7)
-    theta = torch.acos(cos_theta)  # (B,)
-    return (theta**2).mean()
 
 
 # Diffuser Class
 class DDPM_Diff:
-    def __init__(self, score_model, beta_start=0.1, beta_end=1.0, trans_scale=1.0, device="cuda", timesteps=30, seq_len=128):
+    def __init__(self, score_model, beta_start=1e-4, beta_end=0.02, trans_scale=1.0, device="cuda", timesteps=30, seq_len=128):
         self.score_model = score_model
         self.beta_start = beta_start
         self.beta_end = beta_end
@@ -437,8 +318,10 @@ class DDPM_Diff:
                     
                     # Add quivers
                     step = 5  # Reduce clutter by plotting quivers every 5 points
-                    scale = 0.01
+                    scale = 0.05
                     for i in range(0, len(trajectory) - 1, step):
+                        point = trajectory[i]
+
                         R = rotations
 
                         # The columns of R represent the directions of the x, y, and z axes of the local frame
@@ -448,17 +331,17 @@ class DDPM_Diff:
 
                         # Plot the quivers for each axis
                         # X-axis (red)
-                        ax.quiver(trajectory[0], trajectory[1], trajectory[2],
+                        ax.quiver(point[0], point[1], point[2],
                                   x_axis[0], x_axis[1], x_axis[2],
                                   length=scale, color='r', linewidth=1.5, alpha=0.6)
 
                         # Y-axis (green)
-                        ax.quiver(trajectory[0], trajectory[1], trajectory[2],
+                        ax.quiver(point[0], point[1], point[2],
                                   y_axis[0], y_axis[1], y_axis[2],
                                   length=scale, color='g', linewidth=1.5, alpha=0.6)
 
                         # Z-axis (blue)
-                        ax.quiver(trajectory[0], trajectory[1], trajectory[2],
+                        ax.quiver(point[0], point[1], point[2],
                                   z_axis[0], z_axis[1], z_axis[2],
                                   length=scale, color='b', linewidth=1.5, alpha=0.6)
 
