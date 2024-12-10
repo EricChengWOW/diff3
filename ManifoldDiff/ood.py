@@ -1,3 +1,4 @@
+from numpy.lib import nanprod
 from utils import *
 from unet import *
 from DDPM_Diff import *
@@ -124,7 +125,7 @@ def diffusion_metrics(diffusion, dataloader, args, loaded_model):
         v_T = torch.randn(B,L,3, device=translations.device)
         rot_init = so3_exp_map(v_T)
 
-        for t in range(args.num_timesteps):
+        for t in range(args.num_timesteps // 2):
             t_tensor = torch.full((batch.size(0),), t, device=args.device)
 
             # trans_init = torch.randn_like(translations)
@@ -146,23 +147,23 @@ def diffusion_metrics(diffusion, dataloader, args, loaded_model):
                 rot_t = rot_t.transpose(1,2)
                 rot_t = rot_t.reshape(B, L, 3, 3)
 
-            score_norm_t1 += torch.norm(trans_score, dim=(-2, -1))
-            score_norm_r1 += torch.norm(rot_score, dim=(-2, -1))
-            score_norm_t2 += torch.norm(trans_score ** 2, dim=(-2, -1))
-            score_norm_r2 += torch.norm(rot_score ** 2, dim=(-2, -1))
-            score_norm_t3 += torch.norm(trans_score ** 3, dim=(-2, -1))
-            score_norm_r3 += torch.norm(rot_score ** 3, dim=(-2, -1))
+            score_norm_t1 += torch.sum(trans_score, dim=(-2, -1))
+            score_norm_r1 += torch.sum(rot_score, dim=(-2, -1))
+            score_norm_t2 += torch.sum(trans_score ** 2, dim=(-2, -1))
+            score_norm_r2 += torch.sum(rot_score ** 2, dim=(-2, -1))
+            score_norm_t3 += torch.sum(trans_score ** 3, dim=(-2, -1))
+            score_norm_r3 += torch.sum(rot_score ** 3, dim=(-2, -1))
 
             if prev_score_t is not None:
                 delta = trans_score - prev_score_t
-                dscore_norm_t1 += torch.norm(delta, dim=(-2, -1))
-                dscore_norm_t2 += torch.norm(delta ** 2, dim=(-2, -1))
-                dscore_norm_t3 += torch.norm(delta ** 3, dim=(-2, -1))
+                dscore_norm_t1 += torch.sum(delta, dim=(-2, -1))
+                dscore_norm_t2 += torch.sum(delta ** 2, dim=(-2, -1))
+                dscore_norm_t3 += torch.sum(delta ** 3, dim=(-2, -1))
 
                 delta = trans_score - prev_score_r
-                dscore_norm_r1 += torch.norm(delta, dim=(-2, -1))
-                dscore_norm_r2 += torch.norm(delta ** 2, dim=(-2, -1))
-                dscore_norm_r3 += torch.norm(delta ** 3, dim=(-2, -1))
+                dscore_norm_r1 += torch.sum(delta, dim=(-2, -1))
+                dscore_norm_r2 += torch.sum(delta ** 2, dim=(-2, -1))
+                dscore_norm_r3 += torch.sum(delta ** 3, dim=(-2, -1))
 
             prev_score_t = trans_score
             prev_score_r = rot_score
@@ -195,19 +196,19 @@ def diffusion_metrics(diffusion, dataloader, args, loaded_model):
     dtrans_scores_2 = np.concatenate(dtrans_score_arr_2, axis=0)
     dtrans_scores_3 = np.concatenate(dtrans_score_arr_3, axis=0)
 
-    eps_t1 = np.sqrt(trans_scores_1)
+    eps_t1 = trans_scores_1
     eps_t2 = np.sqrt(trans_scores_2)
-    eps_t3 = np.sqrt(trans_scores_3)
-    eps_r1 = np.sqrt(rot_scores_1)
+    eps_t3 = trans_scores_3
+    eps_r1 = rot_scores_1
     eps_r2 = np.sqrt(rot_scores_2)
-    eps_r3 = np.sqrt(rot_scores_3)
+    eps_r3 = rot_scores_3
 
-    deps_t1 = np.sqrt(dtrans_scores_1)
+    deps_t1 = dtrans_scores_1
     deps_t2 = np.sqrt(dtrans_scores_2)
-    deps_t3 = np.sqrt(dtrans_scores_3)
-    deps_r1 = np.sqrt(drot_scores_1)
+    deps_t3 = dtrans_scores_3
+    deps_r1 = drot_scores_1
     deps_r2 = np.sqrt(drot_scores_2)
-    deps_r3 = np.sqrt(drot_scores_3)
+    deps_r3 = drot_scores_3
 
     return (eps_t1, eps_t2, eps_t3, eps_r1, eps_r2, eps_r3), (deps_t1, deps_t2, deps_t3, deps_r1, deps_r2, deps_r3)
 
@@ -269,8 +270,8 @@ def main():
     save_plot(in_eps_t3, out_eps_t3, metric="eps_trans3", path=args.save_folder + "/eps_trans3.png")
 
     save_plot(in_deps_t1, out_deps_t1, metric="deps_trans", path=args.save_folder + "/deps_trans.png")
-    save_plot(in_deps_t2, out_deps_t2, metric="deps_trans", path=args.save_folder + "/deps_trans.png")
-    save_plot(in_deps_t3, out_deps_t3, metric="deps_trans", path=args.save_folder + "/deps_trans.png")
+    save_plot(in_deps_t2, out_deps_t2, metric="deps_trans2", path=args.save_folder + "/deps_trans2.png")
+    save_plot(in_deps_t3, out_deps_t3, metric="deps_trans3", path=args.save_folder + "/deps_trans3.png")
 
 if __name__ == "__main__":
     main()
