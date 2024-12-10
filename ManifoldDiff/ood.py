@@ -125,7 +125,7 @@ def diffusion_metrics(diffusion, dataloader, args, loaded_model):
         v_T = torch.randn(B,L,3, device=translations.device)
         rot_init = so3_exp_map(v_T)
 
-        for t in range(args.num_timesteps // 2):
+        for t in range(args.num_timesteps):
             t_tensor = torch.full((batch.size(0),), t, device=args.device)
 
             # trans_init = torch.randn_like(translations)
@@ -268,10 +268,16 @@ def main():
     save_plot(in_eps_t1, out_eps_t1, metric="eps_trans", path=args.save_folder + "/eps_trans.png")
     save_plot(in_eps_t2, out_eps_t2, metric="eps_trans2", path=args.save_folder + "/eps_trans2.png")
     save_plot(in_eps_t3, out_eps_t3, metric="eps_trans3", path=args.save_folder + "/eps_trans3.png")
+    save_plot(in_eps_r1, out_eps_r1, metric="eps_rot", path=args.save_folder + "/eps_rot.png")
+    save_plot(in_eps_r2, out_eps_r2, metric="eps_rot2", path=args.save_folder + "/eps_rot2.png")
+    save_plot(in_eps_r3, out_eps_r3, metric="eps_rot3", path=args.save_folder + "/eps_rot3.png")
 
     save_plot(in_deps_t1, out_deps_t1, metric="deps_trans", path=args.save_folder + "/deps_trans.png")
     save_plot(in_deps_t2, out_deps_t2, metric="deps_trans2", path=args.save_folder + "/deps_trans2.png")
     save_plot(in_deps_t3, out_deps_t3, metric="deps_trans3", path=args.save_folder + "/deps_trans3.png")
+    save_plot(in_deps_r1, out_deps_r1, metric="deps_rot", path=args.save_folder + "/deps_rot.png")
+    save_plot(in_deps_r2, out_deps_r2, metric="deps_rot2", path=args.save_folder + "/deps_rot2.png")
+    save_plot(in_deps_r3, out_deps_r3, metric="deps_rot3", path=args.save_folder + "/deps_rot3.png")
 
 if __name__ == "__main__":
     main()
