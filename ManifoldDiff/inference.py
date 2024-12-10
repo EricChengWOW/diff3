@@ -40,28 +40,18 @@ def main():
     else:
         loaded_model = DoubleUnet(dim=args.hidden_dim, unet_layer=args.unet_layer).cuda()
 
-    # Load the saved weights
     loaded_model.load_state_dict(torch.load(args.model_path, weights_only=True))
 
-    # Set the model to evaluation mode
     loaded_model.eval()
 
     diffusion = DDPM_Diff(loaded_model, trans_scale=args.scale_trans)
     generated_se3 = diffusion.sample((args.batch_size, args.n, 3), args.device, num_steps=args.num_timesteps)
 
-    # print("Generated SE(3) sequence:")
-    # print(generated_se3)
-
     trajectory = np.array([se3[:, :3, 3].detach().cpu().numpy() for se3 in generated_se3])[0]
     rotations = np.array([se3[:, :3, :3].detach().cpu().numpy() for se3 in generated_se3])[0]
 
-    # Create a 3D plot
     fig = plt.figure(figsize=(10, 8))
     ax = fig.add_subplot(121, projection='3d')
-
-    # ax.set_xlim(-1, 1)
-    # ax.set_ylim(-1, 1)
-    # ax.set_zlim(-1, 1)
 
     # Plot trajectory
     ax.plot(trajectory[:, 0], trajectory[:, 1], trajectory[:, 2], label="Trajectory", color="blue")
@@ -79,35 +69,28 @@ def main():
     ax.plot(trajectory[:, 0], trajectory[:, 1], trajectory[:, 2], label="Trajectory", color="blue")
 
     # Plot orientation arrows (quivers)
-    step = 10  # Show quivers for every nth point
-    scale = 0.05  # Adjust scale for the arrows
+    step = 10
+    scale = 0.05
     for i in range(0, len(trajectory) - 1, step):
         t = trajectory[i]
-        # Extract rotation matrix from the SE3 matrix
         R = rotations
 
-        # The columns of R represent the directions of the x, y, and z axes of the local frame
         x_axis = R[:, 0]
         y_axis = R[:, 1]
         z_axis = R[:, 2]
 
-        # Plot the quivers for each axis
-        # X-axis (red)
         ax.quiver(t[0], t[1], t[2],
                   x_axis[0], x_axis[1], x_axis[2],
                   length=scale, color='r', linewidth=1.5, alpha=0.6)
 
-        # Y-axis (green)
         ax.quiver(t[0], t[1], t[2],
                   y_axis[0], y_axis[1], y_axis[2],
                   length=scale, color='g', linewidth=1.5, alpha=0.6)
 
-        # Z-axis (blue)
         ax.quiver(t[0], t[1], t[2],
                   z_axis[0], z_axis[1], z_axis[2],
                   length=scale, color='b', linewidth=1.5, alpha=0.6)
 
-    # Set labels
     ax.set_xlabel("Easting (meters)")
     ax.set_ylabel("Northing (meters)")
     ax.set_zlabel("Altitude (meters)")

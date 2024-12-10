@@ -9,9 +9,11 @@ from T_dataset import TDataset
 
 import numpy as np
 import torch
+from torch.utils.data import DataLoader, random_split
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.mixture import GaussianMixture
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
 import argparse
 
@@ -95,7 +97,6 @@ def diffusion_metrics(diffusion, dataloader, args, loaded_model):
 
         batch = batch.to(args.device)
         rotations = batch[:, :, :3, :3]  # [B, n, 3, 3]
-        # rotations = matrix_to_so3(rotations)  # [B, n, 3]
         translations = batch[:, :, :3, 3]  # [B, n, 3]
 
         B, L, _ = translations.shape
@@ -128,7 +129,6 @@ def diffusion_metrics(diffusion, dataloader, args, loaded_model):
         for t in range(args.num_timesteps):
             t_tensor = torch.full((batch.size(0),), t, device=args.device)
 
-            # trans_init = torch.randn_like(translations)
             (trans_t, _), (rot_t, _) = diffusion.forward_process(translations, rotations, t_tensor, trans_init=trans_init, rot_init=rot_init)
 
             if loaded_model.name == "Unet":
@@ -214,8 +214,14 @@ def diffusion_metrics(diffusion, dataloader, args, loaded_model):
 
 def main():
     args = parse_arguments()
-
+    
     in_dataset, in_dataloader = get_data(args.in_dataset, args.in_data_folder, args.in_data_stride, args)
+
+    total_length = len(in_dataset)  
+    train_length = int(0.9 * total_length) 
+    val_length = total_length - train_length 
+    train_dataset, val_dataset = random_split(in_dataset, [train_length, val_length], generator=torch.Generator().manual_seed(42))
+    val_dataloader = torch.utils.data.DataLoader(val_dataset, batch_size=args.batch_size, shuffle=args.shuffle)
     out_dataset, out_dataloader = get_data(args.out_dataset, args.out_data_folder, args.out_data_stride, args)
 
     # Initialize the model
@@ -236,24 +242,19 @@ def main():
     stats_first_order, stats_second_order = diffusion_metrics(diffusion, in_dataloader, args, loaded_model)
     in_eps_t1, in_eps_t2, in_eps_t3, in_eps_r1, in_eps_r2, in_eps_r3 = stats_first_order
     in_deps_t1, in_deps_t2, in_deps_t3, in_deps_r1, in_deps_r2, in_deps_r3 = stats_first_order
-
+    print("finish calculating stats for train")
+    # val
+    stats_first_order, stats_second_order = diffusion_metrics(diffusion, val_dataloader, args, loaded_model)
+    val_eps_t1, val_eps_t2, val_eps_t3, val_eps_r1, val_eps_r2, val_eps_r3 = stats_first_order
+    val_deps_t1, val_deps_t2, val_deps_t3, val_deps_r1, val_deps_r2, val_deps_r3 = stats_first_order
+    print("finish calculating stats for val")
     # Get test_set
     stats_first_order, stats_second_order = diffusion_metrics(diffusion, out_dataloader, args, loaded_model)
     out_eps_t1, out_eps_t2, out_eps_t3, out_eps_r1, out_eps_r2, out_eps_r3 = stats_first_order
     out_deps_t1, out_deps_t2, out_deps_t3, out_deps_r1, out_deps_r2, out_deps_r3 = stats_first_order
+    print("finish calculating stats for test")
 
-    # Fit GMM on in distribution
-    data = np.column_stack([in_eps_t1, in_eps_t2, in_eps_t3, in_deps_t1, in_deps_t2, in_deps_t3])
-
-    n_components = 1
-    gmm = GaussianMixture(n_components=n_components, random_state=42)
-    gmm.fit(data)
-
-    test_points = np.column_stack([out_eps_t1, out_eps_t2, out_eps_t3, out_deps_t1, out_deps_t2, out_deps_t3])
-
-    probs = gmm.score_samples(test_points)
-    # print(probs)
-
+    ### Save plots of distributions
     def save_plot(in_data, out_data, metric="eps", path = "temp.png"):
         plt.hist([in_data, out_data], bins=50, color=['skyblue', 'orange'], edgecolor='black', label=['In', 'Out'])
 
@@ -278,6 +279,32 @@ def main():
     save_plot(in_deps_r1, out_deps_r1, metric="deps_rot", path=args.save_folder + "/deps_rot.png")
     save_plot(in_deps_r2, out_deps_r2, metric="deps_rot2", path=args.save_folder + "/deps_rot2.png")
     save_plot(in_deps_r3, out_deps_r3, metric="deps_rot3", path=args.save_folder + "/deps_rot3.png")
+    print("finish saving distribution plots")
+
+    # Fit GMM on in distribution
+    data = np.column_stack([in_eps_t1, in_eps_t2, in_eps_t3, in_eps_r1, in_eps_r2, in_eps_r3,in_deps_t1, in_deps_t2, in_deps_t3, in_deps_r1, in_deps_r2, in_deps_r3])
+
+    n_components = 1
+    gmm = GaussianMixture(n_components=n_components, random_state=42)
+    gmm.fit(data)
+    print("finish fitting gmm")
+    train_probs = gmm.score_samples(data)
+    lower_threshold, upper_threshold = np.percentile(train_probs, 5), np.percentile(train_probs, 95)
+
+    val_points = np.column_stack([val_eps_t1, val_eps_t2, val_eps_t3, val_eps_r1, val_eps_r2, val_eps_r3, val_deps_t1, val_deps_t2, val_deps_t3, val_deps_r1, val_deps_r2, val_deps_r3])
+    val_probs = gmm.score_samples(val_points)
+    ood_flags = (val_probs < lower_threshold) | (val_probs > upper_threshold)
+    num_ood = np.sum(ood_flags)
+    print(f"Number of OOD samples in Val: {num_ood}")
+    print(val_points.shape)
+
+    test_points = np.column_stack([out_eps_t1, out_eps_t2, out_eps_t3, out_eps_r1, out_eps_r2, out_eps_r3, out_deps_t1, out_deps_t2, out_deps_t3, out_deps_r1, out_deps_r2, out_deps_r3])
+    test_probs = gmm.score_samples(test_points)
+
+    ood_flags = (test_probs < lower_threshold) | (test_probs > upper_threshold)
+    num_ood = np.sum(ood_flags)
+    print(f"Number of OOD samples in Test: {num_ood}")
+    print(ood_flags.shape)
 
 if __name__ == "__main__":
     main()

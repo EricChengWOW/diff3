@@ -55,8 +55,8 @@ class KITTIOdometryDataset(torch.utils.data.Dataset):
                 traj -= traj[0]
             trajectories.append(traj)
 
-        for i in range(len(trajectories)):
-            trajectories[i] /= np.max(trajectories[i])
+        # for i in range(len(trajectories)):
+        #     trajectories[i] /= np.max(trajectories[i])
 
         return trajectories
 

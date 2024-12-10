@@ -14,9 +14,6 @@ from scipy.linalg import expm, logm
 
 from utils import *
 
-
-
-
 # Diffuser Class
 class DDPM_Diff:
     def __init__(self, score_model, beta_start=1e-4, beta_end=0.02, trans_scale=1.0, device="cuda", timesteps=30, seq_len=128):
@@ -57,29 +54,11 @@ class DDPM_Diff:
         self.alpha_t = 1.0 - self.beta_t
         self.alpha_bar_t = torch.cumprod(self.alpha_t, dim=0)
 
-    def igso3_sample(self, shape, device):
-        """
-        Sample from IGSO(3), which we'll assume to be random rotation vectors in 3D space.
-        
-        Args:
-            shape (torch.Size): Desired output shape, must include 3 as the last dimension.
-            device (torch.device): The device to create the tensor on.
-        
-        Returns:
-            torch.Tensor: Sampled rotation vectors with shape [..., 3].
-        """
-        # Sample random unit vectors in 3D space (can be viewed as sampling rotation axes)
-        random_angles = torch.rand(*shape[:-1], 1, device=device) * 2 * math.pi  # Random angles between 0 and 2pi
-        random_axis = torch.randn(*shape[:-1], 3, device=device)  # Random vectors in 3D
-        random_axis = random_axis / torch.norm(random_axis, dim=-1, keepdim=True)  # Normalize to get unit vectors
-        
-        # Rotation vector is axis * angle (using random_angle as the angle for each axis)
-        rotation_vectors = random_axis * random_angles  # Shape: [..., 3]
-        return rotation_vectors
-
     def forward_process(self, x1, R0, t, trans_init=None, rot_init=None):
-        """Forward diffusion process with different noise sources for x1 and x2."""
+        """Forward diffusion process with different noise sources for translation x1 and rotation R0."""
         B, L, _ = x1.shape
+
+        x1 = self.trans_scale * x1
 
         # Euclidean Translation forward
         epsilon1 = torch.randn_like(x1) if trans_init is None else trans_init
@@ -90,7 +69,6 @@ class DDPM_Diff:
         v0 = so3_log_map(R0)
         alpha_bar_t = extract(self.alpha_bar_t, t, v0.shape)
         alpha_bar_t_sqrt = torch.sqrt(alpha_bar_t)
-        # Noise
         epsilon2 = torch.randn_like(v0)
 
         vt = alpha_bar_t_sqrt * v0 + torch.sqrt(1.0 - alpha_bar_t) * epsilon2
@@ -99,7 +77,7 @@ class DDPM_Diff:
         return (x1_t, epsilon1), (Rt, epsilon2)
 
     def compute_loss(self, x1, x2, t):
-        """Compute the diffusion loss for x1 and x2."""
+        """Compute the diffusion loss for translation and rotation."""
         B, L, _ = x1.shape
         (x1_t, epsilon1), (x2_t, epsilon2) = self.forward_process(x1 * self.trans_scale, x2, t)
 
@@ -118,19 +96,31 @@ class DDPM_Diff:
             x1_t = x1_t.transpose(1,2)
             x2_t_flatten = x2_t_flatten.transpose(1,2)
 
+        # Translation origin x0
         x0_1 = extract(self.x0_param1, t, x1_t.shape) * (x1_t - extract(self.x0_param2, t, x1_t.shape) * predicted_score1)
-        
-        # Loss for each stream
+
+        # Loss for translation
         loss1 = F.l1_loss(predicted_score1, epsilon1)
         loss_origin1 = F.l1_loss(x0_1, x1)
+
+        # Rotation origin R0
+        v_t = so3_log_map(x2_t)
+
+        # Reconstruct v_0:
+        p = extract(self.alpha_bar_t, t, v_t.shape)
+        alpha_bar_t_sqrt = torch.sqrt(p)
+        v_0_pred = (v_t - torch.sqrt(1 - p) * predicted_score2) / alpha_bar_t_sqrt
+
+        # Approximate x_0 from v_0_pred
+        R_0_approx = so3_exp_map(v_0_pred)
 
         # Compute rotational loss
         R_pred = so3_exp_map(predicted_score2)   # (B,3,3)
         R_true = so3_exp_map(epsilon2)
         loss2 = rotation_distance_loss(R_pred, R_true)
-        loss_origin2 = 0
+        loss_origin2 = rotation_distance_loss(R_0_approx, x2)
 
-        # Average the two losses
+        # Average the 4 losses
         return loss1 + loss_origin1 + loss2 + loss_origin2, loss1, loss2, loss_origin1, loss_origin2
 
     def sample(self, shape, device, num_steps=30, trans_init=None, rot_init=None, trans_noise=None, rot_noise=None):
@@ -141,9 +131,13 @@ class DDPM_Diff:
             shape (torch.Size): Desired shape of the output tensors (Batch, seq, dim).
             device (torch.device): The device to create the tensor on.
             num_steps (int): The number of diffusion steps to reverse.
+            trans_init (torch.tensor): The initial translation noise
+            rot_init (torch.tensor): The initial rotation noise
+            trans_noise (torch.tensor): The translation noise added for forward process
+            rot_noise (torch.tensor): The rotation noise added for forward process
 
         Returns:
-            torch.Tensor, torch.Tensor: Two tensors containing the sampled values for x1 and x2.
+            torch.Tensor: SE3 Tensor
         """
         with torch.no_grad():
             # Initialize both x1 and x2 with random noise
@@ -197,7 +191,6 @@ class DDPM_Diff:
                 v_t = so3_log_map(x2_t)  # (B,3)
 
                 # Reconstruct v_0:
-                # v_0_pred = (v_t - sqrt(1 - alpha_bar_t[t]) * v_pred_noise) / sqrt(alpha_bar_t[t])
                 alpha_bar_t_sqrt = torch.sqrt(self.alpha_bar_t[t])
                 v_0_pred = (v_t - torch.sqrt(1 - self.alpha_bar_t[t]) * predicted_score2) / alpha_bar_t_sqrt
 
@@ -234,7 +227,7 @@ class DDPM_Diff:
                     v_t_minus = v_mu + torch.sqrt(beta_t_)*epsilon
                     x2_t = so3_exp_map(v_t_minus)
                 else:
-                    # t=0 means no more steps, just return x_0_approx
+                    # t=0
                     x2_t = x_0_approx
 
             x1_t = torch.clamp(x1_t, min=-1, max=1)
@@ -258,6 +251,7 @@ class DDPM_Diff:
             epoch_translation_eps_loss = 0.0
             epoch_translation_x0_loss = 0.0
             epoch_rotation_eps_loss = 0.0
+            epoch_rotation_R0_loss = 0.0
             
             with tqdm(data_loader, desc=f"Epoch {epoch + 1}/{epochs}", unit="batch") as pbar:
                 for i, batch in enumerate(pbar):
@@ -278,9 +272,12 @@ class DDPM_Diff:
                     epoch_translation_eps_loss += trans_loss.item()
                     epoch_translation_x0_loss += trans_x0_loss.item()
                     epoch_rotation_eps_loss += rot_loss.item()
+                    epoch_rotation_R0_loss += rot_x0_loss.item()
                     if log_wandb:
                         wandb.log({"batch_loss": loss.item(), "Translation eps loss": trans_loss.item(), \
-                                   "Rotation eps loss": rot_loss.item(), "Translation x0 loss": trans_x0_loss.item()})
+                                   "Rotation eps loss": rot_loss.item(), 
+                                   "Translation x0 loss": trans_x0_loss.item(),
+                                   "Rotation R0 loss": rot_x0_loss.item()})
 
                     pbar.set_postfix(loss=loss.item())
 
@@ -288,19 +285,21 @@ class DDPM_Diff:
             avg_translation_eps_loss = epoch_translation_eps_loss / len(data_loader)
             avg_translation_x0_loss = epoch_translation_x0_loss / len(data_loader)
             avg_rotation_eps_loss = epoch_rotation_eps_loss / len(data_loader)
+            avg_rotation_R0_loss = epoch_rotation_R0_loss / len(data_loader)
             if log_wandb:
                 wandb.log({"epoch_loss": avg_loss, "epoch": epoch + 1,
                            "epoch_translation_eps_loss": avg_translation_eps_loss,
                            "epoch_translation_x0_loss": avg_translation_x0_loss,
-                           "epoch_rotation_eps_loss": avg_rotation_eps_loss})
+                           "epoch_rotation_eps_loss": avg_rotation_eps_loss,
+                           "epoch_rotation_R0_loss": avg_rotation_R0_loss})
 
+                # Sample in the middle of training
                 if (epoch + 1) % generate_loop == 0:
                     generated_se3 = self.sample((1, self.seq_len, 3), device, num_timesteps, trans_init=sample_noise_t, rot_init=sample_noise_r)
                     
                     trajectory = np.array([se3[:, :3, 3].detach().cpu().numpy() for se3 in generated_se3])[0]
                     rotations = np.array([se3[:, :3, :3].detach().cpu().numpy() for se3 in generated_se3])[0]
 
-                    # Plot scatter
                     R3_fig = plt.figure()
                     ax = R3_fig.add_subplot(111, projection='3d')
                     ax.plot(trajectory[:, 0], trajectory[:, 1], trajectory[:, 2], label="Trajectory", color="blue")
@@ -317,30 +316,25 @@ class DDPM_Diff:
                     ax.plot(trajectory[:, 0], trajectory[:, 1], trajectory[:, 2], label="Trajectory", color="blue", linewidth=2)
                     
                     # Add quivers
-                    step = 5  # Reduce clutter by plotting quivers every 5 points
+                    step = 5
                     scale = 0.05
                     for i in range(0, len(trajectory) - 1, step):
                         point = trajectory[i]
 
                         R = rotations
 
-                        # The columns of R represent the directions of the x, y, and z axes of the local frame
                         x_axis = R[:, 0]
                         y_axis = R[:, 1]
                         z_axis = R[:, 2]
 
-                        # Plot the quivers for each axis
-                        # X-axis (red)
                         ax.quiver(point[0], point[1], point[2],
                                   x_axis[0], x_axis[1], x_axis[2],
                                   length=scale, color='r', linewidth=1.5, alpha=0.6)
 
-                        # Y-axis (green)
                         ax.quiver(point[0], point[1], point[2],
                                   y_axis[0], y_axis[1], y_axis[2],
                                   length=scale, color='g', linewidth=1.5, alpha=0.6)
 
-                        # Z-axis (blue)
                         ax.quiver(point[0], point[1], point[2],
                                   z_axis[0], z_axis[1], z_axis[2],
                                   length=scale, color='b', linewidth=1.5, alpha=0.6)

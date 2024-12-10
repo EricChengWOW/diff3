@@ -19,9 +19,9 @@ def compute_se3(row):
     rotation_matrix = R.from_euler('xyz', [roll, pitch, yaw]).as_matrix()
 
     # Construct SE(3) matrix
-    se3 = np.eye(4)  # Start with an identity matrix
-    se3[:3, :3] = rotation_matrix  # Top-left 3x3 block is the rotation matrix
-    se3[:3, 3] = translation  # Top-right 3x1 block is the translation vector
+    se3 = np.eye(4)
+    se3[:3, :3] = rotation_matrix
+    se3[:3, 3] = translation
 
     return se3
 
@@ -82,8 +82,8 @@ class RobotcarDataset(torch.utils.data.Dataset):
             else:
                 trajectories.append(traj)
 
-        for i in range(len(trajectories)):
-            trajectories[i] /= np.max(trajectories[i])
+        # for i in range(len(trajectories)):
+        #     trajectories[i] /= np.max(trajectories[i])
 
         return trajectories
 
