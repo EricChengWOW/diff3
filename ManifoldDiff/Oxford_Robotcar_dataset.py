@@ -70,17 +70,9 @@ class RobotcarDataset(torch.utils.data.Dataset):
             traj = np.stack(poses[start : start+self.seq_len])
             
             if self.center:
-                t0 = traj[0, :3, 3]
-    
-                # Iterate over all SE(3) matrices and adjust translations
-                adjusted_se3 = traj.copy()
-                for i in range(len(traj)):
-                    # Adjust the translation part by subtracting t0
-                    adjusted_se3[i, :3, 3] -= t0
+                traj[:, :3, 3] -= traj[0, :3, 3]
                 
-                trajectories.append(adjusted_se3)
-            else:
-                trajectories.append(traj)
+            trajectories.append(traj)
 
         # for i in range(len(trajectories)):
         #     trajectories[i] /= np.max(trajectories[i])

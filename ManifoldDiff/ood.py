@@ -4,6 +4,7 @@ from unet import *
 from DDPM_Diff import *
 from KITTI_dataset import KITTIOdometryDataset
 from Oxford_Robotcar_dataset import RobotcarDataset
+from IROS20_dataset import IROS20Dataset
 from L_dataset import LDataset
 from T_dataset import TDataset
 
@@ -45,6 +46,7 @@ def parse_arguments():
     parser.add_argument("--unet_layer", type=int, default=4, help="Layers of unet dim changes")
     parser.add_argument("--model_type", type=str, default="Transformer", help="The score model architecture")
     parser.add_argument("--save_folder", type=str, default=".", help="The folder to save GMM model and statistics graphs")
+    parser.add_argument("--ood_mode", type=str, default="SE3", help="R3 or SE3 OOD metric")
 
     return parser.parse_args()
 
@@ -57,6 +59,10 @@ def get_data(dataset, dataset_path, stride, args):
         dataset = RobotcarDataset(dataset_path, seq_len=args.n, stride=stride, center=args.center)
         dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
         print("Running on Oxford Robot car for ", len(dataloader), " batches")
+    elif dataset == "IROS":
+        dataset = IROS20Dataset(dataset_path, seq_len=args.n, stride=stride, center=args.center)
+        dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
+        print("Running on IROS20 6D for ", len(dataloader), " batches")
     elif dataset == "L":
         dataset = LDataset(seq_len=args.n)
         dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
@@ -255,50 +261,63 @@ def main():
     print("finish calculating stats for test")
 
     ### Save plots of distributions
-    def save_plot(in_data, out_data, metric="eps", path = "temp.png"):
-        plt.hist([in_data, out_data], bins=50, color=['skyblue', 'orange'], edgecolor='black', label=['In', 'Out'])
+    def save_plot(in_data, out_data, in_dataset, out_dataset, metric="eps", path = "temp.png"):
+        plt.hist([in_data, out_data], bins=50, color=['skyblue', 'orange'], edgecolor='black', label=[in_dataset, out_dataset])
 
         # Add labels and title
         plt.xlabel(metric)
         plt.ylabel('Freq')
         plt.title('Distribution of ' + metric)
+        plt.legend()
 
         plt.savefig(path, dpi=300, bbox_inches='tight')
         plt.close()
 
-    save_plot(in_eps_t1, out_eps_t1, metric="eps_trans", path=args.save_folder + "/eps_trans.png")
-    save_plot(in_eps_t2, out_eps_t2, metric="eps_trans2", path=args.save_folder + "/eps_trans2.png")
-    save_plot(in_eps_t3, out_eps_t3, metric="eps_trans3", path=args.save_folder + "/eps_trans3.png")
-    save_plot(in_eps_r1, out_eps_r1, metric="eps_rot", path=args.save_folder + "/eps_rot.png")
-    save_plot(in_eps_r2, out_eps_r2, metric="eps_rot2", path=args.save_folder + "/eps_rot2.png")
-    save_plot(in_eps_r3, out_eps_r3, metric="eps_rot3", path=args.save_folder + "/eps_rot3.png")
+    save_plot(in_eps_t1, out_eps_t1, args.in_dataset, args.out_dataset, metric="eps_trans", path=args.save_folder + "/eps_trans.png")
+    save_plot(in_eps_t2, out_eps_t2, args.in_dataset, args.out_dataset, metric="eps_trans2", path=args.save_folder + "/eps_trans2.png")
+    save_plot(in_eps_t3, out_eps_t3, args.in_dataset, args.out_dataset, metric="eps_trans3", path=args.save_folder + "/eps_trans3.png")
+    save_plot(in_eps_r1, out_eps_r1, args.in_dataset, args.out_dataset, metric="eps_rot", path=args.save_folder + "/eps_rot.png")
+    save_plot(in_eps_r2, out_eps_r2, args.in_dataset, args.out_dataset, metric="eps_rot2", path=args.save_folder + "/eps_rot2.png")
+    save_plot(in_eps_r3, out_eps_r3, args.in_dataset, args.out_dataset, metric="eps_rot3", path=args.save_folder + "/eps_rot3.png")
 
-    save_plot(in_deps_t1, out_deps_t1, metric="deps_trans", path=args.save_folder + "/deps_trans.png")
-    save_plot(in_deps_t2, out_deps_t2, metric="deps_trans2", path=args.save_folder + "/deps_trans2.png")
-    save_plot(in_deps_t3, out_deps_t3, metric="deps_trans3", path=args.save_folder + "/deps_trans3.png")
-    save_plot(in_deps_r1, out_deps_r1, metric="deps_rot", path=args.save_folder + "/deps_rot.png")
-    save_plot(in_deps_r2, out_deps_r2, metric="deps_rot2", path=args.save_folder + "/deps_rot2.png")
-    save_plot(in_deps_r3, out_deps_r3, metric="deps_rot3", path=args.save_folder + "/deps_rot3.png")
+    save_plot(in_deps_t1, out_deps_t1, args.in_dataset, args.out_dataset, metric="deps_trans", path=args.save_folder + "/deps_trans.png")
+    save_plot(in_deps_t2, out_deps_t2, args.in_dataset, args.out_dataset, metric="deps_trans2", path=args.save_folder + "/deps_trans2.png")
+    save_plot(in_deps_t3, out_deps_t3, args.in_dataset, args.out_dataset, metric="deps_trans3", path=args.save_folder + "/deps_trans3.png")
+    save_plot(in_deps_r1, out_deps_r1, args.in_dataset, args.out_dataset, metric="deps_rot", path=args.save_folder + "/deps_rot.png")
+    save_plot(in_deps_r2, out_deps_r2, args.in_dataset, args.out_dataset, metric="deps_rot2", path=args.save_folder + "/deps_rot2.png")
+    save_plot(in_deps_r3, out_deps_r3, args.in_dataset, args.out_dataset, metric="deps_rot3", path=args.save_folder + "/deps_rot3.png")
     print("finish saving distribution plots")
 
     # Fit GMM on in distribution
-    data = np.column_stack([in_eps_t1, in_eps_t2, in_eps_t3, in_eps_r1, in_eps_r2, in_eps_r3,in_deps_t1, in_deps_t2, in_deps_t3, in_deps_r1, in_deps_r2, in_deps_r3])
 
+    if args.ood_mode == "R3":
+        data = np.column_stack([in_eps_t1, in_eps_t2, in_eps_t3, in_deps_t1, in_deps_t2, in_deps_t3])
+    else:
+        data = np.column_stack([in_eps_t1, in_eps_t2, in_eps_t3, in_eps_r1, in_eps_r2, in_eps_r3,in_deps_t1, in_deps_t2, in_deps_t3, in_deps_r1, in_deps_r2, in_deps_r3])
+  
     n_components = 1
-    gmm = GaussianMixture(n_components=n_components, random_state=42)
+    gmm = GaussianMixture(n_components=n_components, random_state=42, reg_covar=1e-5)
     gmm.fit(data)
     print("finish fitting gmm")
     train_probs = gmm.score_samples(data)
     lower_threshold, upper_threshold = np.percentile(train_probs, 5), np.percentile(train_probs, 95)
 
-    val_points = np.column_stack([val_eps_t1, val_eps_t2, val_eps_t3, val_eps_r1, val_eps_r2, val_eps_r3, val_deps_t1, val_deps_t2, val_deps_t3, val_deps_r1, val_deps_r2, val_deps_r3])
+    if args.ood_mode == "R3":
+        val_points = np.column_stack([val_eps_t1, val_eps_t2, val_eps_t3, val_deps_t1, val_deps_t2, val_deps_t3])
+    else:
+        val_points = np.column_stack([val_eps_t1, val_eps_t2, val_eps_t3, val_eps_r1, val_eps_r2, val_eps_r3, val_deps_t1, val_deps_t2, val_deps_t3, val_deps_r1, val_deps_r2, val_deps_r3])
+    
     val_probs = gmm.score_samples(val_points)
     ood_flags = (val_probs < lower_threshold) | (val_probs > upper_threshold)
     num_ood = np.sum(ood_flags)
     print(f"Number of OOD samples in Val: {num_ood}")
     print(val_points.shape)
 
-    test_points = np.column_stack([out_eps_t1, out_eps_t2, out_eps_t3, out_eps_r1, out_eps_r2, out_eps_r3, out_deps_t1, out_deps_t2, out_deps_t3, out_deps_r1, out_deps_r2, out_deps_r3])
+    if args.ood_mode == "R3":
+        test_points = np.column_stack([out_eps_t1, out_eps_t2, out_eps_t3, out_deps_t1, out_deps_t2, out_deps_t3])
+    else:
+        test_points = np.column_stack([out_eps_t1, out_eps_t2, out_eps_t3, out_eps_r1, out_eps_r2, out_eps_r3, out_deps_t1, out_deps_t2, out_deps_t3, out_deps_r1, out_deps_r2, out_deps_r3])
+    
     test_probs = gmm.score_samples(test_points)
 
     ood_flags = (test_probs < lower_threshold) | (test_probs > upper_threshold)
