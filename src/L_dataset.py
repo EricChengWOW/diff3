@@ -1,13 +1,15 @@
 import os
 import torch
 import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
 class LDataset(torch.utils.data.Dataset):
     """
     PyTorch Dataset for synthetic L-shaped SE(3) data.
     """
 
-    def __init__(self, seq_len=128, size=500):
+    def __init__(self, seq_len=128, size=500, rand_shuffle = False):
         self.L = []
         for i in range(seq_len // 2):
             self.L.append(np.array([i, 0, 0]))
@@ -21,6 +23,9 @@ class LDataset(torch.utils.data.Dataset):
 
         self.traj[:, :, :3, 3] = self.rotate_and_scale(self.traj[:, :, :3, 3])
         self.add_rotations()
+        if rand_shuffle: 
+          for i in range(self.traj.shape[0]):  
+            np.random.shuffle(self.traj[i])
 
     def random_rotation_matrix(self):
         """Generate a random 3D rotation matrix using quaternions."""
@@ -80,6 +85,46 @@ class LDataset(torch.utils.data.Dataset):
 
             # Set the rotation of the last point to be the same as the previous
             self.traj[n, -1, :3, :3] = self.traj[n, -2, :3, :3]
+
+    def visualize_trajectory(self, idx, save_folder):
+        """
+        Visualize the SE(3) trajectory for a given index.
+        
+        Args:
+            idx (int): Index of the trajectory to visualize.
+        """
+        trajectory = self.traj[idx]
+        
+        # Extract the translation (position) components
+        positions = trajectory[:, :3, 3]
+        
+        # Extract rotation components (optional for visualization)
+        rotations = trajectory[:, :3, :3]
+        
+        fig = plt.figure(figsize=(10, 8))
+        ax = fig.add_subplot(111, projection='3d')
+        
+        # Plot the trajectory in 3D space
+        ax.plot(positions[:, 0], positions[:, 1], positions[:, 2], label="Trajectory Path", linewidth=2)
+        ax.scatter(positions[:, 0], positions[:, 1], positions[:, 2], color='r', label="Points")
+        
+        # Optionally plot rotation indicators (arrows or quivers)
+        for i in range(0, len(positions), max(1, len(positions) // 20)):  # Sample points to avoid clutter
+            pos = positions[i]
+            rot = rotations[i]
+            ax.quiver(
+                pos[0], pos[1], pos[2], 
+                rot[0, 0], rot[1, 0], rot[2, 0], color='g', length=0.1, normalize=True
+            )
+        
+        ax.set_xlabel('X')
+        ax.set_ylabel('Y')
+        ax.set_zlabel('Z')
+        ax.set_title(f"SE(3) Trajectory Visualization (Index: {idx})")
+        ax.legend()
+        file_name = f"trajectory_{idx}.png"
+        save_path = os.path.join(save_folder, file_name)
+        plt.savefig(save_path, dpi=300)
 
     def __len__(self):
         """
