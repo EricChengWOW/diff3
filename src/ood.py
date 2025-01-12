@@ -67,6 +67,11 @@ def get_data(dataset, dataset_path, stride, args):
         dataset = LDataset(seq_len=args.n)
         dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
         print("Running on L shape for ", len(dataloader), " batches")
+    elif dataset == "L-rand":
+        dataset = LDataset(seq_len=args.n, rand_shuffle = True)
+        dataset.visualize_trajectory(idx=0, save_folder = args.save_folder)
+        dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
+        print("Running on L-rand shape for ", len(dataloader), " batches")
     elif dataset == "T":
         dataset = TDataset(seq_len=args.n)
         dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
