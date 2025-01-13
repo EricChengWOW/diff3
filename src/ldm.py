@@ -92,7 +92,7 @@ class LatentDiffusionModel(nn.Module):
         predicted_noise = self.reverse_diffusion(z_noisy, t)
         z_denoised = (z_noisy - (1 - self.alpha_bar[t]).sqrt() * predicted_noise) / self.alpha_bar[t].sqrt()
 
-        # Decode back to data space
+        # Decode back to path signature
         x_reconstructed = self.decoder(z_denoised)
 
         return x_reconstructed, mu, logvar, noise, predicted_noise
