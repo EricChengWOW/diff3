@@ -194,8 +194,9 @@ def se3_to_path_signature(se3, level=2):
     """
     B, L, _, _ = se3.shape
     translation = se3[:, :, :3, 3]  # (B, L, 3)
-    rotation = matrix_to_rotvec(se3[:, :, :3, :3])  # (B, L, 3)
-    trajectory = torch.cat([translation, rotation], dim=-1)  # (B, L, 6)
+    rotation_matrices = se3[:, :, :3, :3]  # (B, L, 3, 3)
+    so3_vec = so3_log_map(rotation_matrices)  # (B, L, 3)
+    trajectory = torch.cat([translation, so3_vec], dim=-1)  # (B, L, 6)
 
     # Convert to numpy for esig compatibility
     trajectory_np = trajectory.cpu().numpy()  # (B, L, 6)
@@ -203,10 +204,8 @@ def se3_to_path_signature(se3, level=2):
     # Compute path signatures for each trajectory in the batch
     signatures = []
     for i in range(B):
-        sig = ts.stream2sig(trajectory_np[i], level)  # Compute path signature
+        sig = ts.stream2sig(trajectory_np[i], level) 
         signatures.append(sig)
 
-    # Convert back to PyTorch tensor
     signature_tensor = torch.tensor(signatures, dtype=se3.dtype, device=se3.device)
-
     return signature_tensor
