@@ -1,4 +1,4 @@
-from numpy.lib import nanprod
+#from numpy.lib import nanprod
 from utils import *
 from unet import *
 from DDPM_Diff import *
@@ -44,7 +44,42 @@ class VAEDecoder(nn.Module):
     def forward(self, z):
         return self.decoder(z)
 
-class LatentDiffusionModel(nn.Module):
+class MLPDiffusionModel(nn.Module):
+    def __init__(self, input_dim, hidden_dim, num_layers):
+        super(MLPDiffusionModel, self).__init__()
+        layers = []
+
+        # Input layer
+        layers.append(nn.Linear(input_dim + 1, hidden_dim))  # +1 for timestep embedding
+        layers.append(nn.ReLU())
+
+        # Hidden layers
+        for _ in range(num_layers - 1):
+            layers.append(nn.Linear(hidden_dim, hidden_dim))
+            layers.append(nn.ReLU())
+
+        # Output layer
+        layers.append(nn.Linear(hidden_dim, input_dim))  # Predict noise of the same dimension as input
+
+        self.mlp = nn.Sequential(*layers)
+
+    def forward(self, z_noisy, t):
+        """
+        Forward pass of the MLP diffusion model.
+
+        Args:
+            z_noisy (torch.Tensor): Noisy latent vector of shape (batch_size, input_dim).
+            t (torch.Tensor): Diffusion timestep of shape (batch_size,).
+
+        Returns:
+            torch.Tensor: Predicted noise of shape (batch_size, input_dim).
+        """
+        t = t.unsqueeze(-1)  # Expand timestep to match batch size (batch_size, 1)
+        z_t = torch.cat([z_noisy, t], dim=-1)  # Concatenate latent vector and timestep
+        return self.mlp(z_t)
+
+
+class LatentDiffusionModelWithUNet(nn.Module):
     def __init__(self, input_dim, latent_dim, unet_dim, noise_steps, beta_schedule):
         """
         Latent Diffusion Model with encoder, latent space diffusion, and decoder.
@@ -79,6 +114,60 @@ class LatentDiffusionModel(nn.Module):
 
     def reverse_diffusion(self, z_noisy, t):
         predicted_noise = self.unet(z_noisy, t)
+        return predicted_noise
+
+    def forward(self, x, t):
+        mu, logvar = self.encoder(x)
+        z = self.reparameterize(mu, logvar)
+
+        # Forward diffusion
+        z_noisy, noise = self.forward_diffusion(z, t)
+
+        # Reverse diffusion
+        predicted_noise = self.reverse_diffusion(z_noisy, t)
+        z_denoised = (z_noisy - (1 - self.alpha_bar[t]).sqrt() * predicted_noise) / self.alpha_bar[t].sqrt()
+
+        # Decode back to path signature
+        x_reconstructed = self.decoder(z_denoised)
+
+        return x_reconstructed, mu, logvar, noise, predicted_noise
+
+class LatentDiffusionModel(nn.Module):
+    def __init__(self, input_dim, latent_dim, hidden_dim, num_layers, noise_steps, beta_schedule):
+        """
+        Latent Diffusion Model with an MLP diffusion network.
+        
+        Args:
+            input_dim (int): Input dimensionality of the data.
+            latent_dim (int): Dimensionality of the latent space.
+            hidden_dim (int): Number of units in MLP hidden layers.
+            num_layers (int): Number of hidden layers in the MLP.
+            noise_steps (int): Number of diffusion timesteps.
+            beta_schedule (torch.Tensor): Noise schedule for diffusion process.
+        """
+        super(LatentDiffusionModel, self).__init__()
+        self.encoder = VAEEncoder(input_dim, latent_dim)
+        self.decoder = VAEDecoder(latent_dim, input_dim)
+        self.mlp = MLPDiffusionModel(latent_dim, hidden_dim, num_layers)
+        self.noise_steps = noise_steps
+        self.beta_schedule = beta_schedule
+        self.alpha = 1 - self.beta_schedule
+        self.alpha_bar = torch.cumprod(self.alpha, dim=0)
+
+    def reparameterize(self, mu, logvar):
+        """Reparameterization trick"""
+        std = torch.exp(0.5 * logvar)
+        eps = torch.randn_like(std)
+        return mu + eps * std
+
+    def forward_diffusion(self, z, t):
+        noise = torch.randn_like(z)
+        alpha_t = self.alpha_bar[t].view(-1, 1)
+        z_noisy = alpha_t.sqrt() * z + (1 - alpha_t).sqrt() * noise
+        return z_noisy, noise
+
+    def reverse_diffusion(self, z_noisy, t):
+        predicted_noise = self.mlp(z_noisy, t)
         return predicted_noise
 
     def forward(self, x, t):
