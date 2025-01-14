@@ -10,8 +10,8 @@ from torch.optim.lr_scheduler import CosineAnnealingLR
 from utils import *
 from unet import *
 from transformer import *
-from DDPM_Diff import *
-from DDPM_Continuous_Diff import *
+#from DDPM_Diff import *
+#from DDPM_Continuous_Diff import *
 from KITTI_dataset import KITTIOdometryDataset
 from Oxford_Robotcar_dataset import RobotcarDataset
 from L_dataset import LDataset
@@ -61,7 +61,7 @@ def train_vae(ldm, dataloader, optimizer, num_epochs, device, save_dir):
         print(f"VAE Training - Epoch {epoch + 1}/{num_epochs}, Loss: {epoch_loss / len(dataloader)}")
         torch.save(ldm.state_dict(), os.path.join(save_dir, f"vae_epoch_{epoch + 1}.pth"))
 
-def train_diffusion(ldm, dataloader, optimizer, num_epochs, device, noise_steps, save_dir):
+def train_diffusion(ldm, dataloader, optimizer, num_epochs, device, noise_steps, save_dir, num_timesteps=30):
     for param in ldm.encoder.parameters():
         param.requires_grad = False
     for param in ldm.decoder.parameters():
@@ -71,27 +71,23 @@ def train_diffusion(ldm, dataloader, optimizer, num_epochs, device, noise_steps,
     os.makedirs(save_dir, exist_ok=True)
 
     for epoch in range(num_epochs):
-        epoch_loss = 0.0
-        for batch in dataloader:
-            batch = batch.to(device)
+      epoch_loss = 0.0
+      
+      with tqdm(dataloader, desc=f"Epoch {epoch + 1}/{num_epochs}", unit="batch") as pbar:
+          for i, batch in enumerate(pbar):
+              batch = batch.to(device)
+              mu, logvar = ldm.encoder(batch)
+              z = ldm.reparameterize(mu, logvar)
+              optimizer.zero_grad()
+              t = torch.randint(0, num_timesteps-1, (batch.shape[0],), device=device)
+              # Compute the loss for x1 and x2
+              loss = ldm.compute_loss(z, t)
+              loss.backward()
+              optimizer.step()
+              epoch_loss += loss.item()
 
-            with torch.no_grad(): 
-                mu, logvar = ldm.encoder(batch)
-                z = ldm.reparameterize(mu, logvar)
-
-            t = torch.randint(0, noise_steps, (batch.size(0),), device=device)
-            z_noisy, noise = ldm.forward_diffusion(z, t)
-
-            predicted_noise = ldm.reverse_diffusion(z_noisy, t)
-            loss = diffusion_loss(noise, predicted_noise)
-            epoch_loss += loss.item()
-
-            optimizer.zero_grad()
-            loss.backward()
-            optimizer.step()
-
-        print(f"Diffusion Training - Epoch {epoch + 1}/{num_epochs}, Loss: {epoch_loss / len(dataloader)}")
-        torch.save(ldm.state_dict(), os.path.join(save_dir, f"diffusion_epoch_{epoch + 1}.pth"))
+      print(f"Diffusion Training - Epoch {epoch + 1}/{num_epochs}, Loss: {epoch_loss / len(dataloader)}")
+      torch.save(ldm.state_dict(), os.path.join(save_dir, f"diffusion_epoch_{epoch + 1}.pth"))
 
 # Main Function
 def main():
@@ -101,7 +97,6 @@ def main():
     hidden_dim = 128  # MLP hidden dimension
     num_layers = 4    # MLP number of layers
     noise_steps = 1000
-    beta_schedule = torch.linspace(1e-4, 0.02, noise_steps, device=device)
     batch_size = 32
     vae_epochs = 5
     diffusion_epochs = 50
@@ -117,7 +112,6 @@ def main():
         hidden_dim=hidden_dim,
         num_layers=num_layers,
         noise_steps=noise_steps,
-        beta_schedule=beta_schedule
     )
 
     vae_optimizer = optim.Adam(list(ldm.encoder.parameters()) + list(ldm.decoder.parameters()), lr=learning_rate)

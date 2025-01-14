@@ -63,77 +63,13 @@ class MLPDiffusionModel(nn.Module):
 
         self.mlp = nn.Sequential(*layers)
 
-    def forward(self, z_noisy, t):
-        """
-        Forward pass of the MLP diffusion model.
-
-        Args:
-            z_noisy (torch.Tensor): Noisy latent vector of shape (batch_size, input_dim).
-            t (torch.Tensor): Diffusion timestep of shape (batch_size,).
-
-        Returns:
-            torch.Tensor: Predicted noise of shape (batch_size, input_dim).
-        """
-        t = t.unsqueeze(-1)  # Expand timestep to match batch size (batch_size, 1)
-        z_t = torch.cat([z_noisy, t], dim=-1)  # Concatenate latent vector and timestep
-        return self.mlp(z_t)
-
-
-class LatentDiffusionModelWithUNet(nn.Module):
-    def __init__(self, input_dim, latent_dim, unet_dim, noise_steps, beta_schedule):
-        """
-        Latent Diffusion Model with encoder, latent space diffusion, and decoder.
-
-        Args:
-            input_dim (int): Input dimensionality of the data.
-            latent_dim (int): Dimensionality of the latent space.
-            unet_dim (int): Dimensionality of the U-Net latent space.
-            noise_steps (int): Number of diffusion timesteps.
-            beta_schedule (torch.Tensor): Noise schedule for diffusion process.
-        """
-        super(LatentDiffusionModel, self).__init__()
-        self.encoder = VAEEncoder(input_dim, latent_dim)
-        self.unet = Unet(dim=unet_dim, channels=latent_dim)
-        self.decoder = VAEDecoder(latent_dim, input_dim)
-        self.noise_steps = noise_steps
-        self.beta_schedule = beta_schedule
-        self.alpha = 1 - self.beta_schedule
-        self.alpha_bar = torch.cumprod(self.alpha, dim=0)
-
-    def reparameterize(self, mu, logvar):
-        """Reparameterization trick"""
-        std = torch.exp(0.5 * logvar)
-        eps = torch.randn_like(std)
-        return mu + eps * std
-
-    def forward_diffusion(self, z, t):
-        noise = torch.randn_like(z)
-        alpha_t = self.alpha_bar[t].view(-1, 1)
-        z_noisy = alpha_t.sqrt() * z + (1 - alpha_t).sqrt() * noise
-        return z_noisy, noise
-
-    def reverse_diffusion(self, z_noisy, t):
-        predicted_noise = self.unet(z_noisy, t)
-        return predicted_noise
-
     def forward(self, x, t):
-        mu, logvar = self.encoder(x)
-        z = self.reparameterize(mu, logvar)
-
-        # Forward diffusion
-        z_noisy, noise = self.forward_diffusion(z, t)
-
-        # Reverse diffusion
-        predicted_noise = self.reverse_diffusion(z_noisy, t)
-        z_denoised = (z_noisy - (1 - self.alpha_bar[t]).sqrt() * predicted_noise) / self.alpha_bar[t].sqrt()
-
-        # Decode back to path signature
-        x_reconstructed = self.decoder(z_denoised)
-
-        return x_reconstructed, mu, logvar, noise, predicted_noise
+        t = t.unsqueeze(-1)  # Expand timestep to match batch size (batch_size, 1)
+        x_t = torch.cat([x, t], dim=-1)  # Concatenate latent vector and timestep
+        return self.mlp(x_t)
 
 class LatentDiffusionModel(nn.Module):
-    def __init__(self, input_dim, latent_dim, hidden_dim, num_layers, noise_steps, beta_schedule):
+    def __init__(self, input_dim, latent_dim, hidden_dim, num_layers, noise_steps, beta_start=1e-4, beta_end=0.02, device="cuda", timesteps=30, seq_len=128):
         """
         Latent Diffusion Model with an MLP diffusion network.
         
@@ -150,9 +86,39 @@ class LatentDiffusionModel(nn.Module):
         self.decoder = VAEDecoder(latent_dim, input_dim)
         self.mlp = MLPDiffusionModel(latent_dim, hidden_dim, num_layers)
         self.noise_steps = noise_steps
-        self.beta_schedule = beta_schedule
-        self.alpha = 1 - self.beta_schedule
-        self.alpha_bar = torch.cumprod(self.alpha, dim=0)
+
+        self.device = device
+        self.num_timesteps = timesteps
+        self.seq_len = seq_len
+
+        ### Translation Euclidean diffusion scheduler
+        def f(t):
+            s = 0.008
+            return torch.square(torch.cos(torch.Tensor([((t/self.num_timesteps + s) /(1+s)) * (torch.pi / 2)])))
+
+        a_bar_0 = torch.Tensor([1]).to(self.device)
+        self.a = torch.cat((a_bar_0, cosine_schedule(self.num_timesteps).to(self.device)))
+
+        self.a_bars = torch.cumprod(self.a, dim=0)
+        self.a[0] = f(0) / f(self.num_timesteps)
+
+        self.x0_param1 = 1 / torch.sqrt(self.a_bars[1:])
+        self.x0_param2 = torch.sqrt(1 - self.a_bars[1:])
+
+        self.sigma = torch.sqrt(torch.Tensor([(1 - self.a_bars[t-1]) * (1-self.a[t]) / (1 - self.a_bars[t]) for t in range(1,self.num_timesteps + 1)]).to(self.device))
+
+        self.mean_param1 = torch.Tensor([torch.sqrt(self.a[t]) * (1-self.a_bars[t-1]) / (1-self.a_bars[t]) for t in range(1,self.num_timesteps + 1)]).to(self.device)
+        self.mean_param2 = torch.Tensor([torch.sqrt(self.a_bars[t-1]) * (1-self.a[t]) / (1-self.a_bars[t]) for t in range(1,self.num_timesteps + 1)]).to(self.device)
+        self.a_bars = self.a_bars[1:]
+        self.a = self.a[1:]
+
+        self.q_param1 = torch.sqrt(self.a_bars)
+        self.q_param2 = torch.sqrt(1 - self.a_bars)
+
+        ### Rotation SO3 diffusion scheduler
+        self.beta_t = torch.linspace(beta_start, beta_end, self.num_timesteps, device=device)
+        self.alpha_t = 1.0 - self.beta_t
+        self.alpha_bar_t = torch.cumprod(self.alpha_t, dim=0)
 
     def reparameterize(self, mu, logvar):
         """Reparameterization trick"""
@@ -160,28 +126,17 @@ class LatentDiffusionModel(nn.Module):
         eps = torch.randn_like(std)
         return mu + eps * std
 
-    def forward_diffusion(self, z, t):
-        noise = torch.randn_like(z)
-        alpha_t = self.alpha_bar[t].view(-1, 1)
-        z_noisy = alpha_t.sqrt() * z + (1 - alpha_t).sqrt() * noise
-        return z_noisy, noise
+    def forward_process(self, x1, t):
+        epsilon1 = torch.randn_like(x1)
+        x1_t = extract(self.q_param1, t, x1.shape) * x1 + extract(self.q_param2, t, x1.shape) * epsilon1
+        return (x1_t, epsilon1)
 
-    def reverse_diffusion(self, z_noisy, t):
-        predicted_noise = self.mlp(z_noisy, t)
-        return predicted_noise
+    def compute_loss(self, x1, t):
+        (x1_t, epsilon1) = self.forward_process(x1, t)
+        predicted_score1 = self.mlp(x1_t, t)
+        x0_1 = extract(self.x0_param1, t, x1_t.shape) * (x1_t - extract(self.x0_param2, t, x1_t.shape) * predicted_score1)
 
-    def forward(self, x, t):
-        mu, logvar = self.encoder(x)
-        z = self.reparameterize(mu, logvar)
+        loss1 = F.l1_loss(predicted_score1, epsilon1)
+        #loss_origin1 = F.l1_loss(x0_1, x1)
 
-        # Forward diffusion
-        z_noisy, noise = self.forward_diffusion(z, t)
-
-        # Reverse diffusion
-        predicted_noise = self.reverse_diffusion(z_noisy, t)
-        z_denoised = (z_noisy - (1 - self.alpha_bar[t]).sqrt() * predicted_noise) / self.alpha_bar[t].sqrt()
-
-        # Decode back to path signature
-        x_reconstructed = self.decoder(z_denoised)
-
-        return x_reconstructed, mu, logvar, noise, predicted_noise
+        return loss1
