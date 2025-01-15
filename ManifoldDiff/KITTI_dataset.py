@@ -52,7 +52,7 @@ class KITTIOdometryDataset(torch.utils.data.Dataset):
             start = i * self.stride
             traj = np.stack(poses[start : start+self.seq_len])
             if self.center:
-                traj -= traj[0]
+                traj[:, :3, 3] -= traj[0, :3, 3]
             trajectories.append(traj)
 
         # for i in range(len(trajectories)):
