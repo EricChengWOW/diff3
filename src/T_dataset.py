@@ -1,14 +1,16 @@
 import os
 import torch
 import numpy as np
+from utils import *
 
 class TDataset(torch.utils.data.Dataset):
     """
     PyTorch Dataset for Oxford Robot Car dataset SE(3) data.
     """
 
-    def __init__(self, seq_len=128, size=500):
+    def __init__(self, seq_len=128, size=500, use_path_signature = False):
         self.T = []
+        self.use_path_signature = use_path_signature
         for i in range(seq_len // 2):
             self.T.append(np.array([i, 0, 0]))
 
@@ -104,4 +106,10 @@ class TDataset(torch.utils.data.Dataset):
         Returns:
             torch.Tensor: SE(3) matrix as a torch tensor.
         """
-        return torch.tensor(self.traj[idx], dtype=torch.float32)
+        if self.use_path_signature: 
+          #print(self.traj[idx].shape)
+          sig = se3_to_path_signature(self.traj[idx], level=3)
+          #print(sig.shape)
+          return torch.tensor(sig, dtype=torch.float32)
+        else:
+          return torch.tensor(self.traj[idx], dtype=torch.float32)

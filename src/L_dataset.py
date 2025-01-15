@@ -3,14 +3,16 @@ import torch
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
+from utils import *
 
 class LDataset(torch.utils.data.Dataset):
     """
     PyTorch Dataset for synthetic L-shaped SE(3) data.
     """
 
-    def __init__(self, seq_len=128, size=500, rand_shuffle = False):
+    def __init__(self, seq_len=128, size=500, rand_shuffle = False, use_path_signature = False):
         self.L = []
+        self.use_path_signature = use_path_signature
         for i in range(seq_len // 2):
             self.L.append(np.array([i, 0, 0]))
 
@@ -142,4 +144,10 @@ class LDataset(torch.utils.data.Dataset):
         Returns:
             torch.Tensor: SE(3) matrix as a torch tensor.
         """
-        return torch.tensor(self.traj[idx], dtype=torch.float32)
+        if self.use_path_signature: 
+          #print(self.traj[idx].shape)
+          sig = se3_to_path_signature(self.traj[idx], level=3)
+          #print(sig.shape)
+          return torch.tensor(sig, dtype=torch.float32)
+        else:
+          return torch.tensor(self.traj[idx], dtype=torch.float32)
