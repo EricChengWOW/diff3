@@ -7,9 +7,6 @@ import numpy as np
 from scipy.spatial.transform import Rotation as R
 from torch.optim.lr_scheduler import CosineAnnealingLR
 
-import sys
-sys.path.append('/content/drive/MyDrive/10623/ManifoldDiff/')
-
 from utils import *
 from unet import *
 from transformer import *

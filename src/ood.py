@@ -46,6 +46,7 @@ def parse_arguments():
     parser.add_argument("--unet_layer", type=int, default=4, help="Layers of unet dim changes")
     parser.add_argument("--model_type", type=str, default="Transformer", help="The score model architecture")
     parser.add_argument("--save_folder", type=str, default=".", help="The folder to save GMM model and statistics graphs")
+    parser.add_argument("--ood_mode", type=str, default="SE3", help="R3 or SE3 OOD metric")
 
     return parser.parse_args()
 
@@ -66,6 +67,11 @@ def get_data(dataset, dataset_path, stride, args):
         dataset = LDataset(seq_len=args.n)
         dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
         print("Running on L shape for ", len(dataloader), " batches")
+    elif dataset == "L-rand":
+        dataset = LDataset(seq_len=args.n, rand_shuffle = True)
+        dataset.visualize_trajectory(idx=0, save_folder = args.save_folder)
+        dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
+        print("Running on L-rand shape for ", len(dataloader), " batches")
     elif dataset == "T":
         dataset = TDataset(seq_len=args.n)
         dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
@@ -288,8 +294,12 @@ def main():
     print("finish saving distribution plots")
 
     # Fit GMM on in distribution
-    data = np.column_stack([in_eps_t1, in_eps_t2, in_eps_t3, in_eps_r1, in_eps_r2, in_eps_r3,in_deps_t1, in_deps_t2, in_deps_t3, in_deps_r1, in_deps_r2, in_deps_r3])
 
+    if args.ood_mode == "R3":
+        data = np.column_stack([in_eps_t1, in_eps_t2, in_eps_t3, in_deps_t1, in_deps_t2, in_deps_t3])
+    else:
+        data = np.column_stack([in_eps_t1, in_eps_t2, in_eps_t3, in_eps_r1, in_eps_r2, in_eps_r3,in_deps_t1, in_deps_t2, in_deps_t3, in_deps_r1, in_deps_r2, in_deps_r3])
+  
     n_components = 1
     gmm = GaussianMixture(n_components=n_components, random_state=42, reg_covar=1e-5)
     gmm.fit(data)
@@ -297,14 +307,22 @@ def main():
     train_probs = gmm.score_samples(data)
     lower_threshold, upper_threshold = np.percentile(train_probs, 5), np.percentile(train_probs, 95)
 
-    val_points = np.column_stack([val_eps_t1, val_eps_t2, val_eps_t3, val_eps_r1, val_eps_r2, val_eps_r3, val_deps_t1, val_deps_t2, val_deps_t3, val_deps_r1, val_deps_r2, val_deps_r3])
+    if args.ood_mode == "R3":
+        val_points = np.column_stack([val_eps_t1, val_eps_t2, val_eps_t3, val_deps_t1, val_deps_t2, val_deps_t3])
+    else:
+        val_points = np.column_stack([val_eps_t1, val_eps_t2, val_eps_t3, val_eps_r1, val_eps_r2, val_eps_r3, val_deps_t1, val_deps_t2, val_deps_t3, val_deps_r1, val_deps_r2, val_deps_r3])
+    
     val_probs = gmm.score_samples(val_points)
     ood_flags = (val_probs < lower_threshold) | (val_probs > upper_threshold)
     num_ood = np.sum(ood_flags)
     print(f"Number of OOD samples in Val: {num_ood}")
     print(val_points.shape)
 
-    test_points = np.column_stack([out_eps_t1, out_eps_t2, out_eps_t3, out_eps_r1, out_eps_r2, out_eps_r3, out_deps_t1, out_deps_t2, out_deps_t3, out_deps_r1, out_deps_r2, out_deps_r3])
+    if args.ood_mode == "R3":
+        test_points = np.column_stack([out_eps_t1, out_eps_t2, out_eps_t3, out_deps_t1, out_deps_t2, out_deps_t3])
+    else:
+        test_points = np.column_stack([out_eps_t1, out_eps_t2, out_eps_t3, out_eps_r1, out_eps_r2, out_eps_r3, out_deps_t1, out_deps_t2, out_deps_t3, out_deps_r1, out_deps_r2, out_deps_r3])
+    
     test_probs = gmm.score_samples(test_points)
 
     ood_flags = (test_probs < lower_threshold) | (test_probs > upper_threshold)

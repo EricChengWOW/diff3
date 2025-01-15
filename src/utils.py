@@ -2,6 +2,7 @@ import torch
 import numpy as np
 from scipy.spatial.transform import Rotation as R
 from scipy.spatial.transform import Rotation
+import esig
 
 def compose_se3(rot, trans):
     """Combines rotation (3x3) and translation (3,) into SE(3) matrix."""
@@ -178,3 +179,30 @@ def rotation_distance_loss(R_pred, R_true):
     cos_theta = cos_theta.clamp(-1+1e-7, 1-1e-7)
     theta = torch.acos(cos_theta)  # (B,)
     return (theta**2).mean()
+
+def se3_to_path_signature(se3, level=2):
+    """
+    Convert an SE(3) trajectory to a path signature representation.
+
+    Args:
+        se3 (torch.Tensor): SE(3) trajectory of shape (L, 4, 4), 
+                            where B is the batch size, L is the sequence length.
+        level (int): Level of the path signature (higher levels capture more details).
+
+    Returns:
+        torch.Tensor: Path signature representation of shape (signature_dim,6).
+    """
+    se3 = torch.tensor(se3)
+    L, _, _ = se3.shape
+    translation = se3[:, :3, 3]  # (L, 3)
+    rotation_matrices = se3[:, :3, :3]  # (L, 3, 3)
+    so3_vec = so3_log_map(rotation_matrices)  # (L, 3)
+    trajectory = torch.cat([translation, so3_vec], dim=-1)  # (L, 6)
+    # Convert to numpy for esig compatibility
+    trajectory_np = trajectory.cpu().numpy()  # (L, 6)
+
+    # Compute path signatures for each trajectory in the batch
+    signatures =  esig.stream2sig(trajectory_np, level) 
+
+    signature_tensor = torch.tensor(signatures, dtype=se3.dtype, device=se3.device)
+    return signature_tensor
