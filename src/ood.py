@@ -1,4 +1,4 @@
-from numpy.lib import nanprod
+# from numpy.lib import nanprod
 from utils import *
 from unet import *
 from DDPM_Diff import *
@@ -252,17 +252,17 @@ def main():
 
     stats_first_order, stats_second_order = diffusion_metrics(diffusion, in_dataloader, args, loaded_model)
     in_eps_t1, in_eps_t2, in_eps_t3, in_eps_r1, in_eps_r2, in_eps_r3 = stats_first_order
-    in_deps_t1, in_deps_t2, in_deps_t3, in_deps_r1, in_deps_r2, in_deps_r3 = stats_first_order
+    in_deps_t1, in_deps_t2, in_deps_t3, in_deps_r1, in_deps_r2, in_deps_r3 = stats_second_order
     print("finish calculating stats for train")
     # val
     stats_first_order, stats_second_order = diffusion_metrics(diffusion, val_dataloader, args, loaded_model)
     val_eps_t1, val_eps_t2, val_eps_t3, val_eps_r1, val_eps_r2, val_eps_r3 = stats_first_order
-    val_deps_t1, val_deps_t2, val_deps_t3, val_deps_r1, val_deps_r2, val_deps_r3 = stats_first_order
+    val_deps_t1, val_deps_t2, val_deps_t3, val_deps_r1, val_deps_r2, val_deps_r3 = stats_second_order
     print("finish calculating stats for val")
     # Get test_set
     stats_first_order, stats_second_order = diffusion_metrics(diffusion, out_dataloader, args, loaded_model)
     out_eps_t1, out_eps_t2, out_eps_t3, out_eps_r1, out_eps_r2, out_eps_r3 = stats_first_order
-    out_deps_t1, out_deps_t2, out_deps_t3, out_deps_r1, out_deps_r2, out_deps_r3 = stats_first_order
+    out_deps_t1, out_deps_t2, out_deps_t3, out_deps_r1, out_deps_r2, out_deps_r3 = stats_second_order
     print("finish calculating stats for test")
 
     ### Save plots of distributions
@@ -315,8 +315,8 @@ def main():
     val_probs = gmm.score_samples(val_points)
     ood_flags = (val_probs < lower_threshold) | (val_probs > upper_threshold)
     num_ood = np.sum(ood_flags)
-    print(f"Number of OOD samples in Val: {num_ood}")
-    print(val_points.shape)
+    print(f"Number of OOD samples in Val: {num_ood} / {len(val_points)}")
+    # print(val_points.shape)
 
     if args.ood_mode == "R3":
         test_points = np.column_stack([out_eps_t1, out_eps_t2, out_eps_t3, out_deps_t1, out_deps_t2, out_deps_t3])
@@ -327,8 +327,8 @@ def main():
 
     ood_flags = (test_probs < lower_threshold) | (test_probs > upper_threshold)
     num_ood = np.sum(ood_flags)
-    print(f"Number of OOD samples in Test: {num_ood}")
-    print(ood_flags.shape)
+    print(f"Number of OOD samples in Test: {num_ood} / {len(ood_flags)}")
+    # print(ood_flags.shape)
 
 if __name__ == "__main__":
     main()

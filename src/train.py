@@ -48,6 +48,7 @@ def parse_arguments():
     parser.add_argument("--learning_rate", type=float, default=1e-5, help="Training optimizer learning rate")
     parser.add_argument("--wandb", action='store_true', help="Log training loss to wandb")
     parser.add_argument("--diffusion_type", type=str, default="DDPM", help="The Diffusion algorithm and scheduler to use [DDPM, DDPM_Continuous]")
+    parser.add_argument("--path_signature_depth", type=int, default=3, help="The depth of path signature transformation")
 
     return parser.parse_args()
 

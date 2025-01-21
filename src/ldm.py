@@ -84,7 +84,7 @@ class LatentDiffusionModel(nn.Module):
         super(LatentDiffusionModel, self).__init__()
         self.encoder = VAEEncoder(input_dim, latent_dim)
         self.decoder = VAEDecoder(latent_dim, input_dim)
-        self.mlp = MLPDiffusionModel(latent_dim, hidden_dim, num_layers)
+        self.mlp = MLPDiffusionModel(input_dim, hidden_dim, num_layers)
         self.noise_steps = noise_steps
 
         self.device = device

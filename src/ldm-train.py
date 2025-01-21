@@ -6,26 +6,52 @@ import pandas as pd
 import numpy as np
 from scipy.spatial.transform import Rotation as R
 from torch.optim.lr_scheduler import CosineAnnealingLR
+import torch.nn as nn
+import torch.optim as optim
+from torch.utils.data import DataLoader, Dataset
 
 from utils import *
 from unet import *
 from transformer import *
-#from DDPM_Diff import *
-#from DDPM_Continuous_Diff import *
+from transformer import *
+from ldm import *
 from KITTI_dataset import KITTIOdometryDataset
 from Oxford_Robotcar_dataset import RobotcarDataset
 from L_dataset import LDataset
 from T_dataset import TDataset
 
 import argparse
-
 import os
-import torch
-import torch.nn as nn
-import torch.optim as optim
-from torch.utils.data import DataLoader, Dataset
-from ldm import *
-import numpy as np
+
+def parse_arguments():
+    """
+    Parse command-line arguments for the script.
+
+    Returns:
+        args: Parsed arguments as a namespace.
+    """
+    parser = argparse.ArgumentParser(description="Argument parser for training with KITTI dataset.")
+
+    parser.add_argument("--batch_size", type=int, default=32, help="Batch size for training (default: 16).")
+    parser.add_argument("--n", type=int, default=128, help="Number of data points per sequence (default: 128).")
+    parser.add_argument("--num_epochs", type=int, default=200, help="Number of training epochs (default: 200).")
+    parser.add_argument("--n_layers", type=int, default=3, help="Number of layers in the transformer")
+    parser.add_argument("--hidden_dim", type=int, default=128, help="Hidden dimension size (default: 128).")
+    parser.add_argument("--latent_dim", type=int, default=128, help="Hidden dimension size (default: 128).")
+    parser.add_argument("--data_stride", type=int, default=1, help="stride for splitting data sequence to seq len")
+    parser.add_argument("--scale_trans", type=float, default=1.0, help="Scale Factor for R3 translation")
+    parser.add_argument("--device", type=str, default="cuda", help="Device to use for computation, e.g., 'cuda' or 'cpu' (default: 'cuda').")
+    parser.add_argument("--num_timesteps", type=int, default=30, help="Number of timesteps for diffusion process (default: 100).")
+    parser.add_argument("--data_folder", type=str, required=True, help="Path to the data folder containing the dataset.")
+    parser.add_argument("--dataset", type=str, required=True, help="Dataset name, 'KITTI' or 'Oxford' ")
+    parser.add_argument("--save_path", type=str, required=True, help="File to save the trained model")
+    parser.add_argument('--shuffle', action='store_true', help='Enable shuffling of data (default: False)')
+    parser.add_argument('--center', action='store_true', help='Center each trajectory in data set')
+    parser.add_argument("--learning_rate", type=float, default=1e-5, help="Training optimizer learning rate")
+    parser.add_argument("--wandb", action='store_true', help="Log training loss to wandb")
+    parser.add_argument("--path_signature_depth", type=int, default=3, help="The depth of path signature transformation")
+
+    return parser.parse_args()
 
 def vae_loss(x, x_reconstructed, mu, logvar):
     # Reconstruction loss
@@ -76,12 +102,12 @@ def train_diffusion(ldm, dataloader, optimizer, num_epochs, device, noise_steps,
       with tqdm(dataloader, desc=f"Epoch {epoch + 1}/{num_epochs}", unit="batch") as pbar:
           for i, batch in enumerate(pbar):
               batch = batch.to(device)
-              mu, logvar = ldm.encoder(batch)
-              z = ldm.reparameterize(mu, logvar)
+              # mu, logvar = ldm.encoder(batch)
+              # z = ldm.reparameterize(mu, logvar)
               optimizer.zero_grad()
               t = torch.randint(0, num_timesteps-1, (batch.shape[0],), device=device)
               # Compute the loss for x1 and x2
-              loss = ldm.compute_loss(z, t)
+              loss = ldm.compute_loss(batch, t)
               loss.backward()
               optimizer.step()
               epoch_loss += loss.item()
@@ -91,17 +117,22 @@ def train_diffusion(ldm, dataloader, optimizer, num_epochs, device, noise_steps,
 
 # Main Function
 def main():
+    args = parse_arguments()
+
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
-    input_dim = 259
-    latent_dim = 64
-    hidden_dim = 128  # MLP hidden dimension
-    num_layers = 4    # MLP number of layers
-    noise_steps = 1000
-    batch_size = 32
-    vae_epochs = 5
-    diffusion_epochs = 50
-    learning_rate = 1e-3
-    save_dir = "/content/drive/MyDrive/diff3"
+    input_dim = 0
+    for i in range(args.path_signature_depth + 1):
+      input_dim += 6 ** i
+
+    latent_dim = args.latent_dim
+    hidden_dim = args.hidden_dim  # MLP hidden dimension
+    num_layers = args.n_layers    # MLP number of layers
+    noise_steps = args.num_timesteps
+    batch_size = args.batch_size
+    vae_epochs = args.num_epochs
+    diffusion_epochs = args.num_epochs
+    learning_rate = args.learning_rate
+    save_dir = args.save_path
 
     dataset = LDataset(seq_len=128, use_path_signature=True)
     dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
@@ -118,7 +149,7 @@ def main():
     diffusion_optimizer = optim.Adam(ldm.mlp.parameters(), lr=learning_rate)
 
     # Stage 1: Train VAE
-    train_vae(ldm, dataloader, vae_optimizer, vae_epochs, device, os.path.join(save_dir, "vae"))
+    # train_vae(ldm, dataloader, vae_optimizer, vae_epochs, device, os.path.join(save_dir, "vae"))
 
     # Stage 2: Train Diffusion
     train_diffusion(ldm, dataloader, diffusion_optimizer, diffusion_epochs, device, noise_steps, os.path.join(save_dir, "diffusion"))

@@ -48,16 +48,19 @@ def parse_arguments():
     parser.add_argument("--model_type", type=str, default="Transformer", help="The score model architecture")
     parser.add_argument("--save_folder", type=str, default=".", help="The folder to save GMM model and statistics graphs")
     parser.add_argument("--ood_mode", type=str, default="SE3", help="R3 or SE3 OOD metric")
+    parser.add_argument("--latent_dim", type=int, default=128, help="Hidden dimension size (default: 128).")
+    parser.add_argument("--path_signature_depth", type=int, default=3, help="The depth of path signature transformation")
+    parser.add_argument("--n_layers", type=int, default=3, help="Number of layers in the transformer")
 
     return parser.parse_args()
 
 def get_data(dataset, dataset_path, stride, args):
     if dataset == "KITTI":
-        dataset = KITTIOdometryDataset(dataset_path, seq_len=args.n, stride=stride, center=args.center)
+        dataset = KITTIOdometryDataset(dataset_path, seq_len=args.n, stride=stride, center=args.center, use_path_signature = True)
         dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
         print("Running on KITTI for ", len(dataloader), " batches")
     elif dataset == "Oxford":
-        dataset = RobotcarDataset(dataset_path, seq_len=args.n, stride=stride, center=args.center)
+        dataset = RobotcarDataset(dataset_path, seq_len=args.n, stride=stride, center=args.center, use_path_signature = True)
         dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
         print("Running on Oxford Robot car for ", len(dataloader), " batches")
     elif dataset == "IROS":
@@ -97,8 +100,9 @@ def diffusion_metrics(ldm, dataloader, args):
         batch_cnt += 1
 
         batch = batch.to(args.device)
-        mu, logvar = ldm.encoder(batch)
-        x = ldm.reparameterize(mu, logvar)
+        # mu, logvar = ldm.encoder(batch)
+        # x = ldm.reparameterize(mu, logvar)
+        x = batch
 
         score_norm_r1 = torch.zeros((batch.size(0),), device=args.device)
         score_norm_r2 = torch.zeros((batch.size(0),), device=args.device)
@@ -170,16 +174,16 @@ def main():
     out_dataset, out_dataloader = get_data(args.out_dataset, args.out_data_folder, args.out_data_stride, args)
 
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
-    input_dim = 259
-    latent_dim = 64
-    hidden_dim = 128  # MLP hidden dimension
-    num_layers = 4    # MLP number of layers
-    noise_steps = 1000
-    batch_size = 32
-    vae_epochs = 5
-    diffusion_epochs = 50
-    learning_rate = 1e-3
-    save_dir = "/content/drive/MyDrive/diff3" 
+    input_dim = 0
+    for i in range(args.path_signature_depth + 1):
+      input_dim += 6 ** i
+
+    latent_dim = args.latent_dim
+    hidden_dim = args.hidden_dim  # MLP hidden dimension
+    num_layers = args.n_layers    # MLP number of layers
+    noise_steps = args.num_timesteps
+    batch_size = args.batch_size
+    save_dir = args.model_path
     # Initialize the model
 
     loaded_model = LatentDiffusionModel(

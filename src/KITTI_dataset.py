@@ -1,13 +1,14 @@
 import os
 import torch
 import numpy as np
+from utils import *
 
 class KITTIOdometryDataset(torch.utils.data.Dataset):
     """
     PyTorch Dataset for KITTI Odometry dataset SE(3) data.
     """
 
-    def __init__(self, folder_path, seq_len=128, stride=1, center=True):
+    def __init__(self, folder_path, seq_len=128, stride=1, center=True, use_path_signature = False):
         """
         Args:
             folder_path (str): Path to the folder containing KITTI odometry .txt pose files.
@@ -22,6 +23,7 @@ class KITTIOdometryDataset(torch.utils.data.Dataset):
         if not self.files:
             raise ValueError(f"No .txt files found in folder: {folder_path}")
 
+        self.use_path_signature = use_path_signature
         self.traj = []
         for file in self.files:
             self.traj.extend(self._load_poses_from_file(file))
@@ -76,8 +78,15 @@ class KITTIOdometryDataset(torch.utils.data.Dataset):
         Returns:
             torch.Tensor: SE(3) matrix as a torch tensor.
         """
-        traj = self.traj[idx]
-        return torch.tensor(traj, dtype=torch.float32)
+        if self.use_path_signature: 
+          #print(self.traj[idx].shape)
+          sig = se3_to_path_signature(self.traj[idx], level=3)
+          #print(sig.shape)
+          return torch.tensor(sig, dtype=torch.float32)
+        else:
+          return torch.tensor(self.traj[idx], dtype=torch.float32)
+        # traj = self.traj[idx]
+        # return torch.tensor(traj, dtype=torch.float32)
 
     def get_point(self, idx):
         return self.points[idx]

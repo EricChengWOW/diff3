@@ -3,6 +3,7 @@ import torch
 import numpy as np
 import pandas as pd
 from scipy.spatial.transform import Rotation as R
+from utils import *
 
 def quaternion_to_rotation_matrix(qw, qx, qy, qz):
         quat = [qw, qx, qy, qz]
@@ -30,11 +31,12 @@ class RobotcarDataset(torch.utils.data.Dataset):
     PyTorch Dataset for Oxford Robot Car dataset SE(3) data.
     """
 
-    def __init__(self, folder_path, seq_len=128, stride=1, center=True):
+    def __init__(self, folder_path, seq_len=128, stride=1, center=True, use_path_signature = False):
         """
         Args:
             folder_path (str): Path to the folder containing Robot car .csv files.
         """
+        self.use_path_signature = use_path_signature
         self.folder_path = folder_path
         self.seq_len = seq_len
         self.stride = stride
@@ -95,7 +97,13 @@ class RobotcarDataset(torch.utils.data.Dataset):
         Returns:
             torch.Tensor: SE(3) matrix as a torch tensor.
         """
-        traj = self.traj[idx]
+        if self.use_path_signature: 
+          #print(self.traj[idx].shape)
+          sig = se3_to_path_signature(self.traj[idx], level=3)
+          #print(sig.shape)
+          return torch.tensor(sig, dtype=torch.float32)
+        else:
+          return torch.tensor(self.traj[idx], dtype=torch.float32)
         return torch.tensor(traj, dtype=torch.float32)
     
     def get_point(self, idx):
