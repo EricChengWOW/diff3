@@ -40,7 +40,6 @@ def parse_arguments():
     parser.add_argument("--latent_dim", type=int, default=128, help="Hidden dimension size (default: 128).")
     parser.add_argument("--data_stride", type=int, default=1, help="stride for splitting data sequence to seq len")
     parser.add_argument("--scale_trans", type=float, default=1.0, help="Scale Factor for R3 translation")
-    parser.add_argument("--level", type=float, default=3, help="Path Signature Level")
     parser.add_argument("--device", type=str, default="cuda", help="Device to use for computation, e.g., 'cuda' or 'cpu' (default: 'cuda').")
     parser.add_argument("--num_timesteps", type=int, default=30, help="Number of timesteps for diffusion process (default: 100).")
     parser.add_argument("--data_folder", type=str, required=True, help="Path to the data folder containing the dataset.")
@@ -56,19 +55,19 @@ def parse_arguments():
 
 def get_data(dataset, dataset_path, stride, args):
     if dataset == "KITTI":
-        dataset = KITTIOdometryDataset(dataset_path, seq_len=args.n, stride=stride, center=args.center, use_path_signature = True, scale_trans = args.scale_trans, level = args.level)
+        dataset = KITTIOdometryDataset(dataset_path, seq_len=args.n, stride=stride, center=args.center, use_path_signature = True, scale_trans = args.scale_trans, level = args.path_signature_depth)
         dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
         print("Running on KITTI for ", len(dataloader), " batches")
     elif dataset == "Oxford":
-        dataset = RobotcarDataset(dataset_path, seq_len=args.n, stride=stride, center=args.center, use_path_signature = True, scale_trans = args.scale_trans, level = args.level)
+        dataset = RobotcarDataset(dataset_path, seq_len=args.n, stride=stride, center=args.center, use_path_signature = True, scale_trans = args.scale_trans, level = args.path_signature_depth)
         dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
         print("Running on Oxford Robot car for ", len(dataloader), " batches")
     elif dataset == "IROS":
-        dataset = IROS20Dataset(dataset_path, seq_len=args.n, stride=stride, center=args.center, scale_trans = args.scale_trans, level = args.level)
+        dataset = IROS20Dataset(dataset_path, seq_len=args.n, stride=stride, center=args.center, scale_trans = args.scale_trans, level = args.path_signature_depth)
         dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
         print("Running on IROS20 6D for ", len(dataloader), " batches")
     elif dataset == "L":
-        dataset = LDataset(seq_len=args.n, use_path_signature = True, level = args.level)
+        dataset = LDataset(seq_len=args.n, use_path_signature = True, level = args.path_signature_depth)
         dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
         print("Running on L shape for ", len(dataloader), " batches")
     elif dataset == "L-rand":
@@ -77,7 +76,7 @@ def get_data(dataset, dataset_path, stride, args):
         dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
         print("Running on L-rand shape for ", len(dataloader), " batches")
     elif dataset == "T":
-        dataset = TDataset(seq_len=args.n, use_path_signature = True, level = args.level)
+        dataset = TDataset(seq_len=args.n, use_path_signature = True, level = args.path_signature_depth)
         dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
         print("Running on T shape for ", len(dataloader), " batches")
     else:
@@ -166,7 +165,7 @@ def main():
     learning_rate = args.learning_rate
     save_dir = args.save_path
 
-    dataset, dataloader = get_data(args.in_dataset, args.in_data_folder, args.in_data_stride, args)
+    dataset, dataloader = get_data(args.dataset, args.data_folder, args.data_stride, args)
 
     ldm = LatentDiffusionModel(
         input_dim=input_dim,

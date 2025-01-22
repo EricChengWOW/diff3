@@ -44,7 +44,6 @@ def parse_arguments():
     parser.add_argument("--model_path", type=str, required=True, help="Fileof the trained model")
     parser.add_argument('--shuffle', action='store_true', help='Enable shuffling of data (default: False)')
     parser.add_argument('--center', action='store_true', help='Center each trajectory in data set')
-    parser.add_argument("--level", type=float, default=3, help="Path Signature Level")
     parser.add_argument("--unet_layer", type=int, default=4, help="Layers of unet dim changes")
     parser.add_argument("--model_type", type=str, default="Transformer", help="The score model architecture")
     parser.add_argument("--save_folder", type=str, default=".", help="The folder to save GMM model and statistics graphs")
@@ -57,19 +56,19 @@ def parse_arguments():
 
 def get_data(dataset, dataset_path, stride, args):
     if dataset == "KITTI":
-        dataset = KITTIOdometryDataset(dataset_path, seq_len=args.n, stride=stride, center=args.center, use_path_signature = True, scale_trans = args.scale_trans, level = args.level)
+        dataset = KITTIOdometryDataset(dataset_path, seq_len=args.n, stride=stride, center=args.center, use_path_signature = True, scale_trans = args.scale_trans, level = args.path_signature_depth)
         dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
         print("Running on KITTI for ", len(dataloader), " batches")
     elif dataset == "Oxford":
-        dataset = RobotcarDataset(dataset_path, seq_len=args.n, stride=stride, center=args.center, use_path_signature = True, scale_trans = args.scale_trans, level = args.level)
+        dataset = RobotcarDataset(dataset_path, seq_len=args.n, stride=stride, center=args.center, use_path_signature = True, scale_trans = args.scale_trans, level = args.path_signature_depth)
         dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
         print("Running on Oxford Robot car for ", len(dataloader), " batches")
     elif dataset == "IROS":
-        dataset = IROS20Dataset(dataset_path, seq_len=args.n, stride=stride, center=args.center, scale_trans = args.scale_trans, level = args.level)
+        dataset = IROS20Dataset(dataset_path, seq_len=args.n, stride=stride, center=args.center, scale_trans = args.scale_trans, level = args.path_signature_depth)
         dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
         print("Running on IROS20 6D for ", len(dataloader), " batches")
     elif dataset == "L":
-        dataset = LDataset(seq_len=args.n, use_path_signature = True, level = args.level)
+        dataset = LDataset(seq_len=args.n, use_path_signature = True, level = args.path_signature_depth)
         dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
         print("Running on L shape for ", len(dataloader), " batches")
     elif dataset == "L-rand":
@@ -78,7 +77,7 @@ def get_data(dataset, dataset_path, stride, args):
         dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
         print("Running on L-rand shape for ", len(dataloader), " batches")
     elif dataset == "T":
-        dataset = TDataset(seq_len=args.n, use_path_signature = True, level = args.level)
+        dataset = TDataset(seq_len=args.n, use_path_signature = True, level = args.path_signature_depth)
         dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
         print("Running on T shape for ", len(dataloader), " batches")
     else:
