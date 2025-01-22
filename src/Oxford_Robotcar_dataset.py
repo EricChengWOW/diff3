@@ -74,7 +74,10 @@ class RobotcarDataset(torch.utils.data.Dataset):
             traj = np.stack(poses[start : start+self.seq_len])
             
             if self.center:
-                traj[:, :3, 3] -= traj[0, :3, 3]
+              traj[:, :3, 3] -= traj[0, :3, 3]
+            if self.use_path_signature: 
+              traj[:, :3, 3] = traj[:, :3, 3]*self.scale_trans
+              traj = se3_to_path_signature(traj, level=self.level)
                 
             trajectories.append(traj)
 
@@ -99,15 +102,7 @@ class RobotcarDataset(torch.utils.data.Dataset):
         Returns:
             torch.Tensor: SE(3) matrix as a torch tensor.
         """
-        if self.use_path_signature: 
-          #print(self.traj[idx].shape)
-          self.traj[idx][:, :3, 3] = self.traj[idx][:, :3, 3]*self.scale_trans
-          sig = se3_to_path_signature(self.traj[idx], level=self.level)
-          #print(sig.shape)
-          return torch.tensor(sig, dtype=torch.float32)
-        else:
-          return torch.tensor(self.traj[idx], dtype=torch.float32)
-        return torch.tensor(traj, dtype=torch.float32)
+        return torch.tensor(self.traj[idx], dtype=torch.float32)
     
     def get_point(self, idx):
         return self.points[idx]

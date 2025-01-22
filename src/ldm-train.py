@@ -119,10 +119,10 @@ def train_vae(ldm, dataloader, optimizer, num_epochs, device, save_dir):
         torch.save(ldm.state_dict(), os.path.join(save_dir, f"vae_epoch_{epoch + 1}.pth"))
 
 def train_diffusion(ldm, dataloader, optimizer, num_epochs, device, noise_steps, save_dir, num_timesteps=30):
-    for param in ldm.encoder.parameters():
+    '''for param in ldm.encoder.parameters():
         param.requires_grad = False
     for param in ldm.decoder.parameters():
-        param.requires_grad = False
+        param.requires_grad = False'''
 
     ldm.to(device)
     os.makedirs(save_dir, exist_ok=True)
@@ -175,7 +175,7 @@ def main():
         noise_steps=noise_steps,
     )
 
-    vae_optimizer = optim.Adam(list(ldm.encoder.parameters()) + list(ldm.decoder.parameters()), lr=learning_rate)
+    #vae_optimizer = optim.Adam(list(ldm.encoder.parameters()) + list(ldm.decoder.parameters()), lr=learning_rate)
     diffusion_optimizer = optim.Adam(ldm.mlp.parameters(), lr=learning_rate)
 
     # Stage 1: Train VAE

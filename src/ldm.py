@@ -82,9 +82,9 @@ class LatentDiffusionModel(nn.Module):
             beta_schedule (torch.Tensor): Noise schedule for diffusion process.
         """
         super(LatentDiffusionModel, self).__init__()
-        self.encoder = VAEEncoder(input_dim, latent_dim)
-        self.decoder = VAEDecoder(latent_dim, input_dim)
-        self.mlp = MLPDiffusionModel(input_dim, hidden_dim, num_layers)
+        '''self.encoder = VAEEncoder(input_dim, latent_dim)
+        self.decoder = VAEDecoder(latent_dim, input_dim)'''
+        self.mlp = MLPDiffusionModel(input_dim, input_dim, num_layers)
         self.noise_steps = noise_steps
 
         self.device = device
