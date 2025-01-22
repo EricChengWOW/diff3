@@ -8,7 +8,7 @@ class IROS20Dataset(torch.utils.data.Dataset):
     PyTorch Dataset for KITTI Odometry dataset SE(3) data.
     """
 
-    def __init__(self, folder_path, seq_len=128, stride=1, center=True, use_path_signature = False):
+    def __init__(self, folder_path, seq_len=128, stride=1, center=True, use_path_signature = False, scale_trans = 1.0, level = 3):
         """
         Args:
             folder_path (str): Path to the folder containing KITTI odometry .txt pose files.
@@ -17,6 +17,8 @@ class IROS20Dataset(torch.utils.data.Dataset):
         self.seq_len = seq_len
         self.stride = stride
         self.center = center
+        self.scale_trans = scale_trans
+        self.level = level
         self.files = [os.path.join(folder_path, f) for f in os.listdir(folder_path) if f.endswith('.npy')]
         self.files.sort()  # Ensure consistent ordering of files
 
@@ -80,7 +82,8 @@ class IROS20Dataset(torch.utils.data.Dataset):
         """
         if self.use_path_signature: 
           #print(self.traj[idx].shape)
-          sig = se3_to_path_signature(self.traj[idx], level=3)
+          self.traj[idx][:, :3, 3] = self.traj[idx][:, :3, 3]*self.scale_trans
+          sig = se3_to_path_signature(self.traj[idx], level=self.level)
           #print(sig.shape)
           return torch.tensor(sig, dtype=torch.float32)
         else:

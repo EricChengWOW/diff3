@@ -8,8 +8,9 @@ class TDataset(torch.utils.data.Dataset):
     PyTorch Dataset for Oxford Robot Car dataset SE(3) data.
     """
 
-    def __init__(self, seq_len=128, size=500, use_path_signature = False):
+    def __init__(self, seq_len=128, size=500, use_path_signature = False, level = 3):
         self.T = []
+        self.level = level
         self.use_path_signature = use_path_signature
         for i in range(seq_len // 2):
             self.T.append(np.array([i, 0, 0]))
@@ -108,7 +109,7 @@ class TDataset(torch.utils.data.Dataset):
         """
         if self.use_path_signature: 
           #print(self.traj[idx].shape)
-          sig = se3_to_path_signature(self.traj[idx], level=3)
+          sig = se3_to_path_signature(self.traj[idx], level=self.level)
           #print(sig.shape)
           return torch.tensor(sig, dtype=torch.float32)
         else:
