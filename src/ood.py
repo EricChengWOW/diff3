@@ -14,7 +14,7 @@ from torch.utils.data import DataLoader, random_split
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.mixture import GaussianMixture
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, precision_recall_fscore_support, average_precision_score
 
 import argparse
 
@@ -31,7 +31,8 @@ def parse_arguments():
     parser.add_argument("--n", type=int, default=128, help="Number of data points per sequence (default: 128).")
     parser.add_argument("--num_epochs", type=int, default=200, help="Number of training epochs (default: 200).")
     parser.add_argument("--hidden_dim", type=int, default=128, help="Hidden dimension size (default: 128).")
-    parser.add_argument("--scale_trans", type=float, default=1.0, help="Scale Factor for R3 translation")
+    parser.add_argument("--scale_trans_in", type=float, default=1.0, help="Scale Factor for R3 translation for inlier distribution")
+    parser.add_argument("--scale_trans_out", type=float, default=1.0, help="Scale Factor for R3 translation for outlier distribution")
     parser.add_argument("--device", type=str, default="cuda", help="Device to use for computation, e.g., 'cuda' or 'cpu' (default: 'cuda').")
     parser.add_argument("--num_timesteps", type=int, default=100, help="Number of timesteps for diffusion process (default: 100).")
     parser.add_argument("--in_data_folder", type=str, required=False, help="Path to the data folder containing the dataset.")
@@ -248,19 +249,20 @@ def main():
     loaded_model.eval()
 
     # Perform inference
-    diffusion = DDPM_Diff(loaded_model, trans_scale=args.scale_trans)
+    diffusion_in = DDPM_Diff(loaded_model, trans_scale=args.scale_trans_in)
+    diffusion_out = DDPM_Diff(loaded_model, trans_scale=args.scale_trans_out)
 
-    stats_first_order, stats_second_order = diffusion_metrics(diffusion, in_dataloader, args, loaded_model)
+    stats_first_order, stats_second_order = diffusion_metrics(diffusion_in, in_dataloader, args, loaded_model)
     in_eps_t1, in_eps_t2, in_eps_t3, in_eps_r1, in_eps_r2, in_eps_r3 = stats_first_order
     in_deps_t1, in_deps_t2, in_deps_t3, in_deps_r1, in_deps_r2, in_deps_r3 = stats_second_order
     print("finish calculating stats for train")
     # val
-    stats_first_order, stats_second_order = diffusion_metrics(diffusion, val_dataloader, args, loaded_model)
+    stats_first_order, stats_second_order = diffusion_metrics(diffusion_in, val_dataloader, args, loaded_model)
     val_eps_t1, val_eps_t2, val_eps_t3, val_eps_r1, val_eps_r2, val_eps_r3 = stats_first_order
     val_deps_t1, val_deps_t2, val_deps_t3, val_deps_r1, val_deps_r2, val_deps_r3 = stats_second_order
     print("finish calculating stats for val")
     # Get test_set
-    stats_first_order, stats_second_order = diffusion_metrics(diffusion, out_dataloader, args, loaded_model)
+    stats_first_order, stats_second_order = diffusion_metrics(diffusion_out, out_dataloader, args, loaded_model)
     out_eps_t1, out_eps_t2, out_eps_t3, out_eps_r1, out_eps_r2, out_eps_r3 = stats_first_order
     out_deps_t1, out_deps_t2, out_deps_t3, out_deps_r1, out_deps_r2, out_deps_r3 = stats_second_order
     print("finish calculating stats for test")
@@ -329,6 +331,30 @@ def main():
     num_ood = np.sum(ood_flags)
     print(f"Number of OOD samples in Test: {num_ood} / {len(ood_flags)}")
     # print(ood_flags.shape)
+
+    val_labels = np.ones(len(val_probs)) 
+    test_labels = np.zeros(len(test_probs))
+
+    all_scores = np.concatenate([np.exp(val_probs), np.exp(test_probs)])
+    all_labels = np.concatenate([val_labels, test_labels])
+
+    auroc = roc_auc_score(all_labels, all_scores)
+    print(f"AUROC: {auroc}")
+
+    aupr = average_precision_score(all_labels, all_scores)
+    print(f"AUPR: {aupr}")
+
+    val_ood_flags = (val_probs > lower_threshold) & (val_probs < upper_threshold)
+    test_ood_flags = (test_probs > lower_threshold) & (test_probs < upper_threshold)
+
+    val_preds = val_ood_flags.astype(int)
+    test_preds = test_ood_flags.astype(int)
+    all_preds = np.concatenate([val_preds, test_preds])
+
+    precision, recall, f1_score, _ = precision_recall_fscore_support(all_labels, all_preds, average='binary')
+    print(f"Precision: {precision}")
+    print(f"Recall: {recall}")
+    print(f"F1-Score: {f1_score}")
 
 if __name__ == "__main__":
     main()

@@ -27,6 +27,15 @@ class KITTIOdometryDataset(torch.utils.data.Dataset):
         self.traj = []
         for file in self.files:
             self.traj.extend(self._load_poses_from_file(file))
+        
+        max_entry = 0
+        for traj in self.traj:
+            max_entry = max(max_entry, np.max(np.abs(traj[:, :3, 3])))
+        
+        for traj in self.traj:
+            traj[:, :3, 3] /= max_entry
+        
+        print("KITTI max ", max_entry)
 
     def _load_poses_from_file(self, file_path):
         """
@@ -56,9 +65,6 @@ class KITTIOdometryDataset(torch.utils.data.Dataset):
             if self.center:
                 traj[:, :3, 3] -= traj[0, :3, 3]
             trajectories.append(traj)
-
-        # for i in range(len(trajectories)):
-        #     trajectories[i] /= np.max(trajectories[i])
 
         return trajectories
 
