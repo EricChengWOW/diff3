@@ -14,7 +14,7 @@ from torch.utils.data import DataLoader, random_split
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.mixture import GaussianMixture
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, precision_recall_fscore_support, average_precision_score
 
 import argparse
 from ldm import *
@@ -261,6 +261,30 @@ def main():
     num_ood = np.sum(ood_flags)
     print(f"Number of OOD samples in Test: {num_ood}")
     print(ood_flags.shape)
+
+    val_labels = np.ones(len(val_probs)) 
+    test_labels = np.zeros(len(test_probs))
+
+    all_scores = np.concatenate([np.exp(val_probs), np.exp(test_probs)])
+    all_labels = np.concatenate([val_labels, test_labels])
+
+    auroc = roc_auc_score(all_labels, all_scores)
+    print(f"AUROC: {auroc}")
+
+    aupr = average_precision_score(all_labels, all_scores)
+    print(f"AUPR: {aupr}")
+
+    val_ood_flags = (val_probs > lower_threshold) & (val_probs < upper_threshold)
+    test_ood_flags = (test_probs > lower_threshold) & (test_probs < upper_threshold)
+
+    val_preds = val_ood_flags.astype(int)
+    test_preds = test_ood_flags.astype(int)
+    all_preds = np.concatenate([val_preds, test_preds])
+
+    precision, recall, f1_score, _ = precision_recall_fscore_support(all_labels, all_preds, average='binary')
+    print(f"Precision: {precision}")
+    print(f"Recall: {recall}")
+    print(f"F1-Score: {f1_score}")
 
 if __name__ == "__main__":
     main()

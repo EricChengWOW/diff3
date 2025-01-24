@@ -62,6 +62,10 @@ class RobotcarDataset(torch.utils.data.Dataset):
         
         print("Oxford max ", max_entry)
 
+        if self.use_path_signature: 
+            for i in range(len(self.traj)):
+                self.traj[i] = se3_to_path_signature(self.traj[i], level=self.level)
+
     def _load_poses_from_file(self, file_path):
         """
         Load SE(3) transformation matrices from a KITTI odometry pose file.
@@ -84,9 +88,6 @@ class RobotcarDataset(torch.utils.data.Dataset):
             
             if self.center:
               traj[:, :3, 3] -= traj[0, :3, 3]
-            if self.use_path_signature: 
-              traj[:, :3, 3] = traj[:, :3, 3]*self.scale_trans
-              traj = se3_to_path_signature(traj, level=self.level)
                 
             trajectories.append(traj)
 

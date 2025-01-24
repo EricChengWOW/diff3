@@ -39,6 +39,10 @@ class KITTIOdometryDataset(torch.utils.data.Dataset):
         
         print("KITTI max ", max_entry)
 
+        if self.use_path_signature: 
+            for i in range(len(self.traj)):
+                self.traj[i] = se3_to_path_signature(self.traj[i], level=self.level)
+
     def _load_poses_from_file(self, file_path):
         """
         Load SE(3) transformation matrices from a KITTI odometry pose file.
