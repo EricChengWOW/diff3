@@ -70,9 +70,6 @@ class KITTIOdometryDataset(torch.utils.data.Dataset):
             traj = np.stack(poses[start : start+self.seq_len])
             if self.center:
                 traj[:, :3, 3] -= traj[0, :3, 3]
-            if self.use_path_signature: 
-              traj[:, :3, 3] = traj[:, :3, 3]*self.scale_trans
-              traj = se3_to_path_signature(traj, level=self.level)
             trajectories.append(traj)
 
         return trajectories

@@ -88,7 +88,7 @@ class RobotcarDataset(torch.utils.data.Dataset):
             
             if self.center:
               traj[:, :3, 3] -= traj[0, :3, 3]
-                
+
             trajectories.append(traj)
 
         return trajectories
