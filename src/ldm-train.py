@@ -53,6 +53,37 @@ def parse_arguments():
 
     return parser.parse_args()
 
+def get_data(dataset, dataset_path, stride, args):
+    if dataset == "KITTI":
+        dataset = KITTIOdometryDataset(dataset_path, seq_len=args.n, stride=stride, center=args.center, use_path_signature = True, scale_trans = args.scale_trans, level = args.path_signature_depth)
+        dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
+        print("Running on KITTI for ", len(dataloader), " batches")
+    elif dataset == "Oxford":
+        dataset = RobotcarDataset(dataset_path, seq_len=args.n, stride=stride, center=args.center, use_path_signature = True, scale_trans = args.scale_trans, level = args.path_signature_depth)
+        dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
+        print("Running on Oxford Robot car for ", len(dataloader), " batches")
+    elif dataset == "IROS":
+        dataset = IROS20Dataset(dataset_path, seq_len=args.n, stride=stride, center=args.center, scale_trans = args.scale_trans, level = args.path_signature_depth)
+        dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
+        print("Running on IROS20 6D for ", len(dataloader), " batches")
+    elif dataset == "L":
+        dataset = LDataset(seq_len=args.n, use_path_signature = True, level = args.path_signature_depth)
+        dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
+        print("Running on L shape for ", len(dataloader), " batches")
+    elif dataset == "L-rand":
+        dataset = LDataset(seq_len=args.n, rand_shuffle = True)
+        dataset.visualize_trajectory(idx=0, save_folder = args.save_folder)
+        dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
+        print("Running on L-rand shape for ", len(dataloader), " batches")
+    elif dataset == "T":
+        dataset = TDataset(seq_len=args.n, use_path_signature = True, level = args.path_signature_depth)
+        dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
+        print("Running on T shape for ", len(dataloader), " batches")
+    else:
+        raise "Dataset type not supported"
+
+    return dataset, dataloader
+
 def vae_loss(x, x_reconstructed, mu, logvar):
     # Reconstruction loss
     reconstruction_loss = nn.MSELoss()(x_reconstructed, x)
@@ -88,10 +119,10 @@ def train_vae(ldm, dataloader, optimizer, num_epochs, device, save_dir):
         torch.save(ldm.state_dict(), os.path.join(save_dir, f"vae_epoch_{epoch + 1}.pth"))
 
 def train_diffusion(ldm, dataloader, optimizer, num_epochs, device, noise_steps, save_dir, num_timesteps=30):
-    for param in ldm.encoder.parameters():
+    '''for param in ldm.encoder.parameters():
         param.requires_grad = False
     for param in ldm.decoder.parameters():
-        param.requires_grad = False
+        param.requires_grad = False'''
 
     ldm.to(device)
     os.makedirs(save_dir, exist_ok=True)
@@ -134,8 +165,7 @@ def main():
     learning_rate = args.learning_rate
     save_dir = args.save_path
 
-    dataset = LDataset(seq_len=128, use_path_signature=True)
-    dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
+    dataset, dataloader = get_data(args.dataset, args.data_folder, args.data_stride, args)
 
     ldm = LatentDiffusionModel(
         input_dim=input_dim,
@@ -145,7 +175,7 @@ def main():
         noise_steps=noise_steps,
     )
 
-    vae_optimizer = optim.Adam(list(ldm.encoder.parameters()) + list(ldm.decoder.parameters()), lr=learning_rate)
+    #vae_optimizer = optim.Adam(list(ldm.encoder.parameters()) + list(ldm.decoder.parameters()), lr=learning_rate)
     diffusion_optimizer = optim.Adam(ldm.mlp.parameters(), lr=learning_rate)
 
     # Stage 1: Train VAE

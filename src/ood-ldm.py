@@ -56,19 +56,19 @@ def parse_arguments():
 
 def get_data(dataset, dataset_path, stride, args):
     if dataset == "KITTI":
-        dataset = KITTIOdometryDataset(dataset_path, seq_len=args.n, stride=stride, center=args.center, use_path_signature = True)
+        dataset = KITTIOdometryDataset(dataset_path, seq_len=args.n, stride=stride, center=args.center, use_path_signature = True, scale_trans = args.scale_trans, level = args.path_signature_depth)
         dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
         print("Running on KITTI for ", len(dataloader), " batches")
     elif dataset == "Oxford":
-        dataset = RobotcarDataset(dataset_path, seq_len=args.n, stride=stride, center=args.center, use_path_signature = True)
+        dataset = RobotcarDataset(dataset_path, seq_len=args.n, stride=stride, center=args.center, use_path_signature = True, scale_trans = args.scale_trans, level = args.path_signature_depth)
         dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
         print("Running on Oxford Robot car for ", len(dataloader), " batches")
     elif dataset == "IROS":
-        dataset = IROS20Dataset(dataset_path, seq_len=args.n, stride=stride, center=args.center)
+        dataset = IROS20Dataset(dataset_path, seq_len=args.n, stride=stride, center=args.center, scale_trans = args.scale_trans, level = args.path_signature_depth)
         dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
         print("Running on IROS20 6D for ", len(dataloader), " batches")
     elif dataset == "L":
-        dataset = LDataset(seq_len=args.n, use_path_signature = True)
+        dataset = LDataset(seq_len=args.n, use_path_signature = True, level = args.path_signature_depth)
         dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
         print("Running on L shape for ", len(dataloader), " batches")
     elif dataset == "L-rand":
@@ -77,7 +77,7 @@ def get_data(dataset, dataset_path, stride, args):
         dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
         print("Running on L-rand shape for ", len(dataloader), " batches")
     elif dataset == "T":
-        dataset = TDataset(seq_len=args.n, use_path_signature = True)
+        dataset = TDataset(seq_len=args.n, use_path_signature = True, level = args.path_signature_depth)
         dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
         print("Running on T shape for ", len(dataloader), " batches")
     else:
