@@ -16,6 +16,7 @@ import matplotlib.pyplot as plt
 from sklearn.mixture import GaussianMixture
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, precision_recall_fscore_support, average_precision_score
 
+import statistics
 import argparse
 from ldm import *
 
@@ -64,7 +65,7 @@ def get_data(dataset, dataset_path, stride, args):
         dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
         print("Running on Oxford Robot car for ", len(dataloader), " batches")
     elif dataset == "IROS":
-        dataset = IROS20Dataset(dataset_path, seq_len=args.n, stride=stride, center=args.center, scale_trans = args.scale_trans, level = args.path_signature_depth)
+        dataset = IROS20Dataset(dataset_path, seq_len=args.n, stride=stride, center=args.center, use_path_signature = True, scale_trans = args.scale_trans, level = args.path_signature_depth)
         dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
         print("Running on IROS20 6D for ", len(dataloader), " batches")
     elif dataset == "L":
@@ -252,15 +253,13 @@ def main():
     val_probs = gmm.score_samples(val_points)
     ood_flags = (val_probs < lower_threshold) | (val_probs > upper_threshold)
     num_ood = np.sum(ood_flags)
-    print(f"Number of OOD samples in Val: {num_ood}")
-    print(val_points.shape)
+    print(f"Number of OOD samples in Val: {num_ood}/{ood_flags.shape[0]}")
 
     test_points = np.column_stack([out_eps_r1, out_eps_r2, out_eps_r3, out_deps_r1, out_deps_r2, out_deps_r3])
     test_probs = gmm.score_samples(test_points)
     ood_flags = (test_probs < lower_threshold) | (test_probs > upper_threshold)
     num_ood = np.sum(ood_flags)
-    print(f"Number of OOD samples in Test: {num_ood}")
-    print(ood_flags.shape)
+    print(f"Number of OOD samples in Test: {num_ood}/{ood_flags.shape[0]}")
 
     val_labels = np.ones(len(val_probs)) 
     test_labels = np.zeros(len(test_probs))
@@ -280,11 +279,23 @@ def main():
     val_preds = val_ood_flags.astype(int)
     test_preds = test_ood_flags.astype(int)
     all_preds = np.concatenate([val_preds, test_preds])
-
+    '''print(all_labels)
+    print(all_preds)'''
     precision, recall, f1_score, _ = precision_recall_fscore_support(all_labels, all_preds, average='binary')
-    print(f"Precision: {precision}")
+    '''print(f"Precision: {precision}")
     print(f"Recall: {recall}")
-    print(f"F1-Score: {f1_score}")
+    print(f"F1-Score: {f1_score}")'''
+    return auroc
 
 if __name__ == "__main__":
-    main()
+    np.random.seed(200120)
+    auroc_collection = []
+    for i in range(10):
+      auroc = main()
+      auroc_collection.append(auroc)
+    print(auroc_collection)
+    mean = statistics.mean(auroc_collection)
+    variance = statistics.variance(auroc_collection)
+
+    print("10-fold Mean:", mean)
+    print("10-fold Variance:", variance)
