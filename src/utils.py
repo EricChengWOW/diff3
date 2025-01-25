@@ -204,3 +204,4 @@ def se3_to_path_signature(se3, level=2):
     signatures =  esig.stream2sig(trajectory_np, level) 
     signature_tensor = torch.tensor(signatures, dtype=se3.dtype, device=se3.device)
     return signature_tensor
+    
