@@ -51,6 +51,31 @@ def parse_arguments():
 
     return parser.parse_args()
 
+### Save plots of distributions
+def save_plot(in_data, out_data, in_dataset, out_dataset, metric="eps", path = "temp.png"):
+    plt.hist([in_data, out_data], bins=50, color=['skyblue', 'orange'], edgecolor='black', label=[in_dataset, out_dataset])
+
+    # Add labels and title
+    plt.xlabel(metric)
+    plt.ylabel('Freq')
+    plt.title('Distribution of ' + metric)
+    plt.legend()
+
+    plt.savefig(path, dpi=300, bbox_inches='tight')
+    plt.close()
+
+def wrap_to_pi(x: torch.Tensor) -> torch.Tensor:
+    """
+    Wraps each element in the input tensor to the range [-π, π].
+
+    Args:
+        x (torch.Tensor): Input tensor containing angles in radians.
+
+    Returns:
+        torch.Tensor: Tensor with all elements wrapped to [-π, π].
+    """
+    return (x + torch.pi) % (2 * torch.pi) - torch.pi
+
 def get_data(dataset, dataset_path, stride, args):
     if dataset == "KITTI":
         dataset = KITTIOdometryDataset(dataset_path, seq_len=args.n, stride=stride, center=args.center)
@@ -82,7 +107,7 @@ def get_data(dataset, dataset_path, stride, args):
 
     return dataset, dataloader
 
-def diffusion_metrics(diffusion, dataloader, args, loaded_model):
+def diffusion_metrics(diffusion, dataloader, args, loaded_model, label=""):
     rot_score_arr = []
     trans_score_arr = []
 
@@ -101,6 +126,17 @@ def diffusion_metrics(diffusion, dataloader, args, loaded_model):
     drot_score_arr_3 = []
     dtrans_score_arr_3 = []
 
+    rot_x = []
+    rot_y = []
+    rot_z = []
+    rot_x2 = []
+    rot_y2 = []
+    rot_z2 = []
+
+    trans_x = []
+    trans_y = []
+    trans_z = []
+
     batch_cnt = 0
 
     # Gather the distribution result
@@ -114,13 +150,20 @@ def diffusion_metrics(diffusion, dataloader, args, loaded_model):
         B, L, _ = translations.shape
 
         score_norm_t1 = torch.zeros((batch.size(0),), device=args.device)
-        score_norm_r1 = torch.zeros((batch.size(0),), device=args.device)
+        # score_norm_r1 = torch.zeros((batch.size(0),), device=args.device)
 
         score_norm_t2 = torch.zeros((batch.size(0),), device=args.device)
-        score_norm_r2 = torch.zeros((batch.size(0),), device=args.device)
+        # score_norm_r2 = torch.zeros((batch.size(0),), device=args.device)
 
         score_norm_t3 = torch.zeros((batch.size(0),), device=args.device)
-        score_norm_r3 = torch.zeros((batch.size(0),), device=args.device)
+        # score_norm_r3 = torch.zeros((batch.size(0),), device=args.device)
+
+        score_norm_rx = torch.zeros((batch.size(0),), device=args.device)
+        score_norm_ry = torch.zeros((batch.size(0),), device=args.device)
+        score_norm_rz = torch.zeros((batch.size(0),), device=args.device)
+        score_norm_rx2 = torch.zeros((batch.size(0),), device=args.device)
+        score_norm_ry2 = torch.zeros((batch.size(0),), device=args.device)
+        score_norm_rz2 = torch.zeros((batch.size(0),), device=args.device)
 
         dscore_norm_t1 = torch.zeros((batch.size(0),), device=args.device)
         dscore_norm_r1 = torch.zeros((batch.size(0),), device=args.device)
@@ -141,7 +184,7 @@ def diffusion_metrics(diffusion, dataloader, args, loaded_model):
         for t in range(args.num_timesteps):
             t_tensor = torch.full((batch.size(0),), t, device=args.device)
 
-            (trans_t, _), (rot_t, _) = diffusion.forward_process(translations, rotations, t_tensor, trans_init=trans_init, rot_init=rot_init)
+            (trans_t, trans_noise), (rot_t, rot_noise) = diffusion.forward_process(translations, rotations, t_tensor, trans_init=trans_init, rot_init=rot_init)
 
             if loaded_model.name == "Unet":
                 trans_t = trans_t.transpose(1,2)
@@ -158,13 +201,31 @@ def diffusion_metrics(diffusion, dataloader, args, loaded_model):
                 trans_t = trans_t.transpose(1,2)
                 rot_t = rot_t.transpose(1,2)
                 rot_t = rot_t.reshape(B, L, 3, 3)
+            
+            rot_score = wrap_to_pi(rot_score)
+
+            metric_x = rot_score[:, :, 0]
+            score_norm_rx += torch.mean(metric_x, dim=1)
+            score_norm_rx2 += torch.mean(metric_x ** 2, dim=1)
+
+            metric_y = rot_score[:, :, 1]
+            score_norm_ry += torch.mean(metric_y, dim=1)
+            score_norm_ry2 += torch.mean(metric_y ** 2, dim=1)
+
+            metric_z = rot_score[:, :, 2]
+            score_norm_rz += torch.mean(metric_z, dim=1)
+            score_norm_rz2 += torch.mean(metric_z ** 2, dim=1)
 
             score_norm_t1 += torch.sum(trans_score, dim=(-2, -1))
-            score_norm_r1 += torch.sum(rot_score, dim=(-2, -1))
             score_norm_t2 += torch.sum(trans_score ** 2, dim=(-2, -1))
-            score_norm_r2 += torch.sum(rot_score ** 2, dim=(-2, -1))
             score_norm_t3 += torch.sum(trans_score ** 3, dim=(-2, -1))
-            score_norm_r3 += torch.sum(rot_score ** 3, dim=(-2, -1))
+
+            arr1 = trans_score[:, :, 0].cpu().numpy().flatten()
+            arr2 = trans_score[:, :, 1].cpu().numpy().flatten()
+            arr3 = trans_score[:, :, 2].cpu().numpy().flatten()
+            trans_x.append(arr1)
+            trans_y.append(arr2)
+            trans_z.append(arr3)
 
             if prev_score_t is not None:
                 delta = trans_score - prev_score_t
@@ -172,7 +233,7 @@ def diffusion_metrics(diffusion, dataloader, args, loaded_model):
                 dscore_norm_t2 += torch.sum(delta ** 2, dim=(-2, -1))
                 dscore_norm_t3 += torch.sum(delta ** 3, dim=(-2, -1))
 
-                delta = trans_score - prev_score_r
+                delta = rot_score - prev_score_r
                 dscore_norm_r1 += torch.sum(delta, dim=(-2, -1))
                 dscore_norm_r2 += torch.sum(delta ** 2, dim=(-2, -1))
                 dscore_norm_r3 += torch.sum(delta ** 3, dim=(-2, -1))
@@ -180,9 +241,12 @@ def diffusion_metrics(diffusion, dataloader, args, loaded_model):
             prev_score_t = trans_score
             prev_score_r = rot_score
 
-        rot_score_arr.append(score_norm_r1.detach().cpu().numpy())
-        rot_score_arr_2.append(score_norm_r2.detach().cpu().numpy())
-        rot_score_arr_3.append(score_norm_r3.detach().cpu().numpy())
+        rot_x.append(score_norm_rx.detach().cpu().numpy())
+        rot_y.append(score_norm_ry.detach().cpu().numpy())
+        rot_z.append(score_norm_rz.detach().cpu().numpy())
+        rot_x2.append(score_norm_rx2.detach().cpu().numpy())
+        rot_y2.append(score_norm_ry2.detach().cpu().numpy())
+        rot_z2.append(score_norm_rz2.detach().cpu().numpy())
         trans_score_arr.append(score_norm_t1.detach().cpu().numpy())
         trans_score_arr_2.append(score_norm_t2.detach().cpu().numpy())
         trans_score_arr_3.append(score_norm_t3.detach().cpu().numpy())
@@ -194,35 +258,43 @@ def diffusion_metrics(diffusion, dataloader, args, loaded_model):
         dtrans_score_arr_2.append(score_norm_t2.detach().cpu().numpy())
         dtrans_score_arr_3.append(score_norm_t3.detach().cpu().numpy())
 
-    rot_scores_1 = np.concatenate(rot_score_arr, axis=0)
-    rot_scores_2 = np.concatenate(rot_score_arr_2, axis=0)
-    rot_scores_3 = np.concatenate(rot_score_arr_3, axis=0)
     trans_scores_1 = np.concatenate(trans_score_arr, axis=0)
     trans_scores_2 = np.concatenate(trans_score_arr_2, axis=0)
     trans_scores_3 = np.concatenate(trans_score_arr_3, axis=0)
-
-    drot_scores_1 = np.concatenate(drot_score_arr, axis=0)
-    drot_scores_2 = np.concatenate(drot_score_arr_2, axis=0)
-    drot_scores_3 = np.concatenate(drot_score_arr_3, axis=0)
     dtrans_scores_1 = np.concatenate(dtrans_score_arr, axis=0)
     dtrans_scores_2 = np.concatenate(dtrans_score_arr_2, axis=0)
     dtrans_scores_3 = np.concatenate(dtrans_score_arr_3, axis=0)
 
+    arr1 = np.concatenate(trans_x, axis=0)
+    arr2 = np.concatenate(trans_y, axis=0)
+    arr3 = np.concatenate(trans_z, axis=0)
+    plt.hist([arr1, arr2, arr3], bins=50, color=['skyblue', 'orange', 'green'], edgecolor='black', label=['x', 'y', 'z'])
+
+    # Add labels and title
+    plt.xlabel('metric')
+    plt.ylabel('Freq')
+    plt.title('Distribution')
+    plt.legend()
+
+    plt.savefig('./tranxyz_' + label + '.png', dpi=300, bbox_inches='tight')
+    plt.close()
+
+    rot_x_all = np.concatenate(rot_x, axis=0)
+    rot_y_all = np.concatenate(rot_y, axis=0)
+    rot_z_all = np.concatenate(rot_z, axis=0)
+    rot_x_all2 = np.concatenate(rot_x2, axis=0)
+    rot_y_all2 = np.concatenate(rot_y2, axis=0)
+    rot_z_all2 = np.concatenate(rot_z2, axis=0)
+
     eps_t1 = trans_scores_1
     eps_t2 = np.sqrt(trans_scores_2)
     eps_t3 = trans_scores_3
-    eps_r1 = rot_scores_1
-    eps_r2 = np.sqrt(rot_scores_2)
-    eps_r3 = rot_scores_3
 
     deps_t1 = dtrans_scores_1
     deps_t2 = np.sqrt(dtrans_scores_2)
     deps_t3 = dtrans_scores_3
-    deps_r1 = drot_scores_1
-    deps_r2 = np.sqrt(drot_scores_2)
-    deps_r3 = drot_scores_3
 
-    return (eps_t1, eps_t2, eps_t3, eps_r1, eps_r2, eps_r3), (deps_t1, deps_t2, deps_t3, deps_r1, deps_r2, deps_r3)
+    return (eps_t1, eps_t2, eps_t3, rot_x_all, rot_y_all, rot_z_all), (deps_t1, deps_t2, deps_t3, rot_x_all2, rot_y_all2, rot_z_all2)
 
 def main():
     args = parse_arguments()
@@ -252,33 +324,20 @@ def main():
     diffusion_in = DDPM_Diff(loaded_model, trans_scale=args.scale_trans_in)
     diffusion_out = DDPM_Diff(loaded_model, trans_scale=args.scale_trans_out)
 
-    stats_first_order, stats_second_order = diffusion_metrics(diffusion_in, in_dataloader, args, loaded_model)
+    stats_first_order, stats_second_order = diffusion_metrics(diffusion_in, in_dataloader, args, loaded_model, 'train')
     in_eps_t1, in_eps_t2, in_eps_t3, in_eps_r1, in_eps_r2, in_eps_r3 = stats_first_order
     in_deps_t1, in_deps_t2, in_deps_t3, in_deps_r1, in_deps_r2, in_deps_r3 = stats_second_order
     print("finish calculating stats for train")
     # val
-    stats_first_order, stats_second_order = diffusion_metrics(diffusion_in, val_dataloader, args, loaded_model)
+    stats_first_order, stats_second_order = diffusion_metrics(diffusion_in, val_dataloader, args, loaded_model, 'val')
     val_eps_t1, val_eps_t2, val_eps_t3, val_eps_r1, val_eps_r2, val_eps_r3 = stats_first_order
     val_deps_t1, val_deps_t2, val_deps_t3, val_deps_r1, val_deps_r2, val_deps_r3 = stats_second_order
     print("finish calculating stats for val")
     # Get test_set
-    stats_first_order, stats_second_order = diffusion_metrics(diffusion_out, out_dataloader, args, loaded_model)
+    stats_first_order, stats_second_order = diffusion_metrics(diffusion_out, out_dataloader, args, loaded_model, 'test')
     out_eps_t1, out_eps_t2, out_eps_t3, out_eps_r1, out_eps_r2, out_eps_r3 = stats_first_order
     out_deps_t1, out_deps_t2, out_deps_t3, out_deps_r1, out_deps_r2, out_deps_r3 = stats_second_order
     print("finish calculating stats for test")
-
-    ### Save plots of distributions
-    def save_plot(in_data, out_data, in_dataset, out_dataset, metric="eps", path = "temp.png"):
-        plt.hist([in_data, out_data], bins=50, color=['skyblue', 'orange'], edgecolor='black', label=[in_dataset, out_dataset])
-
-        # Add labels and title
-        plt.xlabel(metric)
-        plt.ylabel('Freq')
-        plt.title('Distribution of ' + metric)
-        plt.legend()
-
-        plt.savefig(path, dpi=300, bbox_inches='tight')
-        plt.close()
 
     save_plot(in_eps_t1, out_eps_t1, args.in_dataset, args.out_dataset, metric="eps_trans", path=args.save_folder + "/eps_trans.png")
     save_plot(in_eps_t2, out_eps_t2, args.in_dataset, args.out_dataset, metric="eps_trans2", path=args.save_folder + "/eps_trans2.png")
