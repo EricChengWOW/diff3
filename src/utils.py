@@ -200,9 +200,7 @@ def se3_to_path_signature(se3, level=2):
     trajectory = torch.cat([translation, so3_vec], dim=-1)  # (L, 6)
     # Convert to numpy for esig compatibility
     trajectory_np = trajectory.cpu().numpy()  # (L, 6)
-
     # Compute path signatures for each trajectory in the batch
     signatures =  esig.stream2sig(trajectory_np, level) 
-
     signature_tensor = torch.tensor(signatures, dtype=se3.dtype, device=se3.device)
     return signature_tensor

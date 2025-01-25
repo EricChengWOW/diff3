@@ -52,16 +52,17 @@ def parse_arguments():
     parser.add_argument("--latent_dim", type=int, default=128, help="Hidden dimension size (default: 128).")
     parser.add_argument("--path_signature_depth", type=int, default=3, help="The depth of path signature transformation")
     parser.add_argument("--n_layers", type=int, default=3, help="Number of layers in the transformer")
+    parser.add_argument("--random_seq_len",action='store_true', help="Enable random sequence length mode")
 
     return parser.parse_args()
 
 def get_data(dataset, dataset_path, stride, args):
     if dataset == "KITTI":
-        dataset = KITTIOdometryDataset(dataset_path, seq_len=args.n, stride=stride, center=args.center, use_path_signature = True, scale_trans = args.scale_trans, level = args.path_signature_depth)
+        dataset = KITTIOdometryDataset(dataset_path, seq_len=args.n, stride=stride, center=args.center, use_path_signature = True, scale_trans = args.scale_trans, level = args.path_signature_depth, random_seq_len = args.random_seq_len)
         dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
         print("Running on KITTI for ", len(dataloader), " batches")
     elif dataset == "Oxford":
-        dataset = RobotcarDataset(dataset_path, seq_len=args.n, stride=stride, center=args.center, use_path_signature = True, scale_trans = args.scale_trans, level = args.path_signature_depth)
+        dataset = RobotcarDataset(dataset_path, seq_len=args.n, stride=stride, center=args.center, use_path_signature = True, scale_trans = args.scale_trans, level = args.path_signature_depth, random_seq_len = args.random_seq_len)
         dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
         print("Running on Oxford Robot car for ", len(dataloader), " batches")
     elif dataset == "IROS":
@@ -257,6 +258,7 @@ def main():
 
     test_points = np.column_stack([out_eps_r1, out_eps_r2, out_eps_r3, out_deps_r1, out_deps_r2, out_deps_r3])
     test_probs = gmm.score_samples(test_points)
+    print(test_probs)
     ood_flags = (test_probs < lower_threshold) | (test_probs > upper_threshold)
     num_ood = np.sum(ood_flags)
     print(f"Number of OOD samples in Test: {num_ood}/{ood_flags.shape[0]}")

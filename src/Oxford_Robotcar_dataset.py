@@ -31,12 +31,13 @@ class RobotcarDataset(torch.utils.data.Dataset):
     PyTorch Dataset for Oxford Robot Car dataset SE(3) data.
     """
 
-    def __init__(self, folder_path, seq_len=128, stride=1, center=True, use_path_signature = False, scale_trans = 1.0, level = 3):
+    def __init__(self, folder_path, seq_len=128, stride=1, center=True, use_path_signature = False, random_seq_len = False, scale_trans = 1.0, level = 3):
         """
         Args:
             folder_path (str): Path to the folder containing Robot car .csv files.
         """
         self.use_path_signature = use_path_signature
+        self.random_seq_len = random_seq_len
         self.folder_path = folder_path
         self.seq_len = seq_len
         self.stride = stride
@@ -82,15 +83,37 @@ class RobotcarDataset(torch.utils.data.Dataset):
         
         ### 
         trajectories = []
-        for i in range((len(poses) - self.seq_len) // self.stride):
-            start = i * self.stride
-            traj = np.stack(poses[start : start+self.seq_len])
-            
-            if self.center:
-              traj[:, :3, 3] -= traj[0, :3, 3]
+        if not self.random_seq_len: 
+          for i in range((len(poses) - self.seq_len) // self.stride):
+              start = i * self.stride
+              traj = np.stack(poses[start : start+self.seq_len])
+              
+              if self.center:
+                traj[:, :3, 3] -= traj[0, :3, 3]
 
-            trajectories.append(traj)
+              trajectories.append(traj)
 
+        else: 
+          for i in range((len(poses) - self.seq_len) // self.stride):
+              random_seq_len = np.random.randint(
+                  int(self.seq_len * 0.75), 
+                  int(self.seq_len * 1.25) + 1
+              )
+              while random_seq_len in [99, 104,108]: #wtf?
+                random_seq_len = np.random.randint(
+                  int(self.seq_len * 0.75), 
+                  int(self.seq_len * 1.25) + 1
+                )
+              start = i * self.stride
+              end = start + random_seq_len
+              if end > len(poses): 
+                  end = len(poses)
+              traj = np.stack(poses[start:end])
+              
+              if self.center:
+                  traj[:, :3, 3] -= traj[0, :3, 3]
+
+              trajectories.append(traj)
         return trajectories
 
     def __len__(self):
