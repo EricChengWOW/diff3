@@ -84,39 +84,8 @@ def get_data(dataset, dataset_path, stride, args):
 
     return dataset, dataloader
 
-def vae_loss(x, x_reconstructed, mu, logvar):
-    # Reconstruction loss
-    reconstruction_loss = nn.MSELoss()(x_reconstructed, x)
-    # KL divergence loss
-    kl_divergence = -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp())
-    return reconstruction_loss + kl_divergence
-
 def diffusion_loss(noise, predicted_noise):
     return nn.MSELoss()(predicted_noise, noise)
-
-# Training Encoder and Decoder (Stage 1)
-def train_vae(ldm, dataloader, optimizer, num_epochs, device, save_dir):
-    ldm.to(device)
-    os.makedirs(save_dir, exist_ok=True)
-
-    for epoch in range(num_epochs):
-        epoch_loss = 0.0
-        for batch in dataloader:
-            batch = batch.to(device)
-
-            mu, logvar = ldm.encoder(batch)
-            z = ldm.reparameterize(mu, logvar)
-            x_reconstructed = ldm.decoder(z)
-
-            loss = vae_loss(batch, x_reconstructed, mu, logvar)
-            epoch_loss += loss.item()
-
-            optimizer.zero_grad()
-            loss.backward()
-            optimizer.step()
-
-        print(f"VAE Training - Epoch {epoch + 1}/{num_epochs}, Loss: {epoch_loss / len(dataloader)}")
-        torch.save(ldm.state_dict(), os.path.join(save_dir, f"vae_epoch_{epoch + 1}.pth"))
 
 def train_diffusion(ldm, dataloader, optimizer, num_epochs, device, noise_steps, save_dir, num_timesteps=30):
     '''for param in ldm.encoder.parameters():
@@ -153,7 +122,8 @@ def main():
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     input_dim = 0
     for i in range(args.path_signature_depth + 1):
-      input_dim += 6 ** i
+      input_dim += 3 ** i
+    input_dim *= 2
 
     latent_dim = args.latent_dim
     hidden_dim = args.hidden_dim  # MLP hidden dimension
@@ -173,15 +143,11 @@ def main():
         hidden_dim=hidden_dim,
         num_layers=num_layers,
         noise_steps=noise_steps,
+        depth=args.path_signature_depth
     )
 
-    #vae_optimizer = optim.Adam(list(ldm.encoder.parameters()) + list(ldm.decoder.parameters()), lr=learning_rate)
     diffusion_optimizer = optim.Adam(ldm.mlp.parameters(), lr=learning_rate)
 
-    # Stage 1: Train VAE
-    # train_vae(ldm, dataloader, vae_optimizer, vae_epochs, device, os.path.join(save_dir, "vae"))
-
-    # Stage 2: Train Diffusion
     train_diffusion(ldm, dataloader, diffusion_optimizer, diffusion_epochs, device, noise_steps, os.path.join(save_dir, "diffusion"))
 
 if __name__ == "__main__":

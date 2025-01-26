@@ -6,43 +6,11 @@ from DDPM_Diff import *
 import numpy as np
 import torch
 import torch.nn as nn
-from torch.utils.data import DataLoader, random_split
 import pandas as pd
 import matplotlib.pyplot as plt
-
 import argparse
 
-class VAEEncoder(nn.Module):
-    def __init__(self, input_dim, latent_dim):
-        super(VAEEncoder, self).__init__()
-        self.encoder = nn.Sequential(
-            nn.Linear(input_dim, 128),
-            nn.ReLU(),
-            nn.Linear(128, 128),
-            nn.ReLU()
-        )
-        self.mu_layer = nn.Linear(128, latent_dim)       # Mean of the latent space
-        self.logvar_layer = nn.Linear(128, latent_dim)  # Log variance of the latent space
-
-    def forward(self, x):
-        h = self.encoder(x)
-        mu = self.mu_layer(h)
-        logvar = self.logvar_layer(h)
-        return mu, logvar
-
-class VAEDecoder(nn.Module):
-    def __init__(self, latent_dim, output_dim):
-        super(VAEDecoder, self).__init__()
-        self.decoder = nn.Sequential(
-            nn.Linear(latent_dim, 128),
-            nn.ReLU(),
-            nn.Linear(128, 128),
-            nn.ReLU(),
-            nn.Linear(128, output_dim)
-        )
-
-    def forward(self, z):
-        return self.decoder(z)
+from torch.utils.data import DataLoader, random_split
 
 class MLPDiffusionModel(nn.Module):
     def __init__(self, input_dim, hidden_dim, num_layers):
@@ -69,7 +37,7 @@ class MLPDiffusionModel(nn.Module):
         return self.mlp(x_t)
 
 class LatentDiffusionModel(nn.Module):
-    def __init__(self, input_dim, latent_dim, hidden_dim, num_layers, noise_steps, beta_start=1e-4, beta_end=0.02, device="cuda", timesteps=30, seq_len=128):
+    def __init__(self, input_dim, latent_dim, hidden_dim, num_layers, noise_steps, depth, beta_start=1e-4, beta_end=0.02, device="cuda", timesteps=30, seq_len=128):
         """
         Latent Diffusion Model with an MLP diffusion network.
         
@@ -82,14 +50,14 @@ class LatentDiffusionModel(nn.Module):
             beta_schedule (torch.Tensor): Noise schedule for diffusion process.
         """
         super(LatentDiffusionModel, self).__init__()
-        '''self.encoder = VAEEncoder(input_dim, latent_dim)
-        self.decoder = VAEDecoder(latent_dim, input_dim)'''
+
         self.mlp = MLPDiffusionModel(input_dim, input_dim, num_layers)
         self.noise_steps = noise_steps
 
         self.device = device
         self.num_timesteps = timesteps
         self.seq_len = seq_len
+        self.depth = depth
 
         ### Translation Euclidean diffusion scheduler
         def f(t):
@@ -120,6 +88,8 @@ class LatentDiffusionModel(nn.Module):
         self.alpha_t = 1.0 - self.beta_t
         self.alpha_bar_t = torch.cumprod(self.alpha_t, dim=0)
 
+        self.loss = WassersteinSignatureLoss()
+
     def reparameterize(self, mu, logvar):
         """Reparameterization trick"""
         std = torch.exp(0.5 * logvar)
@@ -127,16 +97,36 @@ class LatentDiffusionModel(nn.Module):
         return mu + eps * std
 
     def forward_process(self, x1, t):
-        epsilon1 = torch.randn_like(x1)
-        x1_t = extract(self.q_param1, t, x1.shape) * x1 + extract(self.q_param2, t, x1.shape) * epsilon1
-        return (x1_t, epsilon1)
+        l = x1.size(1)
+
+        trans_sig = x1[:, : l//2]
+        rot_sig   = x1[:, l//2 :]
+        # print(x1.shape, trans_sig.shape, rot_sig.shape)
+        trans_lie = signature_log(trans_sig, 3, self.depth)
+        rot_lie = signature_log(rot_sig, 3, self.depth)
+
+        epsilon0 = torch.randn_like(trans_sig)
+        epsilon1 = torch.randn_like(rot_sig)
+
+        x1_t_0 = extract(self.q_param1, t, trans_lie.shape) * trans_lie + \
+                 extract(self.q_param2, t, trans_lie.shape) * epsilon0
+
+        x1_t_1 = extract(self.q_param1, t, trans_lie.shape) * rot_lie + \
+                 extract(self.q_param2, t, trans_lie.shape) * epsilon1
+
+        x1_t_0 = signature_exp(x1_t_0, 3, self.depth)
+        x1_t_1 = signature_exp(x1_t_1, 3, self.depth)
+
+        x1_t = torch.cat((x1_t_0, x1_t_1), dim=1)
+        epsilon = torch.cat((epsilon0, epsilon1), dim=1)
+        return (x1_t, epsilon)
 
     def compute_loss(self, x1, t):
         (x1_t, epsilon1) = self.forward_process(x1, t)
         predicted_score1 = self.mlp(x1_t, t)
-        x0_1 = extract(self.x0_param1, t, x1_t.shape) * (x1_t - extract(self.x0_param2, t, x1_t.shape) * predicted_score1)
+        # x0_1 = extract(self.x0_param1, t, x1_t.shape) * (x1_t - extract(self.x0_param2, t, x1_t.shape) * predicted_score1)
 
-        loss1 = F.l1_loss(predicted_score1, epsilon1)
+        loss1 = self.loss(predicted_score1, epsilon1)
         #loss_origin1 = F.l1_loss(x0_1, x1)
 
         return loss1

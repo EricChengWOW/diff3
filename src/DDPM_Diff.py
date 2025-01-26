@@ -1,17 +1,17 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torch.nn.modules import loss
-from torch.optim import Adam
-from scipy.spatial.transform import Rotation as R
-from tqdm import tqdm
 import numpy as np
 import wandb
 import math
 import matplotlib.pyplot as plt
+
+from torch.nn.modules import loss
+from torch.optim import Adam
+from scipy.spatial.transform import Rotation as R
+from tqdm import tqdm
 from mpl_toolkits.mplot3d import Axes3D
 from scipy.linalg import expm, logm
-
 from utils import *
 
 # Diffuser Class

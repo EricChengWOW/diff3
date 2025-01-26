@@ -1,8 +1,12 @@
 import torch
+import torch.nn as nn
+import torch.nn.functional as F
 import numpy as np
+import esig
+
 from scipy.spatial.transform import Rotation as R
 from scipy.spatial.transform import Rotation
-import esig
+from geomloss import SamplesLoss
 
 def compose_se3(rot, trans):
     """Combines rotation (3x3) and translation (3,) into SE(3) matrix."""
@@ -198,10 +202,298 @@ def se3_to_path_signature(se3, level=2):
     rotation_matrices = se3[:, :3, :3]  # (L, 3, 3)
     so3_vec = so3_log_map(rotation_matrices)  # (L, 3)
     trajectory = torch.cat([translation, so3_vec], dim=-1)  # (L, 6)
+
     # Convert to numpy for esig compatibility
     trajectory_np = trajectory.cpu().numpy()  # (L, 6)
+    trans_np = translation.cpu().numpy()
+    rot_np = so3_vec.cpu().numpy()
+
     # Compute path signatures for each trajectory in the batch
-    signatures =  esig.stream2sig(trajectory_np, level) 
+    # signatures = esig.stream2sig(trajectory_np, level) 
+    # signature_tensor = torch.tensor(signatures, dtype=se3.dtype, device=se3.device)
+    # print(signature_tensor.shape)
+    trans_sig = esig.stream2sig(trans_np, level)
+    rot_sig = esig.stream2sig(rot_np, level)
+    signatures = np.concatenate([trans_sig, rot_sig])
     signature_tensor = torch.tensor(signatures, dtype=se3.dtype, device=se3.device)
+    # print(signature_tensor.shape, trans_sig.shape, rot_sig.shape, signatures.shape)
+
     return signature_tensor
+
+def path_signature_scalar_mult(sig, k, dim, depth):
+    start = 0
+    for i in range(depth):
+        end = start + dim ** i
+        sig[start:end] *= (k ** i)
+        start = end
+
+    return sig
+
+def get_signature_size(D, N):
+    """
+    Computes the size of the truncated signature up to depth N for dimension D.
+    
+    Args:
+        D (int): Dimension of the path.
+        N (int): Truncation depth.
+        
+    Returns:
+        int: Size of the signature vector.
+    """
+    if D == 1:
+        return N + 1  # For 1D, each level adds one term
+    return (D**(N + 1) - 1) // (D - 1)
+
+def extract_signature_levels(signature, D, N):
+    """
+    Extracts signature terms for each level up to depth N.
+    
+    Args:
+        signature (torch.Tensor): Tensor of shape (batch_size, signature_size).
+        D (int): Dimension of the path.
+        N (int): Truncation depth.
+        
+    Returns:
+        List[torch.Tensor]: List containing tensors for each level from 1 to N.
+    """
+    levels = []
+    start = 1  # Skip the zeroth term which is always 1
+    for k in range(1, N + 1):
+        num_terms = D**k
+        end = start + num_terms
+        level_k = signature[:, start:end]
+        levels.append(level_k)
+        start = end
+    return levels
+
+def normalize_signature(signatures):
+    """
+    Normalizes each signature vector to have unit norm.
+    
+    Args:
+        signatures (torch.Tensor): Tensor of shape (batch_size, signature_size).
+        
+    Returns:
+        torch.Tensor: Normalized signatures.
+    """
+    return F.normalize(signatures, p=2, dim=1)
+
+def signature_log(signature, D, N):
+    """
+    Approximates the logarithm of a truncated path signature using the Magnus Expansion.
+    
+    Args:
+        signature (torch.Tensor): Truncated signature tensor of shape (batch_size, signature_size).
+        D (int): Dimension of the path.
+        N (int): Maximum depth of the signature (e.g., 4).
+        
+    Returns:
+        torch.Tensor: Logarithm of the signature in the Lie algebra, same shape as signature.
+    """
+    batch_size = signature.size(0)
+    signature_size = signature.size(1)
+    
+    log_sig = torch.zeros_like(signature)
+    
+    # Extract signature levels
+    levels = extract_signature_levels(signature, D, N)
+    
+    # Level 1: log(S)^1 = S^1
+    log_sig[:, 1:D+1] = levels[0]
+    
+    if N >= 2:
+        # Level 2: log(S)^2 = S^2 - 0.5 * S^1 ⊗ S^1
+        S1 = levels[0]  # (batch_size, D)
+        S2 = levels[1]  # (batch_size, D^2)
+        S1_outer = torch.einsum('bi,bj->bij', S1, S1).reshape(batch_size, -1)  # (batch_size, D^2)
+        log_sig[:, D+1:D+1+D**2] = S2 - 0.5 * S1_outer
+    
+    if N >= 3:
+        # Level 3: log(S)^3 = S^3 - S^1 ⊗ S^2 + (1/3) * S^1 ⊗ S^1 ⊗ S^1
+        S1 = levels[0]  # (batch_size, D)
+        S2 = levels[1]  # (batch_size, D^2)
+        S3 = levels[2]  # (batch_size, D^3)
+        
+        # Compute S1 ⊗ S2
+        # S1 has shape (batch_size, D)
+        # S2 has shape (batch_size, D^2)
+        # Reshape S2 to (batch_size, D, D)
+        S2_reshaped = S2.view(batch_size, D, D)
+        S1_S2 = torch.einsum('bi,bjk->bijk', S1, S2_reshaped).reshape(batch_size, -1)  # (batch_size, D^3)
+        
+        # Compute S1 ⊗ S1 ⊗ S1
+        S1_S1_S1 = torch.einsum('bi,bj,bk->bijk', S1, S1, S1).reshape(batch_size, -1)  # (batch_size, D^3)
+        
+        # Combine terms
+        log_sig[:, D+1+D**2:D+1+D**2+D**3] = S3 - S1_S2 + (1.0 / 3.0) * S1_S1_S1
+    
+    if N >= 4:
+        # Level 4: log(S)^4 = S^4 - S^1 ⊗ S^3 - S^2 ⊗ S^2 + S^1 ⊗ S^1 ⊗ S^2 + S^1 ⊗ S^2 ⊗ S^1 + S^2 ⊗ S^1 ⊗ S^1 - (1/4) * S^1 ⊗ S^1 ⊗ S^1 ⊗ S^1
+        S1 = levels[0]  # (batch_size, D)
+        S2 = levels[1]  # (batch_size, D^2)
+        S3 = levels[2]  # (batch_size, D^3)
+        S4 = levels[3]  # (batch_size, D^4)
+        
+        # Compute S1 ⊗ S3
+        # S3 reshaped to (batch_size, D, D^2)
+        S3_reshaped = S3.view(batch_size, D, D**2)
+        S1_S3 = torch.einsum('bi,bjk->bijk', S1, S3_reshaped).reshape(batch_size, -1)  # (batch_size, D^4)
+        
+        # Compute S2 ⊗ S2
+        # S2 reshaped to (batch_size, D, D)
+        S2_reshaped = S2.view(batch_size, D, D)
+        # Compute outer product: (batch_size, D, D) x (batch_size, D, D) -> (batch_size, D^2, D^2)
+        S2_outer = torch.einsum('bik,bjt->bikjt', S2_reshaped, S2_reshaped)
+        # Sum over appropriate dimensions to get (batch_size, D^4)
+        S2_S2 = S2_outer.reshape(batch_size, D**4)
+        
+        # Compute S1 ⊗ S1 ⊗ S2
+        S1_S1_S2 = torch.einsum('bi,bj,bk->bijk', S1, S1, S2).reshape(batch_size, -1)  # (batch_size, D^4)
+        
+        # Compute S1 ⊗ S2 ⊗ S1
+        S1_S2_S1 = torch.einsum('bi,bj,bk->bijk', S1, S2, S1).reshape(batch_size, -1)  # (batch_size, D^4)
+        
+        # Compute S2 ⊗ S1 ⊗ S1
+        S2_S1_S1 = torch.einsum('bi,bj,bk->bijk', S2, S1, S1).reshape(batch_size, -1)  # (batch_size, D^4)
+        
+        # Compute S1 ⊗ S1 ⊗ S1 ⊗ S1
+        S1_S1_S1_S1 = torch.einsum('bi,bj,bk,bl->bijkl', S1, S1, S1, S1).reshape(batch_size, -1)  # (batch_size, D^4)
+        
+        # Combine all terms
+        log_sig[:, D+1+D**2+D**3:D+1+D**2+D**3+D**4] = (
+            S4
+            - S1_S3
+            - S2_S2
+            + S1_S1_S2
+            + S1_S2_S1
+            + S2_S1_S1
+            - (1.0 / 4.0) * S1_S1_S1_S1
+        )
+    
+    return log_sig
+
+def signature_exp(log_signature, D, N):
+    """
+    Approximates the exponential of a truncated log path signature using the Magnus Expansion.
+    
+    Args:
+        log_signature (torch.Tensor): Logarithm of the signature in the Lie algebra, shape (batch_size, signature_size).
+        D (int): Dimension of the path.
+        N (int): Maximum depth of the signature (e.g., 4).
+        
+    Returns:
+        torch.Tensor: Exponentiated signature tensor, same shape as log_signature.
+    """
+    batch_size = log_signature.size(0)
+    signature_size = log_signature.size(1)
+    
+    exp_sig = torch.zeros_like(log_signature)
+    
+    # Zeroth level is always 1
+    exp_sig[:,0] = 1.0
+    
+    # Extract log signature levels
+    levels = extract_signature_levels(log_signature, D, N)
+    
+    # Level 1: exp(log(S))^1 = log(S)^1
+    exp_sig[:, 1:D+1] = levels[0]
+    
+    if N >= 2:
+        # Level 2: exp(log(S))^2 = log(S)^2 + 0.5 * log(S)^1 ⊗ log(S)^1
+        L1 = levels[0]  # (batch_size, D)
+        L2 = levels[1]  # (batch_size, D^2)
+        L1_outer = torch.einsum('bi,bj->bij', L1, L1).reshape(batch_size, -1)  # (batch_size, D^2)
+        exp_sig[:, D+1:D+1+D**2] = L2 + 0.5 * L1_outer
+    
+    if N >= 3:
+        # Level 3: exp(log(S))^3 = log(S)^3 + log(S)^1 ⊗ log(S)^2 + (1/6) * log(S)^1 ⊗ log(S)^1 ⊗ log(S)^1
+        L1 = levels[0]  # (batch_size, D)
+        L2 = levels[1]  # (batch_size, D^2)
+        L3 = levels[2]  # (batch_size, D^3)
+        
+        # Compute L1 ⊗ L2
+        L1_L2 = torch.einsum('bi,bjk->bijk', L1, L2.view(batch_size, D, D)).reshape(batch_size, -1)  # (batch_size, D^3)
+        
+        # Compute L1 ⊗ L1 ⊗ L1
+        L1_L1_L1 = torch.einsum('bi,bj,bk->bijk', L1, L1, L1).reshape(batch_size, -1)  # (batch_size, D^3)
+        
+        # Combine terms
+        exp_sig[:, D+1+D**2:D+1+D**2+D**3] = L3 + L1_L2 + (1.0 / 6.0) * L1_L1_L1
+    
+    if N >= 4:
+        # Level 4: exp(log(S))^4 = log(S)^4 + log(S)^1 ⊗ log(S)^3 + log(S)^2 ⊗ log(S)^2 +
+        # log(S)^1 ⊗ log(S)^1 ⊗ log(S)^2 + log(S)^1 ⊗ log(S)^2 ⊗ log(S)^1 +
+        # log(S)^2 ⊗ log(S)^1 ⊗ log(S)^1 + (1/24)*log(S)^1 ⊗ log(S)^1 ⊗ log(S)^1 ⊗ log(S)^1
+        
+        L1 = levels[0]  # (batch_size, D)
+        L2 = levels[1]  # (batch_size, D^2)
+        L3 = levels[2]  # (batch_size, D^3)
+        L4 = levels[3]  # (batch_size, D^4)
+        
+        # Compute L1 ⊗ L3
+        S1_S3 = torch.einsum('bi,bjkl->bijkl', L1, L3.view(batch_size, D, D, D)).reshape(batch_size, -1)  # (batch_size, D^4)
+        
+        # Compute L2 ⊗ L2
+        S2_reshaped = L2.view(batch_size, D, D)
+        S2_S2 = torch.einsum('bij,bkl->bijkl', S2_reshaped, S2_reshaped).reshape(batch_size, -1)  # (batch_size, D^4)
+        
+        # Compute L1 ⊗ L1 ⊗ L2
+        S1_S1_S2 = torch.einsum('bi,bj,bk->bijk', L1, L1, L2).reshape(batch_size, -1)  # (batch_size, D^4)
+        
+        # Compute L1 ⊗ L2 ⊗ L1
+        S1_S2_S1 = torch.einsum('bi,bj,bk->bijk', L1, L2, L1).reshape(batch_size, -1)  # (batch_size, D^4)
+        
+        # Compute L2 ⊗ L1 ⊗ L1
+        S2_S1_S1 = torch.einsum('bi,bj,bk->bijk', L2, L1, L1).reshape(batch_size, -1)  # (batch_size, D^4)
+        
+        # Compute L1 ⊗ L1 ⊗ L1 ⊗ L1
+        S1_S1_S1_S1 = torch.einsum('bi,bj,bk,bl->bijkl', L1, L1, L1, L1).reshape(batch_size, -1)  # (batch_size, D^4)
+        
+        # Combine all terms
+        exp_sig[:, D+1+D**2+D**3:D+1+D**2+D**3+D**4] = (
+            L4
+            + S1_S3
+            + S2_S2
+            + S1_S1_S2
+            + S1_S2_S1
+            + S2_S1_S1
+            + (1.0 / 24.0) * S1_S1_S1_S1
+        )
+    
+    return exp_sig
+
+class WassersteinSignatureLoss(nn.Module):
+    def __init__(self, p=2, blur=0.05, scaling=0.5):
+        """
+        Initializes the WassersteinSignatureLoss using geomloss.
+        
+        Args:
+            p (int): The order of the Wasserstein distance (usually 1 or 2).
+            blur (float): The blur parameter for entropic regularization.
+            scaling (float): The scaling parameter for geomloss.
+        """
+        super(WassersteinSignatureLoss, self).__init__()
+        self.wasserstein = SamplesLoss(loss='sinkhorn', p=p, blur=blur, scaling=scaling)
+    
+    def forward(self, pred_signature, target_signature):
+        """
+        Computes the Wasserstein distance between predicted and target signatures.
+        
+        Args:
+            pred_signature (torch.Tensor): Predicted signature tensor of shape (batch_size, signature_size).
+            target_signature (torch.Tensor): Target signature tensor of shape (batch_size, signature_size).
+        
+        Returns:
+            torch.Tensor: Scalar loss value representing the average Wasserstein distance.
+        """
+        # Ensure the inputs are float tensors
+        pred_signature = pred_signature.float()
+        target_signature = target_signature.float()
+        
+        # Compute Wasserstein distance for each pair in the batch
+        # geomloss expects inputs of shape (batch_size, features)
+        distances = self.wasserstein(pred_signature, target_signature)
+        
+        # Return the mean distance across the batch
+        return distances.mean()
     
