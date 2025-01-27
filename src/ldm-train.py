@@ -88,32 +88,49 @@ def diffusion_loss(noise, predicted_noise):
     return nn.MSELoss()(predicted_noise, noise)
 
 def train_diffusion(ldm, dataloader, optimizer, num_epochs, device, noise_steps, save_dir, num_timesteps=30):
-    '''for param in ldm.encoder.parameters():
-        param.requires_grad = False
-    for param in ldm.decoder.parameters():
-        param.requires_grad = False'''
+    run_name = "PathSig_" + str(noise_steps) + "steps_" + str(ldm.depth) + "depth"
+    wandb.init(project="Diff3", name=run_name, config={"epochs": num_epochs, "learning_rate": optimizer.param_groups[0]['lr']})
 
     ldm.to(device)
     os.makedirs(save_dir, exist_ok=True)
 
     for epoch in range(num_epochs):
       epoch_loss = 0.0
+      epoch_loss_t = 0.0
+      epoch_loss_r = 0.0
+      epoch_loss_t_l2 = 0.0
+      epoch_loss_r_l2 = 0.0
       
       with tqdm(dataloader, desc=f"Epoch {epoch + 1}/{num_epochs}", unit="batch") as pbar:
           for i, batch in enumerate(pbar):
               batch = batch.to(device)
-              # mu, logvar = ldm.encoder(batch)
-              # z = ldm.reparameterize(mu, logvar)
+
               optimizer.zero_grad()
               t = torch.randint(0, num_timesteps-1, (batch.shape[0],), device=device)
-              # Compute the loss for x1 and x2
-              loss = ldm.compute_loss(batch, t)
+
+              loss, loss_t, loss_r, loss_t_l2, loss_r_l2 = ldm.compute_loss(batch, t)
               loss.backward()
               optimizer.step()
               epoch_loss += loss.item()
+              epoch_loss_t += loss_t.item()
+              epoch_loss_r += loss_r.item()
+              epoch_loss_t_l2 += loss_t_l2.item()
+              epoch_loss_r_l2 += loss_r_l2.item()
 
       print(f"Diffusion Training - Epoch {epoch + 1}/{num_epochs}, Loss: {epoch_loss / len(dataloader)}")
       torch.save(ldm.state_dict(), os.path.join(save_dir, f"diffusion_epoch_{epoch + 1}.pth"))
+
+      epoch_loss /= len(dataloader)
+      epoch_loss_t /= len(dataloader)
+      epoch_loss_r /= len(dataloader)
+      epoch_loss_t_l2 /= len(dataloader)
+      epoch_loss_r_l2 /= len(dataloader)
+
+      wandb.log({"epoch_loss": epoch_loss, "epoch": epoch + 1,
+                           "epoch_translation_wasserstein_loss": epoch_loss_t,
+                           "epoch_rotation_wasserstein_loss": epoch_loss_r,
+                           "epoch_translation_l2_loss":epoch_loss_t_l2,
+                           "epoch_rotation_l2_loss":epoch_loss_r_l2,})
 
 # Main Function
 def main():
@@ -146,7 +163,8 @@ def main():
         depth=args.path_signature_depth
     )
 
-    diffusion_optimizer = optim.Adam(ldm.mlp.parameters(), lr=learning_rate)
+    combined_parameters = list(ldm.model_trans.parameters()) + list(ldm.model_rot.parameters())
+    diffusion_optimizer = optim.Adam(combined_parameters, lr=learning_rate)
 
     train_diffusion(ldm, dataloader, diffusion_optimizer, diffusion_epochs, device, noise_steps, os.path.join(save_dir, "diffusion"))
 

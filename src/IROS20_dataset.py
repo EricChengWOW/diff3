@@ -29,19 +29,6 @@ class IROS20Dataset(torch.utils.data.Dataset):
         self.traj = []
         for file in self.files:
             self.traj.extend(self._load_poses_from_file(file))
-        
-        max_entry = 0
-        for traj in self.traj:
-            max_entry = max(max_entry, np.max(np.abs(traj[:, :3, 3])))
-        
-        for traj in self.traj:
-            traj[:, :3, 3] /= max_entry
-        
-        print("Oxford max ", max_entry)
-
-        if self.use_path_signature: 
-            for i in range(len(self.traj)):
-                self.traj[i] = se3_to_path_signature(self.traj[i], level=self.level)
 
         max_entry = 0
         for traj in self.traj:
@@ -51,6 +38,10 @@ class IROS20Dataset(torch.utils.data.Dataset):
             traj[:, :3, 3] /= max_entry
         
         print("IROS max ", max_entry)
+
+        if self.use_path_signature: 
+            for i in range(len(self.traj)):
+                self.traj[i] = se3_to_path_signature(self.traj[i], level=self.level)
 
     def _load_poses_from_file(self, file_path):
         """

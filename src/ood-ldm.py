@@ -1,4 +1,5 @@
 #from numpy.lib import nanprod
+from re import I
 from utils import *
 from unet import *
 from DDPM_Diff import *
@@ -15,6 +16,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.mixture import GaussianMixture
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, precision_recall_fscore_support, average_precision_score
+import scipy.stats as stats
 
 import statistics
 import argparse
@@ -87,7 +89,7 @@ def get_data(dataset, dataset_path, stride, args):
 
     return dataset, dataloader
 
-def diffusion_metrics(ldm, dataloader, args, label=''):
+def diffusion_metrics(ldm, dataloader, args, lambda_t_train=[], lambda_r_train=[], label=''):
     rot_score_arr = []
     rot_score_arr_2 = []
     rot_score_arr_3 = []
@@ -103,6 +105,9 @@ def diffusion_metrics(ldm, dataloader, args, label=''):
     lvl2_arr = []
     lvl3_arr = []
 
+    all_arr = []
+    all_arr_t = []
+
     batch_cnt = 0
 
     # Gather the distribution result
@@ -110,7 +115,6 @@ def diffusion_metrics(ldm, dataloader, args, label=''):
         batch_cnt += 1
 
         batch = batch.to(args.device)
-        x = batch
 
         score_norm_t1 = torch.zeros((batch.size(0),), device=args.device)
         score_norm_t2 = torch.zeros((batch.size(0),), device=args.device)
@@ -122,24 +126,28 @@ def diffusion_metrics(ldm, dataloader, args, label=''):
         dscore_norm_r2 = torch.zeros((batch.size(0),), device=args.device)
         dscore_norm_r3 = torch.zeros((batch.size(0),), device=args.device)
 
+        all_metric = torch.zeros((batch.size(0), batch.size(1) // 2), device=args.device)
+        all_metric_t = torch.zeros((batch.size(0), batch.size(1) // 2), device=args.device)
+
         prev_score_r = None
 
-        x_init = torch.randn_like(x)
+        # x_init = torch.randn_like(x)
 
-        for t in range(args.num_timesteps):
+        for t in range(10):
             t_tensor = torch.full((batch.size(0),), t, device=args.device)
 
-            (x_t, _) = ldm.forward_process(x, t_tensor)
+            (x_t, _) = ldm.forward_process(batch, t_tensor)
 
             # Predict scores using the score model
             with torch.no_grad():
-                sig_score = ldm.mlp(x_t, t_tensor)
+                l = x_t.size(1)
 
-            l = sig_score.size(1)
-            trans_score = sig_score[:, :l//2]
-            rot_score = sig_score[:, l//2:]
-            trans_score = signature_log(trans_score, 3, args.path_signature_depth)
-            rot_score = signature_log(rot_score, 3, args.path_signature_depth)
+                trans_sig = x_t[:, : l//2]
+                rot_sig   = x_t[:, l//2 :]
+                trans_score = ldm.model_trans(trans_sig, t_tensor)
+                rot_score = ldm.model_rot(rot_sig, t_tensor)
+                # trans_score = signature_exp(trans_score, 3, args.path_signature_depth)
+                # rot_score = signature_exp(rot_score, 3, args.path_signature_depth)
 
             score_norm_t1 += torch.mean(trans_score, dim=1)
             score_norm_t2 += torch.mean(trans_score ** 2, dim=1)
@@ -148,8 +156,15 @@ def diffusion_metrics(ldm, dataloader, args, label=''):
             score_norm_r2 += torch.mean(rot_score ** 2, dim=1)
             score_norm_r3 += torch.mean(rot_score ** 3, dim=1)
 
-            lvl1_arr.append(trans_score.cpu().numpy().flatten())
-            lvl2_arr.append(rot_score.cpu().numpy().flatten())
+            all_metric += rot_score ** 2
+            all_metric_t += trans_score ** 2
+
+            # all_arr.append((rot_score ** 2).transpose(0,1).cpu().numpy())
+            # all_arr_t.append((trans_score ** 2).transpose(0,1).cpu().numpy())
+
+            lvl1_arr.append(rot_score[1:4].cpu().numpy().flatten())
+            lvl2_arr.append(rot_score[4:13].cpu().numpy().flatten())
+            lvl3_arr.append(rot_score[13:40].cpu().numpy().flatten())
 
             if prev_score_r is not None:
                 delta = rot_score - prev_score_r
@@ -158,6 +173,9 @@ def diffusion_metrics(ldm, dataloader, args, label=''):
                 dscore_norm_r3 += torch.mean(delta ** 3, dim=1)
 
             prev_score_r = rot_score
+
+        all_arr.append(all_metric.transpose(0,1).cpu().numpy())
+        all_arr_t.append(all_metric_t.transpose(0,1).cpu().numpy())
 
         trans_score_arr.append(score_norm_t1.detach().cpu().numpy())
         trans_score_arr_2.append(score_norm_t2.detach().cpu().numpy())
@@ -182,29 +200,37 @@ def diffusion_metrics(ldm, dataloader, args, label=''):
 
     lvl1 = np.concatenate(lvl1_arr, axis=0)
     lvl2 = np.concatenate(lvl2_arr, axis=0)
-    plt.hist([lvl1, lvl2], bins=50, color=['skyblue', 'red'], edgecolor='black', label=['l1', 'l2'])
+    lvl3 = np.concatenate(lvl3_arr, axis=0)
+    all_met = np.hstack(all_arr)
+    all_met_t = np.hstack(all_arr_t)
 
-    # Add labels and title
-    plt.xlabel('metric')
-    plt.ylabel('Freq')
-    plt.title('Distribution')
-    plt.legend()
-
-    plt.savefig('./lvlxyz_' + label + '.png', dpi=300, bbox_inches='tight')
-    plt.close()
+    lambda_t_arr = []
+    lambda_r_arr = []
+    if label == 'train':
+        for i in range(all_met.shape[0]):
+            all_met[i],   lambda_r = stats.boxcox(all_met[i] + 1)
+            all_met_t[i], lambda_t = stats.boxcox(all_met_t[i] + 1)
+            lambda_t_arr.append(lambda_t)
+            lambda_r_arr.append(lambda_r)
+    else:
+        for i in range(all_met.shape[0]):
+            lambda_r = lambda_r_train[i]
+            lambda_t = lambda_t_train[i]
+            all_met[i] = (np.power(all_met[i]+1, lambda_r) - 1) / lambda_r if lambda_r != 0 else np.log(all_met[i]+1)
+            all_met_t[i] = (np.power(all_met_t[i]+1, lambda_t) - 1) / lambda_t if lambda_t != 0 else np.log(all_met_t[i]+1)
 
     eps_r1 = rot_scores_1
     eps_r2 = np.sqrt(rot_scores_2)
     eps_r3 = rot_scores_3
 
-    # eps_t1 = trans_scores_1
-    # eps_t2 = np.sqrt(trans_scores_2)
-    # eps_t3 = trans_scores_3
-    eps_t1 = drot_scores_1
-    eps_t2 = np.sqrt(drot_scores_2)
-    eps_t3 = drot_scores_3
+    eps_t1 = trans_scores_1
+    eps_t2 = np.sqrt(trans_scores_2)
+    eps_t3 = trans_scores_3
+    # eps_t1 = drot_scores_1
+    # eps_t2 = np.sqrt(drot_scores_2)
+    # eps_t3 = drot_scores_3
 
-    return (eps_t1, eps_t2, eps_t3), (eps_r1, eps_r2, eps_r3)
+    return (eps_t1, eps_t2, eps_t3), (eps_r1, eps_r2, eps_r3), all_met, all_met_t, lambda_t_arr, lambda_r_arr
 
 def main():
     args = parse_arguments()
@@ -250,20 +276,44 @@ def main():
     # Set the model to evaluation mode
     loaded_model.eval()
 
-    stats_first_order, stats_second_order = diffusion_metrics(loaded_model, in_dataloader, args, 'train')
+    stats_first_order, stats_second_order, met_in, met_in_t, lambda_t, lambda_r = diffusion_metrics(loaded_model, in_dataloader, args, label='train')
     in_eps_t1, in_eps_t2, in_eps_t3 = stats_first_order
     in_eps_r1, in_eps_r2, in_eps_r3 = stats_second_order
     print("finish calculating stats for train")
     # val
-    stats_first_order, stats_second_order = diffusion_metrics(loaded_model, val_dataloader, args, 'val')
+    stats_first_order, stats_second_order, met_val, met_val_t,_,_ = diffusion_metrics(loaded_model, val_dataloader, args, lambda_r_train=lambda_r, lambda_t_train=lambda_t, label='val')
     val_eps_t1, val_eps_t2, val_eps_t3 = stats_first_order
     val_eps_r1, val_eps_r2, val_eps_r3 = stats_second_order
     print("finish calculating stats for val")
     # Get test_set
-    stats_first_order, stats_second_order = diffusion_metrics(loaded_model, out_dataloader, args, 'test')
+    stats_first_order, stats_second_order, met_out, met_out_t,_,_ = diffusion_metrics(loaded_model, out_dataloader, args, lambda_r_train=lambda_r, lambda_t_train=lambda_t, label='test')
     out_eps_t1, out_eps_t2, out_eps_t3 = stats_first_order
     out_eps_r1, out_eps_r2, out_eps_r3 = stats_second_order
     print("finish calculating stats for test")
+
+    for i in range(40):
+        plt.hist([met_in[i], met_val[i], met_out[i]], bins=50, color=['skyblue', 'red', 'yellow'], edgecolor='black', label=['in', 'val', 'out'])
+
+        # Add labels and title
+        plt.xlabel('metric')
+        plt.ylabel('Freq')
+        plt.title('Distribution')
+        plt.legend()
+
+        plt.savefig(args.save_folder + '/rot_' + str(i) + '.png', dpi=300, bbox_inches='tight')
+        plt.close()
+
+    for i in range(40):
+        plt.hist([met_in_t[i], met_val_t[i], met_out_t[i]], bins=50, color=['skyblue', 'red', 'yellow'], edgecolor='black', label=['in', 'val', 'out'])
+
+        # Add labels and title
+        plt.xlabel('metric')
+        plt.ylabel('Freq')
+        plt.title('Distribution')
+        plt.legend()
+
+        plt.savefig(args.save_folder + '/trans_' + str(i) + '.png', dpi=300, bbox_inches='tight')
+        plt.close()
 
     ### Save plots of distributions
     def save_plot(in_data, out_data, in_dataset, out_dataset, metric="eps", path = "temp.png"):
@@ -288,7 +338,8 @@ def main():
     print("finish saving distribution plots")
 
     # Fit GMM on in distribution
-    data = np.column_stack([in_eps_t1, in_eps_t2, in_eps_t3, in_eps_r1, in_eps_r2])
+    # data = np.column_stack([in_eps_t1, in_eps_t2, in_eps_t3, in_eps_r1, in_eps_r2, in_eps_r3])
+    data = np.hstack([met_in.T, met_in_t.T])
   
     n_components = 1
     gmm = GaussianMixture(n_components=n_components, random_state=42, reg_covar=1e-5)
@@ -297,13 +348,15 @@ def main():
     train_probs = gmm.score_samples(data)
     lower_threshold, upper_threshold = np.percentile(train_probs, 5), np.percentile(train_probs, 95)
 
-    val_points = np.column_stack([val_eps_t1, val_eps_t2, val_eps_t3, val_eps_r1, val_eps_r2])
+    val_points = np.column_stack([val_eps_t1, val_eps_t2, val_eps_t3, val_eps_r1, val_eps_r2, val_eps_r3])
+    val_points = np.hstack([met_val.T, met_val_t.T])
     val_probs = gmm.score_samples(val_points)
     ood_flags = (val_probs < lower_threshold) | (val_probs > upper_threshold)
     num_ood = np.sum(ood_flags)
     print(f"Number of OOD samples in Val: {num_ood}/{ood_flags.shape[0]}")
 
-    test_points = np.column_stack([out_eps_t1, out_eps_t2, out_eps_t3, out_eps_r1, out_eps_r2])
+    test_points = np.column_stack([out_eps_t1, out_eps_t2, out_eps_t3, out_eps_r1, out_eps_r2, out_eps_r3])
+    test_points = np.hstack([met_out.T, met_out_t.T])
     test_probs = gmm.score_samples(test_points)
     print(test_probs)
     ood_flags = (test_probs < lower_threshold) | (test_probs > upper_threshold)
@@ -328,21 +381,17 @@ def main():
     val_preds = val_ood_flags.astype(int)
     test_preds = test_ood_flags.astype(int)
     all_preds = np.concatenate([val_preds, test_preds])
-    '''print(all_labels)
-    print(all_preds)'''
     precision, recall, f1_score, _ = precision_recall_fscore_support(all_labels, all_preds, average='binary')
-    '''print(f"Precision: {precision}")
-    print(f"Recall: {recall}")
-    print(f"F1-Score: {f1_score}")'''
+
     return auroc
 
 if __name__ == "__main__":
     np.random.seed(200120)
     auroc_collection = []
-    for i in range(10):
+    for i in range(1):
       auroc = main()
       auroc_collection.append(auroc)
-    print(auroc_collection)
+    # print(auroc_collection)
     mean = statistics.mean(auroc_collection)
     variance = statistics.variance(auroc_collection)
 
