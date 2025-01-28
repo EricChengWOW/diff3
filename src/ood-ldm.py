@@ -345,21 +345,20 @@ def main():
     gmm = GaussianMixture(n_components=n_components, random_state=42, reg_covar=1e-5)
     gmm.fit(data)
     print("finish fitting gmm")
-    train_probs = gmm.score_samples(data)
-    lower_threshold, upper_threshold = np.percentile(train_probs, 5), np.percentile(train_probs, 95)
+    train_probs = np.exp(gmm.score_samples(data))
+    lower_threshold = np.percentile(train_probs, 5)
 
     val_points = np.column_stack([val_eps_t1, val_eps_t2, val_eps_t3, val_eps_r1, val_eps_r2, val_eps_r3])
     val_points = np.hstack([met_val.T, met_val_t.T])
-    val_probs = gmm.score_samples(val_points)
-    ood_flags = (val_probs < lower_threshold) | (val_probs > upper_threshold)
+    val_probs = np.exp(gmm.score_samples(val_points))
+    ood_flags = (val_probs < lower_threshold) 
     num_ood = np.sum(ood_flags)
     print(f"Number of OOD samples in Val: {num_ood}/{ood_flags.shape[0]}")
 
     test_points = np.column_stack([out_eps_t1, out_eps_t2, out_eps_t3, out_eps_r1, out_eps_r2, out_eps_r3])
     test_points = np.hstack([met_out.T, met_out_t.T])
-    test_probs = gmm.score_samples(test_points)
-    print(test_probs)
-    ood_flags = (test_probs < lower_threshold) | (test_probs > upper_threshold)
+    test_probs = np.exp(gmm.score_samples(test_points))
+    ood_flags = (test_probs < lower_threshold) 
     num_ood = np.sum(ood_flags)
     print(f"Number of OOD samples in Test: {num_ood}/{ood_flags.shape[0]}")
 
@@ -375,8 +374,8 @@ def main():
     aupr = average_precision_score(all_labels, all_scores)
     print(f"AUPR: {aupr}")
 
-    val_ood_flags = (val_probs > lower_threshold) & (val_probs < upper_threshold)
-    test_ood_flags = (test_probs > lower_threshold) & (test_probs < upper_threshold)
+    val_ood_flags = (val_probs > lower_threshold)
+    test_ood_flags = (test_probs > lower_threshold)
 
     val_preds = val_ood_flags.astype(int)
     test_preds = test_ood_flags.astype(int)
