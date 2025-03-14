@@ -14,6 +14,7 @@ from DDPM_Diff import *
 from DDPM_Continuous_Diff import *
 from KITTI_dataset import KITTIOdometryDataset
 from Oxford_Robotcar_dataset import RobotcarDataset
+from IROS20_dataset import IROS20Dataset
 from L_dataset import LDataset
 from T_dataset import TDataset
 
@@ -63,6 +64,10 @@ def main():
         dataset = RobotcarDataset(args.data_folder, seq_len=args.n, stride=args.data_stride, center=args.center)
         dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
         print("Training on Oxford Robot car for ", len(dataloader), " batches")
+    elif args.dataset == "IROS":
+        dataset = IROS20Dataset(args.data_folder, seq_len=args.n, stride=args.data_stride, center=args.center)
+        dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)
+        print("Running on IROS20 6D for ", len(dataloader), " batches")
     elif args.dataset == "L":
         dataset = LDataset(seq_len=args.n)
         dataloader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=args.shuffle)

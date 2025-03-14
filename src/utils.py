@@ -149,6 +149,62 @@ def so3_log_map(R):
     v = v * scale
     return v
 
+def se3_to_vec(T):
+    """
+    Convert batched SE(3) transformation matrices of shape (B, N, 4, 4) 
+    to 6D vectors of shape (B, N, 6), where the first 3 components are 
+    translation and the last 3 components are the rotation in tangent space.
+    
+    Parameters:
+        T: torch.Tensor of shape (B, N, 4, 4) representing SE(3) matrices.
+        
+    Returns:
+        torch.Tensor of shape (B, N, 6)
+    """
+    # Extract translation from the last column (first 3 rows)
+    translation = T[..., :3, 3]
+    
+    # Extract the rotation part (upper-left 3x3 block)
+    R = T[..., :3, :3]
+    
+    # Convert the rotation matrix to its tangent space representation
+    rotation_vec = so3_log_map(R)
+    
+    # Concatenate the translation and rotation parts along the last dimension
+    return torch.cat([translation, rotation_vec], dim=-1)
+
+
+def se3_from_vec(x):
+    """
+    Convert batched 6D vectors of shape (B, N, 6) representing se(3) (tangent space)
+    to SE(3) transformation matrices of shape (B, N, 4, 4). The input is assumed to have the 
+    first 3 components as translation and the last 3 as the rotation in tangent space.
+    
+    Parameters:
+        x: torch.Tensor of shape (B, N, 6)
+        
+    Returns:
+        torch.Tensor of shape (B, N, 4, 4) representing SE(3) matrices.
+    """
+    # Split the 6D vector into translation and rotation components
+    translation = x[..., :3]    # shape (B, N, 3)
+    rotation_vec = x[..., 3:]   # shape (B, N, 3)
+    
+    # Compute the rotation matrix from the tangent rotation vector
+    R = so3_exp_map(rotation_vec)
+    
+    # Create a batched identity matrix with shape (B, N, 4, 4)
+    batch_shape = x.shape[:-1]  # (B, N)
+    eye = torch.eye(4, device=x.device).expand(*batch_shape, 4, 4)
+    
+    # Replace the rotation and translation parts
+    T = eye.clone()
+    T[..., :3, :3] = R
+    T[..., :3, 3] = translation
+    
+    return T
+
+
 def so3_interpolate(x, y, gamma):
     """
     Geodesic interpolation on SO(3): 
@@ -496,4 +552,33 @@ class WassersteinSignatureLoss(nn.Module):
         
         # Return the mean distance across the batch
         return distances.mean()
+
+def calculate_matmul_n_times(n_components, mat_a, mat_b):
+    """
+    Calculate matrix product of two matrics with mat_a[0] >= mat_b[0].
+    Bypasses torch.matmul to reduce memory footprint.
+    args:
+        mat_a:      torch.Tensor (n, k, 1, d)
+        mat_b:      torch.Tensor (1, k, d, d)
+    """
+    res = torch.zeros(mat_a.shape).to(mat_a.device)
+    
+    for i in range(n_components):
+        mat_a_i = mat_a[:, i, :, :].squeeze(-2)
+        mat_b_i = mat_b[0, i, :, :].squeeze()
+        res[:, i, :, :] = mat_a_i.mm(mat_b_i).unsqueeze(1)
+    
+    return res
+
+
+def calculate_matmul(mat_a, mat_b):
+    """
+    Calculate matrix product of two matrics with mat_a[0] >= mat_b[0].
+    Bypasses torch.matmul to reduce memory footprint.
+    args:
+        mat_a:      torch.Tensor (n, k, 1, d)
+        mat_b:      torch.Tensor (n, k, d, 1)
+    """
+    assert mat_a.shape[-2] == 1 and mat_b.shape[-1] == 1
+    return torch.sum(mat_a.squeeze(-2) * mat_b.squeeze(-1), dim=2, keepdim=True)
     

@@ -69,9 +69,9 @@ class DDPM_Diff:
         v0 = so3_log_map(R0)
         alpha_bar_t = extract(self.alpha_bar_t, t, v0.shape)
         alpha_bar_t_sqrt = torch.sqrt(alpha_bar_t)
-        epsilon2 = torch.randn_like(v0)
+        epsilon2 = torch.randn_like(v0) if trans_init is None else rot_init
 
-        vt = alpha_bar_t_sqrt * v0 + torch.sqrt(1.0 - alpha_bar_t) * epsilon2
+        vt = alpha_bar_t_sqrt * v0 + torch.sqrt(1.0 - alpha_bar_t) * so3_log_map(epsilon2)
         Rt = so3_exp_map(vt)
 
         return (x1_t, epsilon1), (Rt, epsilon2)
@@ -140,6 +140,8 @@ class DDPM_Diff:
             torch.Tensor: SE3 Tensor
         """
         with torch.no_grad():
+            all_samples = []
+
             # Initialize both x1 and x2 with random noise
             B, L, _ = shape
             x1_t = torch.randn(*shape, device=device) if trans_init is None else trans_init # Random noise for x1 (from normal distribution)
@@ -150,7 +152,7 @@ class DDPM_Diff:
                 x2_t = so3_exp_map(v_T)
 
             # Reverse the diffusion process for both x1 and x2
-            for t in range(num_steps-1, -1, -1):
+            for t in range(self.num_timesteps-1, self.num_timesteps-num_steps-1, -1):
 
                 t_tensor = torch.full((shape[0],), t, device=device)
 
@@ -229,10 +231,12 @@ class DDPM_Diff:
                 else:
                     # t=0
                     x2_t = x_0_approx
+                all_samples.append(compose_se3(x2_t, torch.clamp(x1_t, min=-1, max=1) / self.trans_scale))
 
             x1_t = torch.clamp(x1_t, min=-1, max=1)
 
-            return compose_se3(x2_t, x1_t / self.trans_scale)  # Return the sampled tensors
+            return all_samples  # Return the sampled tensors
+            # return [compose_se3(x2_t, x1_t / self.trans_scale)]
 
     def train(self, data_loader, optimizer, device, epochs=10, num_timesteps=30, log_wandb=False, project_name="dual_input_diffusion", run_name="Diffusion"):
         if log_wandb:
