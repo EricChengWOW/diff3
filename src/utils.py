@@ -2,11 +2,11 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
-import esig
+#import esig
 
 from scipy.spatial.transform import Rotation as R
 from scipy.spatial.transform import Rotation
-from geomloss import SamplesLoss
+#from geomloss import SamplesLoss
 
 def compose_se3(rot, trans):
     """Combines rotation (3x3) and translation (3,) into SE(3) matrix."""

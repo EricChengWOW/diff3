@@ -1,0 +1,13 @@
+Epoch 1/100:   0% 0/16 [00:00<?, ?batch/s]
+Traceback (most recent call last):
+  File "/content/drive/MyDrive/diff3/src/train.py", line 100, in <module>
+    main()
+  File "/content/drive/MyDrive/diff3/src/train.py", line 94, in main
+    diffusion.train(dataloader, optimizer, args.device, num_timesteps=args.num_timesteps, epochs=args.num_epochs, log_wandb=args.wandb, project_name="Diff3", run_name=run_name)
+  File "/content/drive/MyDrive/diff3/src/DDPM_Diff.py", line 846, in train
+    loss, trans_loss, rot_loss, trans_x0_loss, rot_x0_loss = self.compute_loss(
+                                                             ^^^^^^^^^^^^^^^^^^
+  File "/content/drive/MyDrive/diff3/src/DDPM_Diff.py", line 213, in compute_loss
+    print(x1_t_model.shaoe, vt_model.shape)
+          ^^^^^^^^^^^^^^^^
+AttributeError: 'Tensor' object has no attribute 'shaoe'

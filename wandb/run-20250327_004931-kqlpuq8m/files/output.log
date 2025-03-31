@@ -1,0 +1,27 @@
+Epoch 1/750: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=7.78]
+Epoch 1, Loss: 11.0072
+Epoch 2/750: 100% 16/16 [00:07<00:00,  2.18batch/s, loss=6.05]
+Epoch 2, Loss: 6.5228
+Epoch 3/750: 100% 16/16 [00:07<00:00,  2.17batch/s, loss=4.14]
+Epoch 3, Loss: 4.4840
+Epoch 4/750: 100% 16/16 [00:07<00:00,  2.16batch/s, loss=2.56]
+Epoch 4, Loss: 3.0755
+Epoch 5/750: 100% 16/16 [00:07<00:00,  2.15batch/s, loss=2.3] 
+finish sampling
+<wandb.sdk.data_types.image.Image object at 0x78463866a310>
+Figure(1200x800)
+Epoch 5, Loss: 2.5446
+Epoch 6/750: 100% 16/16 [00:07<00:00,  2.14batch/s, loss=2.17]
+Epoch 6, Loss: 2.0186
+Epoch 7/750: 100% 16/16 [00:07<00:00,  2.12batch/s, loss=1.76]
+Epoch 7, Loss: 1.8246
+Epoch 8/750:  12% 2/16 [00:01<00:10,  1.38batch/s, loss=2.08]
+Traceback (most recent call last):
+  File "/content/drive/MyDrive/diff3/src/train.py", line 100, in <module>
+    main()
+  File "/content/drive/MyDrive/diff3/src/train.py", line 94, in main
+    diffusion.train(dataloader, optimizer, args.device, num_timesteps=args.num_timesteps, epochs=args.num_epochs, log_wandb=args.wandb, project_name="Diff3", run_name=run_name)
+  File "/content/drive/MyDrive/diff3/src/DDPM_Diff.py", line 687, in train
+    epoch_loss += loss.item()
+                  ^^^^^^^^^^^
+KeyboardInterrupt

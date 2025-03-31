@@ -1,0 +1,16 @@
+{"time":"2025-03-27T02:23:19.68551116Z","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"/content/drive/MyDrive/diff3/wandb/run-20250327_022319-3lynfsnk/logs/debug-core.log"}
+{"time":"2025-03-27T02:23:19.828954354Z","level":"INFO","msg":"created new stream","id":"3lynfsnk"}
+{"time":"2025-03-27T02:23:19.829536702Z","level":"INFO","msg":"stream: started","id":"3lynfsnk"}
+{"time":"2025-03-27T02:23:19.829557384Z","level":"INFO","msg":"writer: Do: started","stream_id":"3lynfsnk"}
+{"time":"2025-03-27T02:23:19.829580846Z","level":"INFO","msg":"handler: started","stream_id":"3lynfsnk"}
+{"time":"2025-03-27T02:23:19.829576478Z","level":"INFO","msg":"sender: started","stream_id":"3lynfsnk"}
+{"time":"2025-03-27T02:23:19.947113936Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-27T02:24:08.46025544Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-27T02:24:08.460929333Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-27T02:24:08.913214342Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-03-27T02:24:08.998526304Z","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2025-03-27T02:24:09.003512572Z","level":"INFO","msg":"stream: closing","id":"3lynfsnk"}
+{"time":"2025-03-27T02:24:09.003664033Z","level":"INFO","msg":"handler: closed","stream_id":"3lynfsnk"}
+{"time":"2025-03-27T02:24:09.003707837Z","level":"INFO","msg":"writer: Close: closed","stream_id":"3lynfsnk"}
+{"time":"2025-03-27T02:24:09.003729331Z","level":"INFO","msg":"sender: closed","stream_id":"3lynfsnk"}
+{"time":"2025-03-27T02:24:09.004993243Z","level":"INFO","msg":"stream: closed","id":"3lynfsnk"}

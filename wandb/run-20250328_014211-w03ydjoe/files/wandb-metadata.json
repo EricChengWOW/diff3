@@ -1,0 +1,72 @@
+{
+  "os": "Linux-6.1.85+-x86_64-with-glibc2.35",
+  "python": "CPython 3.11.11",
+  "startedAt": "2025-03-28T01:42:11.898803Z",
+  "args": [
+    "--hidden_dim",
+    "128",
+    "--data_folder",
+    "./KITTI",
+    "--dataset",
+    "L",
+    "--save_path",
+    "/content/drive/MyDrive/diff3/",
+    "--batch_size",
+    "32",
+    "--num_epochs",
+    "1",
+    "--model_type",
+    "Unet",
+    "--data_stride",
+    "32",
+    "--scale_trans",
+    "1",
+    "--learning_rate",
+    "1e-4",
+    "--num_timesteps",
+    "30",
+    "--unet_layer",
+    "4",
+    "--center",
+    "--n",
+    "256",
+    "--wandb"
+  ],
+  "program": "/content/drive/MyDrive/diff3/src/train.py",
+  "codePath": "src/train.py",
+  "git": {
+    "remote": "https://github.com/EricChengWOW/diff3.git",
+    "commit": "eaaf33311046eaddc9393c84c6c68b1367a0d72b"
+  },
+  "email": "tianyou2@andrew.cmu.edu",
+  "root": "/content/drive/MyDrive/diff3",
+  "host": "2f5021fe4b64",
+  "executable": "/usr/bin/python3",
+  "codePathLocal": "src/train.py",
+  "cpu_count": 4,
+  "cpu_count_logical": 8,
+  "gpu": "Tesla T4",
+  "gpu_count": 1,
+  "disk": {
+    "/": {
+      "total": "253055008768",
+      "used": "39991640064"
+    }
+  },
+  "memory": {
+    "total": "54754004992"
+  },
+  "cpu": {
+    "count": 4,
+    "countLogical": 8
+  },
+  "gpu_nvidia": [
+    {
+      "name": "Tesla T4",
+      "memoryTotal": "16106127360",
+      "cudaCores": 2560,
+      "architecture": "Turing"
+    }
+  ],
+  "cudaVersion": "12.4"
+}

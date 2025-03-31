@@ -1,0 +1,13 @@
+Epoch 1/10: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=2.97]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x7e6a7638fbd0>
+Traceback (most recent call last):
+  File "/content/drive/MyDrive/diff3/src/train.py", line 100, in <module>
+    main()
+  File "/content/drive/MyDrive/diff3/src/train.py", line 94, in main
+    diffusion.train(dataloader, optimizer, args.device, num_timesteps=args.num_timesteps, epochs=args.num_epochs, log_wandb=args.wandb, project_name="Diff3", run_name=run_name)
+  File "/content/drive/MyDrive/diff3/src/DDPM_Diff.py", line 910, in train
+    ax.plot(trajectory[:,:, :, 0], trajectory[:,:, :, 1], trajectory[:,:, :, 2], label="Trajectory", color="blue")
+            ~~~~~~~~~~^^^^^^^^^^^
+IndexError: too many indices for array: array is 2-dimensional, but 4 were indexed

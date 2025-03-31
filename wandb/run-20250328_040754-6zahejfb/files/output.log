@@ -1,0 +1,3452 @@
+Epoch 1/1500: 100% 16/16 [00:08<00:00,  1.81batch/s, loss=2.55]
+Epoch 1, Loss: 3.6428
+Epoch 2/1500: 100% 16/16 [00:07<00:00,  2.16batch/s, loss=2.45]
+Epoch 2, Loss: 2.6723
+Epoch 3/1500: 100% 16/16 [00:07<00:00,  2.16batch/s, loss=2]   
+Epoch 3, Loss: 2.2488
+Epoch 4/1500: 100% 16/16 [00:07<00:00,  2.14batch/s, loss=1.92]
+Epoch 4, Loss: 1.9157
+Epoch 5/1500: 100% 16/16 [00:07<00:00,  2.13batch/s, loss=1.72]
+Epoch 5, Loss: 1.7678
+Epoch 6/1500: 100% 16/16 [00:07<00:00,  2.13batch/s, loss=1.62]
+Epoch 6, Loss: 1.6725
+Epoch 7/1500: 100% 16/16 [00:07<00:00,  2.12batch/s, loss=1.57]
+Epoch 7, Loss: 1.5781
+Epoch 8/1500: 100% 16/16 [00:07<00:00,  2.10batch/s, loss=1.56]
+Epoch 8, Loss: 1.5123
+Epoch 9/1500: 100% 16/16 [00:07<00:00,  2.10batch/s, loss=1.46]
+Epoch 9, Loss: 1.4544
+Epoch 10/1500: 100% 16/16 [00:07<00:00,  2.09batch/s, loss=1.44]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c99c3af6d0>
+Epoch 10, Loss: 1.4240
+Epoch 11/1500: 100% 16/16 [00:07<00:00,  2.08batch/s, loss=1.39]
+Epoch 11, Loss: 1.3859
+Epoch 12/1500: 100% 16/16 [00:07<00:00,  2.08batch/s, loss=1.37]
+Epoch 12, Loss: 1.3626
+Epoch 13/1500: 100% 16/16 [00:07<00:00,  2.07batch/s, loss=1.32]
+Epoch 13, Loss: 1.3351
+Epoch 14/1500: 100% 16/16 [00:07<00:00,  2.07batch/s, loss=1.29]
+Epoch 14, Loss: 1.2970
+Epoch 15/1500: 100% 16/16 [00:07<00:00,  2.06batch/s, loss=1.3] 
+Epoch 15, Loss: 1.2765
+Epoch 16/1500: 100% 16/16 [00:07<00:00,  2.03batch/s, loss=1.26]
+Epoch 16, Loss: 1.2567
+Epoch 17/1500: 100% 16/16 [00:07<00:00,  2.01batch/s, loss=1.23]
+Epoch 17, Loss: 1.2415
+Epoch 18/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=1.26]
+Epoch 18, Loss: 1.2320
+Epoch 19/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=1.2] 
+Epoch 19, Loss: 1.2135
+Epoch 20/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=1.21]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c997deb550>
+Epoch 20, Loss: 1.2145
+Epoch 21/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=1.23]
+Epoch 21, Loss: 1.1918
+Epoch 22/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=1.19]
+Epoch 22, Loss: 1.1809
+Epoch 23/1500: 100% 16/16 [00:07<00:00,  2.00batch/s, loss=1.21]
+Epoch 23, Loss: 1.1684
+Epoch 24/1500: 100% 16/16 [00:07<00:00,  2.00batch/s, loss=1.19]
+Epoch 24, Loss: 1.1651
+Epoch 25/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=1.25]
+Epoch 25, Loss: 1.1563
+Epoch 26/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=1.17]
+Epoch 26, Loss: 1.1480
+Epoch 27/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=1.09]
+Epoch 27, Loss: 1.1322
+Epoch 28/1500: 100% 16/16 [00:08<00:00,  1.93batch/s, loss=1.16]
+Epoch 28, Loss: 1.1252
+Epoch 29/1500: 100% 16/16 [00:08<00:00,  1.93batch/s, loss=1.11]
+Epoch 29, Loss: 1.1087
+Epoch 30/1500: 100% 16/16 [00:08<00:00,  1.94batch/s, loss=1.12]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c9979756d0>
+Epoch 30, Loss: 1.1171
+Epoch 31/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.16]
+Epoch 31, Loss: 1.1250
+Epoch 32/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.09]
+Epoch 32, Loss: 1.1126
+Epoch 33/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.08]
+Epoch 33, Loss: 1.1174
+Epoch 34/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.12]
+Epoch 34, Loss: 1.1122
+Epoch 35/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.13]
+Epoch 35, Loss: 1.1012
+Epoch 36/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.12]
+Epoch 36, Loss: 1.0983
+Epoch 37/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=1.1] 
+Epoch 37, Loss: 1.0957
+Epoch 38/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=1.1] 
+Epoch 38, Loss: 1.0987
+Epoch 39/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=1.08]
+Epoch 39, Loss: 1.0911
+Epoch 40/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=1.14]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c98864d6d0>
+Epoch 40, Loss: 1.0936
+Epoch 41/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.11]
+Epoch 41, Loss: 1.0741
+Epoch 42/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.06]
+Epoch 42, Loss: 1.0659
+Epoch 43/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.11]
+Epoch 43, Loss: 1.0783
+Epoch 44/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.1] 
+Epoch 44, Loss: 1.0845
+Epoch 45/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.03]
+Epoch 45, Loss: 1.0697
+Epoch 46/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.07]
+Epoch 46, Loss: 1.0809
+Epoch 47/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.03]
+Epoch 47, Loss: 1.0650
+Epoch 48/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.13]
+Epoch 48, Loss: 1.0597
+Epoch 49/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.05]
+Epoch 49, Loss: 1.0491
+Epoch 50/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.07]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c9887af590>
+Epoch 50, Loss: 1.0493
+Epoch 51/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.05]
+Epoch 51, Loss: 1.0466
+Epoch 52/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.02]
+Epoch 52, Loss: 1.0538
+Epoch 53/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.07]
+Epoch 53, Loss: 1.0626
+Epoch 54/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.02]
+Epoch 54, Loss: 1.0515
+Epoch 55/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.06]
+Epoch 55, Loss: 1.0491
+Epoch 56/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.06]
+Epoch 56, Loss: 1.0453
+Epoch 57/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.01]
+Epoch 57, Loss: 1.0316
+Epoch 58/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1]   
+Epoch 58, Loss: 1.0366
+Epoch 59/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.08]
+Epoch 59, Loss: 1.0573
+Epoch 60/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=1.05]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c99c1d3550>
+Epoch 60, Loss: 1.0432
+Epoch 61/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.05]
+Epoch 61, Loss: 1.0420
+Epoch 62/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.09]
+Epoch 62, Loss: 1.0553
+Epoch 63/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=1.05]
+Epoch 63, Loss: 1.0655
+Epoch 64/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.02]
+Epoch 64, Loss: 1.0411
+Epoch 65/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1]   
+Epoch 65, Loss: 1.0368
+Epoch 66/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=1.03]
+Epoch 66, Loss: 1.0355
+Epoch 67/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.03]
+Epoch 67, Loss: 1.0262
+Epoch 68/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.06]
+Epoch 68, Loss: 1.0308
+Epoch 69/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.04]
+Epoch 69, Loss: 1.0417
+Epoch 70/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.06] 
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c9978eff90>
+Epoch 70, Loss: 1.0376
+Epoch 71/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.04]
+Epoch 71, Loss: 1.0294
+Epoch 72/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.994]
+Epoch 72, Loss: 1.0294
+Epoch 73/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.09]
+Epoch 73, Loss: 1.0266
+Epoch 74/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=1.02]
+Epoch 74, Loss: 1.0268
+Epoch 75/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.07]
+Epoch 75, Loss: 1.0284
+Epoch 76/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.05]
+Epoch 76, Loss: 1.0308
+Epoch 77/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.03]
+Epoch 77, Loss: 1.0271
+Epoch 78/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.984]
+Epoch 78, Loss: 1.0254
+Epoch 79/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=1.01]
+Epoch 79, Loss: 1.0159
+Epoch 80/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=1.02]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c995ee6ad0>
+Epoch 80, Loss: 1.0211
+Epoch 81/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.01] 
+Epoch 81, Loss: 1.0157
+Epoch 82/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.997]
+Epoch 82, Loss: 1.0227
+Epoch 83/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.03] 
+Epoch 83, Loss: 1.0272
+Epoch 84/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.02]
+Epoch 84, Loss: 1.0296
+Epoch 85/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=1.04]
+Epoch 85, Loss: 1.0287
+Epoch 86/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.02] 
+Epoch 86, Loss: 1.0222
+Epoch 87/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.04] 
+Epoch 87, Loss: 1.0164
+Epoch 88/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.04] 
+Epoch 88, Loss: 1.0138
+Epoch 89/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.03] 
+Epoch 89, Loss: 1.0094
+Epoch 90/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.06] 
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c988764590>
+Epoch 90, Loss: 1.0190
+Epoch 91/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=1.01]
+Epoch 91, Loss: 1.0126
+Epoch 92/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1]   
+Epoch 92, Loss: 1.0128
+Epoch 93/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=1.04] 
+Epoch 93, Loss: 1.0029
+Epoch 94/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=1.06] 
+Epoch 94, Loss: 1.0157
+Epoch 95/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=1.02] 
+Epoch 95, Loss: 1.0210
+Epoch 96/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=1.02] 
+Epoch 96, Loss: 1.0098
+Epoch 97/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.996]
+Epoch 97, Loss: 1.0062
+Epoch 98/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.983]
+Epoch 98, Loss: 1.0091
+Epoch 99/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.03] 
+Epoch 99, Loss: 1.0137
+Epoch 100/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=1.04] 
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c997deb3d0>
+Epoch 100, Loss: 1.0119
+Epoch 101/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=1.03] 
+Epoch 101, Loss: 1.0055
+Epoch 102/1500: 100% 16/16 [00:08<00:00,  1.91batch/s, loss=1.02]
+Epoch 102, Loss: 1.0066
+Epoch 103/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=1]    
+Epoch 103, Loss: 1.0101
+Epoch 104/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.01] 
+Epoch 104, Loss: 1.0090
+Epoch 105/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.02] 
+Epoch 105, Loss: 1.0138
+Epoch 106/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.974]
+Epoch 106, Loss: 1.0097
+Epoch 107/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.02] 
+Epoch 107, Loss: 1.0047
+Epoch 108/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1]    
+Epoch 108, Loss: 1.0021
+Epoch 109/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.998]
+Epoch 109, Loss: 0.9983
+Epoch 110/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.979]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c997a07990>
+Epoch 110, Loss: 0.9978
+Epoch 111/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1]    
+Epoch 111, Loss: 1.0006
+Epoch 112/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.991]
+Epoch 112, Loss: 0.9996
+Epoch 113/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=1.03] 
+Epoch 113, Loss: 1.0042
+Epoch 114/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.986]
+Epoch 114, Loss: 0.9957
+Epoch 115/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=1.02] 
+Epoch 115, Loss: 0.9961
+Epoch 116/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.993]
+Epoch 116, Loss: 0.9905
+Epoch 117/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.982]
+Epoch 117, Loss: 0.9969
+Epoch 118/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=1.03] 
+Epoch 118, Loss: 0.9962
+Epoch 119/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=1]    
+Epoch 119, Loss: 1.0061
+Epoch 120/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.993]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c9883ed6d0>
+Epoch 120, Loss: 1.0054
+Epoch 121/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=1.01] 
+Epoch 121, Loss: 0.9945
+Epoch 122/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=1.02] 
+Epoch 122, Loss: 0.9989
+Epoch 123/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.974]
+Epoch 123, Loss: 0.9899
+Epoch 124/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=1.01] 
+Epoch 124, Loss: 0.9966
+Epoch 125/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=1.02] 
+Epoch 125, Loss: 0.9920
+Epoch 126/1500: 100% 16/16 [00:08<00:00,  1.91batch/s, loss=1]    
+Epoch 126, Loss: 0.9874
+Epoch 127/1500: 100% 16/16 [00:08<00:00,  1.94batch/s, loss=1.03] 
+Epoch 127, Loss: 0.9973
+Epoch 128/1500: 100% 16/16 [00:08<00:00,  1.93batch/s, loss=1.01] 
+Epoch 128, Loss: 0.9903
+Epoch 129/1500: 100% 16/16 [00:08<00:00,  1.94batch/s, loss=0.978]
+Epoch 129, Loss: 0.9941
+Epoch 130/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.995]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c995effcd0>
+Epoch 130, Loss: 0.9969
+Epoch 131/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=1.07] 
+Epoch 131, Loss: 0.9993
+Epoch 132/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.964]
+Epoch 132, Loss: 0.9974
+Epoch 133/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1]    
+Epoch 133, Loss: 0.9988
+Epoch 134/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.01] 
+Epoch 134, Loss: 0.9916
+Epoch 135/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.04] 
+Epoch 135, Loss: 0.9964
+Epoch 136/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=1.05] 
+Epoch 136, Loss: 1.0143
+Epoch 137/1500: 100% 16/16 [00:08<00:00,  1.94batch/s, loss=0.988]
+Epoch 137, Loss: 0.9997
+Epoch 138/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.975]
+Epoch 138, Loss: 0.9889
+Epoch 139/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.03] 
+Epoch 139, Loss: 0.9943
+Epoch 140/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.988]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c9978f7a90>
+Epoch 140, Loss: 0.9894
+Epoch 141/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=1.01] 
+Epoch 141, Loss: 0.9891
+Epoch 142/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.984]
+Epoch 142, Loss: 0.9874
+Epoch 143/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1]    
+Epoch 143, Loss: 0.9934
+Epoch 144/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=1.05] 
+Epoch 144, Loss: 0.9976
+Epoch 145/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.973]
+Epoch 145, Loss: 0.9918
+Epoch 146/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.985]
+Epoch 146, Loss: 0.9876
+Epoch 147/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.985]
+Epoch 147, Loss: 0.9873
+Epoch 148/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=1]   
+Epoch 148, Loss: 1.0006
+Epoch 149/1500: 100% 16/16 [00:08<00:00,  1.91batch/s, loss=0.987]
+Epoch 149, Loss: 1.0009
+Epoch 150/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=1.01] 
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c997967390>
+Epoch 150, Loss: 0.9871
+Epoch 151/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.966]
+Epoch 151, Loss: 0.9904
+Epoch 152/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.996]
+Epoch 152, Loss: 0.9974
+Epoch 153/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.01] 
+Epoch 153, Loss: 0.9893
+Epoch 154/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.02] 
+Epoch 154, Loss: 0.9921
+Epoch 155/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.983]
+Epoch 155, Loss: 0.9833
+Epoch 156/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.99] 
+Epoch 156, Loss: 0.9830
+Epoch 157/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=1.01] 
+Epoch 157, Loss: 0.9836
+Epoch 158/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.01] 
+Epoch 158, Loss: 0.9869
+Epoch 159/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.998]
+Epoch 159, Loss: 0.9784
+Epoch 160/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.995]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c997c8e310>
+Epoch 160, Loss: 0.9886
+Epoch 161/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.02] 
+Epoch 161, Loss: 0.9840
+Epoch 162/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.01] 
+Epoch 162, Loss: 0.9853
+Epoch 163/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.993]
+Epoch 163, Loss: 0.9913
+Epoch 164/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.01] 
+Epoch 164, Loss: 0.9969
+Epoch 165/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.02] 
+Epoch 165, Loss: 0.9915
+Epoch 166/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.969]
+Epoch 166, Loss: 0.9924
+Epoch 167/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.979]
+Epoch 167, Loss: 0.9959
+Epoch 168/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.971]
+Epoch 168, Loss: 0.9909
+Epoch 169/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.01] 
+Epoch 169, Loss: 0.9983
+Epoch 170/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.02] 
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c9883a9690>
+Epoch 170, Loss: 0.9887
+Epoch 171/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.986]
+Epoch 171, Loss: 0.9771
+Epoch 172/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.989]
+Epoch 172, Loss: 0.9849
+Epoch 173/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.981]
+Epoch 173, Loss: 0.9855
+Epoch 174/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1]    
+Epoch 174, Loss: 0.9842
+Epoch 175/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.969]
+Epoch 175, Loss: 0.9822
+Epoch 176/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.996]
+Epoch 176, Loss: 0.9797
+Epoch 177/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1]    
+Epoch 177, Loss: 0.9805
+Epoch 178/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.991]
+Epoch 178, Loss: 0.9760
+Epoch 179/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.989]
+Epoch 179, Loss: 0.9781
+Epoch 180/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.988]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c9978fb550>
+Epoch 180, Loss: 0.9758
+Epoch 181/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.974]
+Epoch 181, Loss: 0.9786
+Epoch 182/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.999]
+Epoch 182, Loss: 0.9803
+Epoch 183/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.978]
+Epoch 183, Loss: 0.9830
+Epoch 184/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.99] 
+Epoch 184, Loss: 0.9777
+Epoch 185/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.03] 
+Epoch 185, Loss: 0.9903
+Epoch 186/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.03] 
+Epoch 186, Loss: 0.9890
+Epoch 187/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.01] 
+Epoch 187, Loss: 0.9862
+Epoch 188/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=1.04] 
+Epoch 188, Loss: 0.9869
+Epoch 189/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.974]
+Epoch 189, Loss: 0.9798
+Epoch 190/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.969]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c995ecf390>
+Epoch 190, Loss: 0.9835
+Epoch 191/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.981]
+Epoch 191, Loss: 0.9859
+Epoch 192/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=1]    
+Epoch 192, Loss: 0.9843
+Epoch 193/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1]    
+Epoch 193, Loss: 0.9791
+Epoch 194/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.984]
+Epoch 194, Loss: 0.9781
+Epoch 195/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.984]
+Epoch 195, Loss: 0.9826
+Epoch 196/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.992]
+Epoch 196, Loss: 0.9873
+Epoch 197/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.962]
+Epoch 197, Loss: 0.9739
+Epoch 198/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.971]
+Epoch 198, Loss: 0.9745
+Epoch 199/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.998]
+Epoch 199, Loss: 0.9774
+Epoch 200/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.968]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c997aa3550>
+Epoch 200, Loss: 0.9768
+Epoch 201/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1]    
+Epoch 201, Loss: 0.9849
+Epoch 202/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.981]
+Epoch 202, Loss: 0.9834
+Epoch 203/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.988]
+Epoch 203, Loss: 0.9764
+Epoch 204/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.97] 
+Epoch 204, Loss: 0.9746
+Epoch 205/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=1.02] 
+Epoch 205, Loss: 0.9761
+Epoch 206/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.996]
+Epoch 206, Loss: 0.9849
+Epoch 207/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.02] 
+Epoch 207, Loss: 0.9812
+Epoch 208/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.962]
+Epoch 208, Loss: 0.9851
+Epoch 209/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.989]
+Epoch 209, Loss: 0.9801
+Epoch 210/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.02] 
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c998f648d0>
+Epoch 210, Loss: 0.9814
+Epoch 211/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.04] 
+Epoch 211, Loss: 0.9758
+Epoch 212/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.993]
+Epoch 212, Loss: 0.9790
+Epoch 213/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.985]
+Epoch 213, Loss: 0.9765
+Epoch 214/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=1]    
+Epoch 214, Loss: 0.9814
+Epoch 215/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.986]
+Epoch 215, Loss: 0.9803
+Epoch 216/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.963]
+Epoch 216, Loss: 0.9806
+Epoch 217/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.02] 
+Epoch 217, Loss: 0.9824
+Epoch 218/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.977]
+Epoch 218, Loss: 0.9812
+Epoch 219/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.969]
+Epoch 219, Loss: 0.9720
+Epoch 220/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.992]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c997b63550>
+Epoch 220, Loss: 0.9839
+Epoch 221/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.995]
+Epoch 221, Loss: 0.9816
+Epoch 222/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.983]
+Epoch 222, Loss: 0.9724
+Epoch 223/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.02] 
+Epoch 223, Loss: 0.9727
+Epoch 224/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.01] 
+Epoch 224, Loss: 0.9831
+Epoch 225/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.938]
+Epoch 225, Loss: 0.9723
+Epoch 226/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.03] 
+Epoch 226, Loss: 0.9772
+Epoch 227/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.967]
+Epoch 227, Loss: 0.9797
+Epoch 228/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.992]
+Epoch 228, Loss: 0.9834
+Epoch 229/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.996]
+Epoch 229, Loss: 0.9787
+Epoch 230/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.971]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c994137690>
+Epoch 230, Loss: 0.9751
+Epoch 231/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.976]
+Epoch 231, Loss: 0.9715
+Epoch 232/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=1]    
+Epoch 232, Loss: 0.9814
+Epoch 233/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.972]
+Epoch 233, Loss: 0.9674
+Epoch 234/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.98] 
+Epoch 234, Loss: 0.9682
+Epoch 235/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.956]
+Epoch 235, Loss: 0.9691
+Epoch 236/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.983]
+Epoch 236, Loss: 0.9701
+Epoch 237/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.996]
+Epoch 237, Loss: 0.9749
+Epoch 238/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.954]
+Epoch 238, Loss: 0.9716
+Epoch 239/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.98] 
+Epoch 239, Loss: 0.9744
+Epoch 240/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.978]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c998f27390>
+Epoch 240, Loss: 0.9766
+Epoch 241/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.983]
+Epoch 241, Loss: 0.9776
+Epoch 242/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.965]
+Epoch 242, Loss: 0.9736
+Epoch 243/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.993]
+Epoch 243, Loss: 0.9725
+Epoch 244/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.935]
+Epoch 244, Loss: 0.9805
+Epoch 245/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.981]
+Epoch 245, Loss: 0.9813
+Epoch 246/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.965]
+Epoch 246, Loss: 0.9729
+Epoch 247/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.01] 
+Epoch 247, Loss: 0.9804
+Epoch 248/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1]    
+Epoch 248, Loss: 0.9757
+Epoch 249/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.981]
+Epoch 249, Loss: 0.9707
+Epoch 250/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.965]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c997b62450>
+Epoch 250, Loss: 0.9663
+Epoch 251/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.96] 
+Epoch 251, Loss: 0.9758
+Epoch 252/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.989]
+Epoch 252, Loss: 0.9722
+Epoch 253/1500: 100% 16/16 [00:08<00:00,  1.91batch/s, loss=0.975]
+Epoch 253, Loss: 0.9752
+Epoch 254/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.968]
+Epoch 254, Loss: 0.9816
+Epoch 255/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.979]
+Epoch 255, Loss: 0.9784
+Epoch 256/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.988]
+Epoch 256, Loss: 0.9710
+Epoch 257/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.981]
+Epoch 257, Loss: 0.9745
+Epoch 258/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.967]
+Epoch 258, Loss: 0.9765
+Epoch 259/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.993]
+Epoch 259, Loss: 0.9702
+Epoch 260/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.03] 
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c9882f3550>
+Epoch 260, Loss: 0.9741
+Epoch 261/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.01] 
+Epoch 261, Loss: 0.9814
+Epoch 262/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.979]
+Epoch 262, Loss: 0.9728
+Epoch 263/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.957]
+Epoch 263, Loss: 0.9717
+Epoch 264/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.956]
+Epoch 264, Loss: 0.9717
+Epoch 265/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.976]
+Epoch 265, Loss: 0.9764
+Epoch 266/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.964]
+Epoch 266, Loss: 0.9659
+Epoch 267/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.996]
+Epoch 267, Loss: 0.9761
+Epoch 268/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.989]
+Epoch 268, Loss: 0.9804
+Epoch 269/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.995]
+Epoch 269, Loss: 0.9760
+Epoch 270/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.965]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c997c03550>
+Epoch 270, Loss: 0.9709
+Epoch 271/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.954]
+Epoch 271, Loss: 0.9673
+Epoch 272/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.96] 
+Epoch 272, Loss: 0.9711
+Epoch 273/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.98] 
+Epoch 273, Loss: 0.9768
+Epoch 274/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.992]
+Epoch 274, Loss: 0.9777
+Epoch 275/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.944]
+Epoch 275, Loss: 0.9700
+Epoch 276/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.988]
+Epoch 276, Loss: 0.9725
+Epoch 277/1500: 100% 16/16 [00:08<00:00,  1.91batch/s, loss=0.989]
+Epoch 277, Loss: 0.9682
+Epoch 278/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.986]
+Epoch 278, Loss: 0.9732
+Epoch 279/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.958]
+Epoch 279, Loss: 0.9670
+Epoch 280/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1]    
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c99c23cb90>
+Epoch 280, Loss: 0.9748
+Epoch 281/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.984]
+Epoch 281, Loss: 0.9706
+Epoch 282/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.992]
+Epoch 282, Loss: 0.9725
+Epoch 283/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.994]
+Epoch 283, Loss: 0.9758
+Epoch 284/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.971]
+Epoch 284, Loss: 0.9745
+Epoch 285/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.983]
+Epoch 285, Loss: 0.9698
+Epoch 286/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.01] 
+Epoch 286, Loss: 0.9754
+Epoch 287/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.992]
+Epoch 287, Loss: 0.9720
+Epoch 288/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.964]
+Epoch 288, Loss: 0.9770
+Epoch 289/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.991]
+Epoch 289, Loss: 0.9716
+Epoch 290/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.99] 
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c998e83550>
+Epoch 290, Loss: 0.9728
+Epoch 291/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.986]
+Epoch 291, Loss: 0.9753
+Epoch 292/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.987]
+Epoch 292, Loss: 0.9709
+Epoch 293/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.988]
+Epoch 293, Loss: 0.9728
+Epoch 294/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.99] 
+Epoch 294, Loss: 0.9708
+Epoch 295/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.957]
+Epoch 295, Loss: 0.9694
+Epoch 296/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.974]
+Epoch 296, Loss: 0.9699
+Epoch 297/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.961]
+Epoch 297, Loss: 0.9642
+Epoch 298/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.963]
+Epoch 298, Loss: 0.9718
+Epoch 299/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.944]
+Epoch 299, Loss: 0.9671
+Epoch 300/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.985]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c99786b550>
+Epoch 300, Loss: 0.9666
+Epoch 301/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.974]
+Epoch 301, Loss: 0.9681
+Epoch 302/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.977]
+Epoch 302, Loss: 0.9690
+Epoch 303/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1]    
+Epoch 303, Loss: 0.9665
+Epoch 304/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.99] 
+Epoch 304, Loss: 0.9654
+Epoch 305/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1]    
+Epoch 305, Loss: 0.9670
+Epoch 306/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.01] 
+Epoch 306, Loss: 0.9670
+Epoch 307/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.983]
+Epoch 307, Loss: 0.9631
+Epoch 308/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.955]
+Epoch 308, Loss: 0.9613
+Epoch 309/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.975]
+Epoch 309, Loss: 0.9718
+Epoch 310/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.982]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c99c37b550>
+Epoch 310, Loss: 0.9690
+Epoch 311/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.967]
+Epoch 311, Loss: 0.9709
+Epoch 312/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.999]
+Epoch 312, Loss: 0.9664
+Epoch 313/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.98] 
+Epoch 313, Loss: 0.9665
+Epoch 314/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.981]
+Epoch 314, Loss: 0.9633
+Epoch 315/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.96] 
+Epoch 315, Loss: 0.9639
+Epoch 316/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.966]
+Epoch 316, Loss: 0.9631
+Epoch 317/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.978]
+Epoch 317, Loss: 0.9647
+Epoch 318/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.965]
+Epoch 318, Loss: 0.9707
+Epoch 319/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.986]
+Epoch 319, Loss: 0.9686
+Epoch 320/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.982]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c998f5b4d0>
+Epoch 320, Loss: 0.9697
+Epoch 321/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.964]
+Epoch 321, Loss: 0.9698
+Epoch 322/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.991]
+Epoch 322, Loss: 0.9629
+Epoch 323/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.978]
+Epoch 323, Loss: 0.9771
+Epoch 324/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.975]
+Epoch 324, Loss: 0.9659
+Epoch 325/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.988]
+Epoch 325, Loss: 0.9679
+Epoch 326/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1]    
+Epoch 326, Loss: 0.9704
+Epoch 327/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.998]
+Epoch 327, Loss: 0.9637
+Epoch 328/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.03] 
+Epoch 328, Loss: 0.9783
+Epoch 329/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.96] 
+Epoch 329, Loss: 0.9720
+Epoch 330/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.958]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c9884a3550>
+Epoch 330, Loss: 0.9587
+Epoch 331/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.999]
+Epoch 331, Loss: 0.9659
+Epoch 332/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.97] 
+Epoch 332, Loss: 0.9687
+Epoch 333/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.977]
+Epoch 333, Loss: 0.9692
+Epoch 334/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.94] 
+Epoch 334, Loss: 0.9647
+Epoch 335/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.01] 
+Epoch 335, Loss: 0.9739
+Epoch 336/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.993]
+Epoch 336, Loss: 0.9719
+Epoch 337/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.955]
+Epoch 337, Loss: 0.9665
+Epoch 338/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.94] 
+Epoch 338, Loss: 0.9619
+Epoch 339/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.984]
+Epoch 339, Loss: 0.9699
+Epoch 340/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.996]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c99c223550>
+Epoch 340, Loss: 0.9687
+Epoch 341/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.958]
+Epoch 341, Loss: 0.9626
+Epoch 342/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.953]
+Epoch 342, Loss: 0.9582
+Epoch 343/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.979]
+Epoch 343, Loss: 0.9642
+Epoch 344/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1]    
+Epoch 344, Loss: 0.9697
+Epoch 345/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.959]
+Epoch 345, Loss: 0.9651
+Epoch 346/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.97] 
+Epoch 346, Loss: 0.9665
+Epoch 347/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.945]
+Epoch 347, Loss: 0.9666
+Epoch 348/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.03] 
+Epoch 348, Loss: 0.9657
+Epoch 349/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.996]
+Epoch 349, Loss: 0.9675
+Epoch 350/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1]    
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c98832d6d0>
+Epoch 350, Loss: 0.9624
+Epoch 351/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.988]
+Epoch 351, Loss: 0.9655
+Epoch 352/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.979]
+Epoch 352, Loss: 0.9714
+Epoch 353/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.978]
+Epoch 353, Loss: 0.9629
+Epoch 354/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.988]
+Epoch 354, Loss: 0.9642
+Epoch 355/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.986]
+Epoch 355, Loss: 0.9676
+Epoch 356/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.984]
+Epoch 356, Loss: 0.9652
+Epoch 357/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.01] 
+Epoch 357, Loss: 0.9642
+Epoch 358/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.962]
+Epoch 358, Loss: 0.9665
+Epoch 359/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.963]
+Epoch 359, Loss: 0.9642
+Epoch 360/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.978]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c988474950>
+Epoch 360, Loss: 0.9595
+Epoch 361/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.955]
+Epoch 361, Loss: 0.9639
+Epoch 362/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.974]
+Epoch 362, Loss: 0.9676
+Epoch 363/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.961]
+Epoch 363, Loss: 0.9678
+Epoch 364/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.991]
+Epoch 364, Loss: 0.9616
+Epoch 365/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.947]
+Epoch 365, Loss: 0.9644
+Epoch 366/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.961]
+Epoch 366, Loss: 0.9602
+Epoch 367/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.996]
+Epoch 367, Loss: 0.9647
+Epoch 368/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1]    
+Epoch 368, Loss: 0.9708
+Epoch 369/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.969]
+Epoch 369, Loss: 0.9676
+Epoch 370/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.989]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c998e6ab90>
+Epoch 370, Loss: 0.9665
+Epoch 371/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.969]
+Epoch 371, Loss: 0.9598
+Epoch 372/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.959]
+Epoch 372, Loss: 0.9649
+Epoch 373/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.947]
+Epoch 373, Loss: 0.9672
+Epoch 374/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.978]
+Epoch 374, Loss: 0.9645
+Epoch 375/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.95] 
+Epoch 375, Loss: 0.9581
+Epoch 376/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.985]
+Epoch 376, Loss: 0.9708
+Epoch 377/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.955]
+Epoch 377, Loss: 0.9578
+Epoch 378/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.997]
+Epoch 378, Loss: 0.9671
+Epoch 379/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.973]
+Epoch 379, Loss: 0.9684
+Epoch 380/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=1]    
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c994127b90>
+Epoch 380, Loss: 0.9613
+Epoch 381/1500: 100% 16/16 [00:08<00:00,  1.94batch/s, loss=0.968]
+Epoch 381, Loss: 0.9629
+Epoch 382/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.961]
+Epoch 382, Loss: 0.9587
+Epoch 383/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.957]
+Epoch 383, Loss: 0.9651
+Epoch 384/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.98] 
+Epoch 384, Loss: 0.9664
+Epoch 385/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.989]
+Epoch 385, Loss: 0.9689
+Epoch 386/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=1.01] 
+Epoch 386, Loss: 0.9625
+Epoch 387/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.967]
+Epoch 387, Loss: 0.9609
+Epoch 388/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.961]
+Epoch 388, Loss: 0.9641
+Epoch 389/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.975]
+Epoch 389, Loss: 0.9579
+Epoch 390/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.977]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c997871290>
+Epoch 390, Loss: 0.9579
+Epoch 391/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.959]
+Epoch 391, Loss: 0.9598
+Epoch 392/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.975]
+Epoch 392, Loss: 0.9620
+Epoch 393/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.976]
+Epoch 393, Loss: 0.9629
+Epoch 394/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.956]
+Epoch 394, Loss: 0.9609
+Epoch 395/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.989]
+Epoch 395, Loss: 0.9570
+Epoch 396/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.923]
+Epoch 396, Loss: 0.9550
+Epoch 397/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.976]
+Epoch 397, Loss: 0.9648
+Epoch 398/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.999]
+Epoch 398, Loss: 0.9666
+Epoch 399/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=1]    
+Epoch 399, Loss: 0.9576
+Epoch 400/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.974]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c99c293550>
+Epoch 400, Loss: 0.9672
+Epoch 401/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.977]
+Epoch 401, Loss: 0.9595
+Epoch 402/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.96] 
+Epoch 402, Loss: 0.9643
+Epoch 403/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.964]
+Epoch 403, Loss: 0.9636
+Epoch 404/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.967]
+Epoch 404, Loss: 0.9666
+Epoch 405/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.981]
+Epoch 405, Loss: 0.9575
+Epoch 406/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.985]
+Epoch 406, Loss: 0.9655
+Epoch 407/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.972]
+Epoch 407, Loss: 0.9529
+Epoch 408/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.97] 
+Epoch 408, Loss: 0.9678
+Epoch 409/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.988]
+Epoch 409, Loss: 0.9631
+Epoch 410/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.961]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c98846b550>
+Epoch 410, Loss: 0.9595
+Epoch 411/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.959]
+Epoch 411, Loss: 0.9561
+Epoch 412/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=1.01] 
+Epoch 412, Loss: 0.9649
+Epoch 413/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.972]
+Epoch 413, Loss: 0.9579
+Epoch 414/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.982]
+Epoch 414, Loss: 0.9585
+Epoch 415/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.979]
+Epoch 415, Loss: 0.9590
+Epoch 416/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.992]
+Epoch 416, Loss: 0.9702
+Epoch 417/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.969]
+Epoch 417, Loss: 0.9570
+Epoch 418/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.95] 
+Epoch 418, Loss: 0.9626
+Epoch 419/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.992]
+Epoch 419, Loss: 0.9586
+Epoch 420/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.966]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c988586cd0>
+Epoch 420, Loss: 0.9596
+Epoch 421/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.954]
+Epoch 421, Loss: 0.9588
+Epoch 422/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.97] 
+Epoch 422, Loss: 0.9575
+Epoch 423/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.967]
+Epoch 423, Loss: 0.9636
+Epoch 424/1500: 100% 16/16 [00:08<00:00,  1.94batch/s, loss=0.964]
+Epoch 424, Loss: 0.9581
+Epoch 425/1500: 100% 16/16 [00:08<00:00,  1.94batch/s, loss=0.99] 
+Epoch 425, Loss: 0.9615
+Epoch 426/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.961]
+Epoch 426, Loss: 0.9638
+Epoch 427/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.995]
+Epoch 427, Loss: 0.9661
+Epoch 428/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.965]
+Epoch 428, Loss: 0.9709
+Epoch 429/1500: 100% 16/16 [00:08<00:00,  1.93batch/s, loss=0.966]
+Epoch 429, Loss: 0.9691
+Epoch 430/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.985]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c988766a90>
+Epoch 430, Loss: 0.9691
+Epoch 431/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.966]
+Epoch 431, Loss: 0.9638
+Epoch 432/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.968]
+Epoch 432, Loss: 0.9596
+Epoch 433/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.976]
+Epoch 433, Loss: 0.9585
+Epoch 434/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.967]
+Epoch 434, Loss: 0.9635
+Epoch 435/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.976]
+Epoch 435, Loss: 0.9576
+Epoch 436/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.959]
+Epoch 436, Loss: 0.9585
+Epoch 437/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.95] 
+Epoch 437, Loss: 0.9564
+Epoch 438/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.932]
+Epoch 438, Loss: 0.9558
+Epoch 439/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.965]
+Epoch 439, Loss: 0.9551
+Epoch 440/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.974]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c998f2b550>
+Epoch 440, Loss: 0.9586
+Epoch 441/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.95] 
+Epoch 441, Loss: 0.9585
+Epoch 442/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.984]
+Epoch 442, Loss: 0.9576
+Epoch 443/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.97] 
+Epoch 443, Loss: 0.9600
+Epoch 444/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.977]
+Epoch 444, Loss: 0.9654
+Epoch 445/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.949]
+Epoch 445, Loss: 0.9543
+Epoch 446/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.951]
+Epoch 446, Loss: 0.9631
+Epoch 447/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.967]
+Epoch 447, Loss: 0.9577
+Epoch 448/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.968]
+Epoch 448, Loss: 0.9598
+Epoch 449/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.957]
+Epoch 449, Loss: 0.9690
+Epoch 450/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.959]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c999784950>
+Epoch 450, Loss: 0.9592
+Epoch 451/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.95] 
+Epoch 451, Loss: 0.9527
+Epoch 452/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.957]
+Epoch 452, Loss: 0.9565
+Epoch 453/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.975]
+Epoch 453, Loss: 0.9588
+Epoch 454/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.945]
+Epoch 454, Loss: 0.9565
+Epoch 455/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.968]
+Epoch 455, Loss: 0.9604
+Epoch 456/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.951]
+Epoch 456, Loss: 0.9547
+Epoch 457/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.955]
+Epoch 457, Loss: 0.9582
+Epoch 458/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.969]
+Epoch 458, Loss: 0.9621
+Epoch 459/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.98] 
+Epoch 459, Loss: 0.9596
+Epoch 460/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.936]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c997855c50>
+Epoch 460, Loss: 0.9498
+Epoch 461/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.983]
+Epoch 461, Loss: 0.9625
+Epoch 462/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.982]
+Epoch 462, Loss: 0.9661
+Epoch 463/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.967]
+Epoch 463, Loss: 0.9642
+Epoch 464/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.964]
+Epoch 464, Loss: 0.9569
+Epoch 465/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.989]
+Epoch 465, Loss: 0.9614
+Epoch 466/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.969]
+Epoch 466, Loss: 0.9560
+Epoch 467/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.975]
+Epoch 467, Loss: 0.9630
+Epoch 468/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.964]
+Epoch 468, Loss: 0.9694
+Epoch 469/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.973]
+Epoch 469, Loss: 0.9586
+Epoch 470/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.966]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c9885a56d0>
+Epoch 470, Loss: 0.9604
+Epoch 471/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.947]
+Epoch 471, Loss: 0.9606
+Epoch 472/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.96] 
+Epoch 472, Loss: 0.9614
+Epoch 473/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.959]
+Epoch 473, Loss: 0.9551
+Epoch 474/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.01] 
+Epoch 474, Loss: 0.9642
+Epoch 475/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.948]
+Epoch 475, Loss: 0.9549
+Epoch 476/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.965]
+Epoch 476, Loss: 0.9598
+Epoch 477/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.957]
+Epoch 477, Loss: 0.9535
+Epoch 478/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.936]
+Epoch 478, Loss: 0.9528
+Epoch 479/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.979]
+Epoch 479, Loss: 0.9580
+Epoch 480/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.01] 
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c9886b56d0>
+Epoch 480, Loss: 0.9635
+Epoch 481/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.964]
+Epoch 481, Loss: 0.9571
+Epoch 482/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.982]
+Epoch 482, Loss: 0.9570
+Epoch 483/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.984]
+Epoch 483, Loss: 0.9652
+Epoch 484/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.959]
+Epoch 484, Loss: 0.9561
+Epoch 485/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.965]
+Epoch 485, Loss: 0.9598
+Epoch 486/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.927]
+Epoch 486, Loss: 0.9529
+Epoch 487/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.953]
+Epoch 487, Loss: 0.9536
+Epoch 488/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.991]
+Epoch 488, Loss: 0.9585
+Epoch 489/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.965]
+Epoch 489, Loss: 0.9541
+Epoch 490/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.958]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c997924250>
+Epoch 490, Loss: 0.9580
+Epoch 491/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.944]
+Epoch 491, Loss: 0.9602
+Epoch 492/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.947]
+Epoch 492, Loss: 0.9578
+Epoch 493/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.939]
+Epoch 493, Loss: 0.9548
+Epoch 494/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.939]
+Epoch 494, Loss: 0.9547
+Epoch 495/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.96] 
+Epoch 495, Loss: 0.9607
+Epoch 496/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.975]
+Epoch 496, Loss: 0.9587
+Epoch 497/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.991]
+Epoch 497, Loss: 0.9611
+Epoch 498/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.984]
+Epoch 498, Loss: 0.9624
+Epoch 499/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.946]
+Epoch 499, Loss: 0.9616
+Epoch 500/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.954]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c9883c0a10>
+Epoch 500, Loss: 0.9585
+Epoch 501/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.933]
+Epoch 501, Loss: 0.9520
+Epoch 502/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.961]
+Epoch 502, Loss: 0.9558
+Epoch 503/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.975]
+Epoch 503, Loss: 0.9629
+Epoch 504/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.942]
+Epoch 504, Loss: 0.9575
+Epoch 505/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.962]
+Epoch 505, Loss: 0.9545
+Epoch 506/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.999]
+Epoch 506, Loss: 0.9659
+Epoch 507/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.951]
+Epoch 507, Loss: 0.9576
+Epoch 508/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.965]
+Epoch 508, Loss: 0.9610
+Epoch 509/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.978]
+Epoch 509, Loss: 0.9570
+Epoch 510/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.932]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c997c53550>
+Epoch 510, Loss: 0.9570
+Epoch 511/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.946]
+Epoch 511, Loss: 0.9578
+Epoch 512/1500: 100% 16/16 [00:08<00:00,  1.90batch/s, loss=0.967]
+Epoch 512, Loss: 0.9567
+Epoch 513/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.96] 
+Epoch 513, Loss: 0.9619
+Epoch 514/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.974]
+Epoch 514, Loss: 0.9602
+Epoch 515/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.98] 
+Epoch 515, Loss: 0.9578
+Epoch 516/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.922]
+Epoch 516, Loss: 0.9551
+Epoch 517/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.967]
+Epoch 517, Loss: 0.9544
+Epoch 518/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.971]
+Epoch 518, Loss: 0.9542
+Epoch 519/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.963]
+Epoch 519, Loss: 0.9569
+Epoch 520/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.97] 
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c997b9ad50>
+Epoch 520, Loss: 0.9543
+Epoch 521/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.964]
+Epoch 521, Loss: 0.9592
+Epoch 522/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.01] 
+Epoch 522, Loss: 0.9609
+Epoch 523/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.948]
+Epoch 523, Loss: 0.9535
+Epoch 524/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.931]
+Epoch 524, Loss: 0.9587
+Epoch 525/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.94] 
+Epoch 525, Loss: 0.9592
+Epoch 526/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.961]
+Epoch 526, Loss: 0.9549
+Epoch 527/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.977]
+Epoch 527, Loss: 0.9632
+Epoch 528/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.947]
+Epoch 528, Loss: 0.9562
+Epoch 529/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.973]
+Epoch 529, Loss: 0.9599
+Epoch 530/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.942]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c988654950>
+Epoch 530, Loss: 0.9578
+Epoch 531/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.96] 
+Epoch 531, Loss: 0.9552
+Epoch 532/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.983]
+Epoch 532, Loss: 0.9656
+Epoch 533/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.941]
+Epoch 533, Loss: 0.9580
+Epoch 534/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.977]
+Epoch 534, Loss: 0.9585
+Epoch 535/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.993]
+Epoch 535, Loss: 0.9675
+Epoch 536/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.986]
+Epoch 536, Loss: 0.9605
+Epoch 537/1500: 100% 16/16 [00:08<00:00,  1.91batch/s, loss=0.965]
+Epoch 537, Loss: 0.9502
+Epoch 538/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.988]
+Epoch 538, Loss: 0.9528
+Epoch 539/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.964]
+Epoch 539, Loss: 0.9592
+Epoch 540/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.978]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c997dc3550>
+Epoch 540, Loss: 0.9544
+Epoch 541/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.962]
+Epoch 541, Loss: 0.9453
+Epoch 542/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.927]
+Epoch 542, Loss: 0.9478
+Epoch 543/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.963]
+Epoch 543, Loss: 0.9619
+Epoch 544/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.955]
+Epoch 544, Loss: 0.9575
+Epoch 545/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.95] 
+Epoch 545, Loss: 0.9584
+Epoch 546/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.97] 
+Epoch 546, Loss: 0.9582
+Epoch 547/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.962]
+Epoch 547, Loss: 0.9535
+Epoch 548/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.966]
+Epoch 548, Loss: 0.9590
+Epoch 549/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.961]
+Epoch 549, Loss: 0.9617
+Epoch 550/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.964]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c9978ed390>
+Epoch 550, Loss: 0.9528
+Epoch 551/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.941]
+Epoch 551, Loss: 0.9537
+Epoch 552/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.933]
+Epoch 552, Loss: 0.9486
+Epoch 553/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.972]
+Epoch 553, Loss: 0.9512
+Epoch 554/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.964]
+Epoch 554, Loss: 0.9545
+Epoch 555/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.941]
+Epoch 555, Loss: 0.9498
+Epoch 556/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.988]
+Epoch 556, Loss: 0.9610
+Epoch 557/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.978]
+Epoch 557, Loss: 0.9558
+Epoch 558/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.938]
+Epoch 558, Loss: 0.9567
+Epoch 559/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.93] 
+Epoch 559, Loss: 0.9496
+Epoch 560/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.956]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c9881f56d0>
+Epoch 560, Loss: 0.9568
+Epoch 561/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.98] 
+Epoch 561, Loss: 0.9518
+Epoch 562/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.946]
+Epoch 562, Loss: 0.9552
+Epoch 563/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.961]
+Epoch 563, Loss: 0.9605
+Epoch 564/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.954]
+Epoch 564, Loss: 0.9541
+Epoch 565/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.936]
+Epoch 565, Loss: 0.9447
+Epoch 566/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.983]
+Epoch 566, Loss: 0.9453
+Epoch 567/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.956]
+Epoch 567, Loss: 0.9628
+Epoch 568/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.936]
+Epoch 568, Loss: 0.9552
+Epoch 569/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.968]
+Epoch 569, Loss: 0.9527
+Epoch 570/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.93] 
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c988414950>
+Epoch 570, Loss: 0.9506
+Epoch 571/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.963]
+Epoch 571, Loss: 0.9597
+Epoch 572/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.948]
+Epoch 572, Loss: 0.9517
+Epoch 573/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.938]
+Epoch 573, Loss: 0.9569
+Epoch 574/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.943]
+Epoch 574, Loss: 0.9551
+Epoch 575/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.945]
+Epoch 575, Loss: 0.9556
+Epoch 576/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.969]
+Epoch 576, Loss: 0.9552
+Epoch 577/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.959]
+Epoch 577, Loss: 0.9610
+Epoch 578/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.963]
+Epoch 578, Loss: 0.9570
+Epoch 579/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.959]
+Epoch 579, Loss: 0.9577
+Epoch 580/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.02] 
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c997984610>
+Epoch 580, Loss: 0.9602
+Epoch 581/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.975]
+Epoch 581, Loss: 0.9577
+Epoch 582/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.959]
+Epoch 582, Loss: 0.9565
+Epoch 583/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.945]
+Epoch 583, Loss: 0.9558
+Epoch 584/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.936]
+Epoch 584, Loss: 0.9512
+Epoch 585/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.977]
+Epoch 585, Loss: 0.9537
+Epoch 586/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.966]
+Epoch 586, Loss: 0.9540
+Epoch 587/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.964]
+Epoch 587, Loss: 0.9525
+Epoch 588/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.97] 
+Epoch 588, Loss: 0.9557
+Epoch 589/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.971]
+Epoch 589, Loss: 0.9594
+Epoch 590/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.95] 
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c9941c6990>
+Epoch 590, Loss: 0.9501
+Epoch 591/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.964]
+Epoch 591, Loss: 0.9494
+Epoch 592/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.934]
+Epoch 592, Loss: 0.9477
+Epoch 593/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.953]
+Epoch 593, Loss: 0.9534
+Epoch 594/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.962]
+Epoch 594, Loss: 0.9581
+Epoch 595/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.969]
+Epoch 595, Loss: 0.9547
+Epoch 596/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.953]
+Epoch 596, Loss: 0.9528
+Epoch 597/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.95] 
+Epoch 597, Loss: 0.9494
+Epoch 598/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.974]
+Epoch 598, Loss: 0.9482
+Epoch 599/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.935]
+Epoch 599, Loss: 0.9494
+Epoch 600/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.964]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c998f9add0>
+Epoch 600, Loss: 0.9532
+Epoch 601/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.984]
+Epoch 601, Loss: 0.9496
+Epoch 602/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.928]
+Epoch 602, Loss: 0.9500
+Epoch 603/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.948]
+Epoch 603, Loss: 0.9576
+Epoch 604/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.974]
+Epoch 604, Loss: 0.9577
+Epoch 605/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.972]
+Epoch 605, Loss: 0.9475
+Epoch 606/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.926]
+Epoch 606, Loss: 0.9533
+Epoch 607/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.983]
+Epoch 607, Loss: 0.9620
+Epoch 608/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.981]
+Epoch 608, Loss: 0.9571
+Epoch 609/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.943]
+Epoch 609, Loss: 0.9503
+Epoch 610/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.959]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c98851b550>
+Epoch 610, Loss: 0.9527
+Epoch 611/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.979]
+Epoch 611, Loss: 0.9475
+Epoch 612/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.939]
+Epoch 612, Loss: 0.9519
+Epoch 613/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1]    
+Epoch 613, Loss: 0.9557
+Epoch 614/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.946]
+Epoch 614, Loss: 0.9522
+Epoch 615/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.99] 
+Epoch 615, Loss: 0.9566
+Epoch 616/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.98] 
+Epoch 616, Loss: 0.9562
+Epoch 617/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.957]
+Epoch 617, Loss: 0.9525
+Epoch 618/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.958]
+Epoch 618, Loss: 0.9565
+Epoch 619/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.954]
+Epoch 619, Loss: 0.9576
+Epoch 620/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.936]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c98871d6d0>
+Epoch 620, Loss: 0.9535
+Epoch 621/1500: 100% 16/16 [00:08<00:00,  1.91batch/s, loss=0.959]
+Epoch 621, Loss: 0.9553
+Epoch 622/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.989]
+Epoch 622, Loss: 0.9566
+Epoch 623/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.933]
+Epoch 623, Loss: 0.9481
+Epoch 624/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.964]
+Epoch 624, Loss: 0.9503
+Epoch 625/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.964]
+Epoch 625, Loss: 0.9567
+Epoch 626/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.967]
+Epoch 626, Loss: 0.9551
+Epoch 627/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.95] 
+Epoch 627, Loss: 0.9548
+Epoch 628/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.937]
+Epoch 628, Loss: 0.9545
+Epoch 629/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.959]
+Epoch 629, Loss: 0.9527
+Epoch 630/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.954]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c998f13550>
+Epoch 630, Loss: 0.9533
+Epoch 631/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.979]
+Epoch 631, Loss: 0.9593
+Epoch 632/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.958]
+Epoch 632, Loss: 0.9598
+Epoch 633/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.945]
+Epoch 633, Loss: 0.9549
+Epoch 634/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.964]
+Epoch 634, Loss: 0.9543
+Epoch 635/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.926]
+Epoch 635, Loss: 0.9491
+Epoch 636/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.956]
+Epoch 636, Loss: 0.9509
+Epoch 637/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.957]
+Epoch 637, Loss: 0.9568
+Epoch 638/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.947]
+Epoch 638, Loss: 0.9534
+Epoch 639/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.96] 
+Epoch 639, Loss: 0.9546
+Epoch 640/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.915]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c99c146550>
+Epoch 640, Loss: 0.9554
+Epoch 641/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.929]
+Epoch 641, Loss: 0.9484
+Epoch 642/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.952]
+Epoch 642, Loss: 0.9540
+Epoch 643/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.969]
+Epoch 643, Loss: 0.9532
+Epoch 644/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.96] 
+Epoch 644, Loss: 0.9543
+Epoch 645/1500: 100% 16/16 [00:08<00:00,  1.93batch/s, loss=0.97] 
+Epoch 645, Loss: 0.9544
+Epoch 646/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.94] 
+Epoch 646, Loss: 0.9456
+Epoch 647/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.961]
+Epoch 647, Loss: 0.9499
+Epoch 648/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.957]
+Epoch 648, Loss: 0.9481
+Epoch 649/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.965]
+Epoch 649, Loss: 0.9513
+Epoch 650/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.985]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c9979bc610>
+Epoch 650, Loss: 0.9506
+Epoch 651/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.954]
+Epoch 651, Loss: 0.9527
+Epoch 652/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.938]
+Epoch 652, Loss: 0.9491
+Epoch 653/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.937]
+Epoch 653, Loss: 0.9544
+Epoch 654/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.946]
+Epoch 654, Loss: 0.9537
+Epoch 655/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.96] 
+Epoch 655, Loss: 0.9539
+Epoch 656/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.949]
+Epoch 656, Loss: 0.9518
+Epoch 657/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.928]
+Epoch 657, Loss: 0.9480
+Epoch 658/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.96] 
+Epoch 658, Loss: 0.9547
+Epoch 659/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.947]
+Epoch 659, Loss: 0.9535
+Epoch 660/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.937]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c99978b550>
+Epoch 660, Loss: 0.9522
+Epoch 661/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.971]
+Epoch 661, Loss: 0.9493
+Epoch 662/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.975]
+Epoch 662, Loss: 0.9526
+Epoch 663/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.995]
+Epoch 663, Loss: 0.9498
+Epoch 664/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.01] 
+Epoch 664, Loss: 0.9534
+Epoch 665/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.983]
+Epoch 665, Loss: 0.9566
+Epoch 666/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.946]
+Epoch 666, Loss: 0.9548
+Epoch 667/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.974]
+Epoch 667, Loss: 0.9482
+Epoch 668/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.958]
+Epoch 668, Loss: 0.9509
+Epoch 669/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.963]
+Epoch 669, Loss: 0.9533
+Epoch 670/1500: 100% 16/16 [00:08<00:00,  1.92batch/s, loss=0.961]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c995ea09d0>
+Epoch 670, Loss: 0.9494
+Epoch 671/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.977]
+Epoch 671, Loss: 0.9509
+Epoch 672/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.94] 
+Epoch 672, Loss: 0.9497
+Epoch 673/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.952]
+Epoch 673, Loss: 0.9446
+Epoch 674/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.957]
+Epoch 674, Loss: 0.9568
+Epoch 675/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.95] 
+Epoch 675, Loss: 0.9505
+Epoch 676/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.95] 
+Epoch 676, Loss: 0.9481
+Epoch 677/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.959]
+Epoch 677, Loss: 0.9491
+Epoch 678/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.972]
+Epoch 678, Loss: 0.9512
+Epoch 679/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.975]
+Epoch 679, Loss: 0.9527
+Epoch 680/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.935]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c998f6f390>
+Epoch 680, Loss: 0.9552
+Epoch 681/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.956]
+Epoch 681, Loss: 0.9566
+Epoch 682/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.943]
+Epoch 682, Loss: 0.9560
+Epoch 683/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.961]
+Epoch 683, Loss: 0.9592
+Epoch 684/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.985]
+Epoch 684, Loss: 0.9541
+Epoch 685/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.955]
+Epoch 685, Loss: 0.9488
+Epoch 686/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.98] 
+Epoch 686, Loss: 0.9564
+Epoch 687/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.957]
+Epoch 687, Loss: 0.9513
+Epoch 688/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.959]
+Epoch 688, Loss: 0.9527
+Epoch 689/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.97] 
+Epoch 689, Loss: 0.9515
+Epoch 690/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.963]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c988453550>
+Epoch 690, Loss: 0.9520
+Epoch 691/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.982]
+Epoch 691, Loss: 0.9497
+Epoch 692/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.946]
+Epoch 692, Loss: 0.9454
+Epoch 693/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.949]
+Epoch 693, Loss: 0.9516
+Epoch 694/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.961]
+Epoch 694, Loss: 0.9549
+Epoch 695/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.932]
+Epoch 695, Loss: 0.9521
+Epoch 696/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.938]
+Epoch 696, Loss: 0.9494
+Epoch 697/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.937]
+Epoch 697, Loss: 0.9508
+Epoch 698/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.954]
+Epoch 698, Loss: 0.9540
+Epoch 699/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.969]
+Epoch 699, Loss: 0.9563
+Epoch 700/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.97] 
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c9880f3550>
+Epoch 700, Loss: 0.9496
+Epoch 701/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.958]
+Epoch 701, Loss: 0.9523
+Epoch 702/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.963]
+Epoch 702, Loss: 0.9533
+Epoch 703/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.979]
+Epoch 703, Loss: 0.9520
+Epoch 704/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.96] 
+Epoch 704, Loss: 0.9535
+Epoch 705/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.957]
+Epoch 705, Loss: 0.9514
+Epoch 706/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.961]
+Epoch 706, Loss: 0.9519
+Epoch 707/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.957]
+Epoch 707, Loss: 0.9616
+Epoch 708/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.949]
+Epoch 708, Loss: 0.9533
+Epoch 709/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.948]
+Epoch 709, Loss: 0.9450
+Epoch 710/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.973]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c997d77390>
+Epoch 710, Loss: 0.9473
+Epoch 711/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.94] 
+Epoch 711, Loss: 0.9517
+Epoch 712/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.946]
+Epoch 712, Loss: 0.9491
+Epoch 713/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.955]
+Epoch 713, Loss: 0.9456
+Epoch 714/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.938]
+Epoch 714, Loss: 0.9477
+Epoch 715/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.955]
+Epoch 715, Loss: 0.9527
+Epoch 716/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.94] 
+Epoch 716, Loss: 0.9525
+Epoch 717/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.934]
+Epoch 717, Loss: 0.9487
+Epoch 718/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.968]
+Epoch 718, Loss: 0.9514
+Epoch 719/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.925]
+Epoch 719, Loss: 0.9453
+Epoch 720/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.977]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c995f0b550>
+Epoch 720, Loss: 0.9516
+Epoch 721/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.955]
+Epoch 721, Loss: 0.9533
+Epoch 722/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.961]
+Epoch 722, Loss: 0.9533
+Epoch 723/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.976]
+Epoch 723, Loss: 0.9544
+Epoch 724/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.972]
+Epoch 724, Loss: 0.9492
+Epoch 725/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.969]
+Epoch 725, Loss: 0.9495
+Epoch 726/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.968]
+Epoch 726, Loss: 0.9488
+Epoch 727/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.938]
+Epoch 727, Loss: 0.9492
+Epoch 728/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.957]
+Epoch 728, Loss: 0.9478
+Epoch 729/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.959]
+Epoch 729, Loss: 0.9469
+Epoch 730/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.981]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c988207110>
+Epoch 730, Loss: 0.9464
+Epoch 731/1500: 100% 16/16 [00:08<00:00,  1.92batch/s, loss=0.977]
+Epoch 731, Loss: 0.9544
+Epoch 732/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.926]
+Epoch 732, Loss: 0.9490
+Epoch 733/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.964]
+Epoch 733, Loss: 0.9564
+Epoch 734/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.956]
+Epoch 734, Loss: 0.9455
+Epoch 735/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.983]
+Epoch 735, Loss: 0.9533
+Epoch 736/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.943]
+Epoch 736, Loss: 0.9506
+Epoch 737/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.94] 
+Epoch 737, Loss: 0.9471
+Epoch 738/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.95] 
+Epoch 738, Loss: 0.9523
+Epoch 739/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.955]
+Epoch 739, Loss: 0.9467
+Epoch 740/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.962]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c988707790>
+Epoch 740, Loss: 0.9504
+Epoch 741/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.96] 
+Epoch 741, Loss: 0.9549
+Epoch 742/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.944]
+Epoch 742, Loss: 0.9491
+Epoch 743/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.972]
+Epoch 743, Loss: 0.9527
+Epoch 744/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.944]
+Epoch 744, Loss: 0.9502
+Epoch 745/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.978]
+Epoch 745, Loss: 0.9513
+Epoch 746/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.971]
+Epoch 746, Loss: 0.9479
+Epoch 747/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.963]
+Epoch 747, Loss: 0.9510
+Epoch 748/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.945]
+Epoch 748, Loss: 0.9450
+Epoch 749/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.951]
+Epoch 749, Loss: 0.9472
+Epoch 750/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.956]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c988161750>
+Epoch 750, Loss: 0.9486
+Epoch 751/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.931]
+Epoch 751, Loss: 0.9441
+Epoch 752/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.922]
+Epoch 752, Loss: 0.9456
+Epoch 753/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.951]
+Epoch 753, Loss: 0.9526
+Epoch 754/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.953]
+Epoch 754, Loss: 0.9512
+Epoch 755/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.941]
+Epoch 755, Loss: 0.9481
+Epoch 756/1500: 100% 16/16 [00:08<00:00,  1.92batch/s, loss=0.956]
+Epoch 756, Loss: 0.9464
+Epoch 757/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.955]
+Epoch 757, Loss: 0.9506
+Epoch 758/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.957]
+Epoch 758, Loss: 0.9467
+Epoch 759/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.942]
+Epoch 759, Loss: 0.9444
+Epoch 760/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.97] 
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c997d94e90>
+Epoch 760, Loss: 0.9542
+Epoch 761/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.948]
+Epoch 761, Loss: 0.9479
+Epoch 762/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.969]
+Epoch 762, Loss: 0.9470
+Epoch 763/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.969]
+Epoch 763, Loss: 0.9485
+Epoch 764/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.963]
+Epoch 764, Loss: 0.9476
+Epoch 765/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.936]
+Epoch 765, Loss: 0.9525
+Epoch 766/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.96] 
+Epoch 766, Loss: 0.9539
+Epoch 767/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.954]
+Epoch 767, Loss: 0.9510
+Epoch 768/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.973]
+Epoch 768, Loss: 0.9477
+Epoch 769/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.953]
+Epoch 769, Loss: 0.9539
+Epoch 770/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.976]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c9882856d0>
+Epoch 770, Loss: 0.9542
+Epoch 771/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.971]
+Epoch 771, Loss: 0.9550
+Epoch 772/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.964]
+Epoch 772, Loss: 0.9440
+Epoch 773/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.956]
+Epoch 773, Loss: 0.9485
+Epoch 774/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.941]
+Epoch 774, Loss: 0.9491
+Epoch 775/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.957]
+Epoch 775, Loss: 0.9466
+Epoch 776/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.958]
+Epoch 776, Loss: 0.9533
+Epoch 777/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.982]
+Epoch 777, Loss: 0.9500
+Epoch 778/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.975]
+Epoch 778, Loss: 0.9561
+Epoch 779/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.95] 
+Epoch 779, Loss: 0.9448
+Epoch 780/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.969]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c99c131510>
+Epoch 780, Loss: 0.9521
+Epoch 781/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.993]
+Epoch 781, Loss: 0.9520
+Epoch 782/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.952]
+Epoch 782, Loss: 0.9524
+Epoch 783/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.978]
+Epoch 783, Loss: 0.9493
+Epoch 784/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.981]
+Epoch 784, Loss: 0.9520
+Epoch 785/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.96] 
+Epoch 785, Loss: 0.9529
+Epoch 786/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.935]
+Epoch 786, Loss: 0.9481
+Epoch 787/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.956]
+Epoch 787, Loss: 0.9502
+Epoch 788/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.977]
+Epoch 788, Loss: 0.9458
+Epoch 789/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.944]
+Epoch 789, Loss: 0.9461
+Epoch 790/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.928]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c99788b550>
+Epoch 790, Loss: 0.9484
+Epoch 791/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.949]
+Epoch 791, Loss: 0.9513
+Epoch 792/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.982]
+Epoch 792, Loss: 0.9558
+Epoch 793/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.971]
+Epoch 793, Loss: 0.9518
+Epoch 794/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.975]
+Epoch 794, Loss: 0.9535
+Epoch 795/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.955]
+Epoch 795, Loss: 0.9511
+Epoch 796/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.943]
+Epoch 796, Loss: 0.9408
+Epoch 797/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.96] 
+Epoch 797, Loss: 0.9470
+Epoch 798/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.938]
+Epoch 798, Loss: 0.9513
+Epoch 799/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.959]
+Epoch 799, Loss: 0.9478
+Epoch 800/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.961]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c99c3c3550>
+Epoch 800, Loss: 0.9470
+Epoch 801/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.96] 
+Epoch 801, Loss: 0.9501
+Epoch 802/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.956]
+Epoch 802, Loss: 0.9493
+Epoch 803/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.955]
+Epoch 803, Loss: 0.9574
+Epoch 804/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.984]
+Epoch 804, Loss: 0.9508
+Epoch 805/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.988]
+Epoch 805, Loss: 0.9512
+Epoch 806/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.943]
+Epoch 806, Loss: 0.9435
+Epoch 807/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.936]
+Epoch 807, Loss: 0.9438
+Epoch 808/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.964]
+Epoch 808, Loss: 0.9523
+Epoch 809/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.956]
+Epoch 809, Loss: 0.9464
+Epoch 810/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.955]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c998fc5010>
+Epoch 810, Loss: 0.9464
+Epoch 811/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.971]
+Epoch 811, Loss: 0.9499
+Epoch 812/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.952]
+Epoch 812, Loss: 0.9463
+Epoch 813/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.952]
+Epoch 813, Loss: 0.9488
+Epoch 814/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.969]
+Epoch 814, Loss: 0.9527
+Epoch 815/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.964]
+Epoch 815, Loss: 0.9499
+Epoch 816/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.948]
+Epoch 816, Loss: 0.9477
+Epoch 817/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.953]
+Epoch 817, Loss: 0.9416
+Epoch 818/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.945]
+Epoch 818, Loss: 0.9456
+Epoch 819/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.948]
+Epoch 819, Loss: 0.9419
+Epoch 820/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.959]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c998f93550>
+Epoch 820, Loss: 0.9502
+Epoch 821/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.946]
+Epoch 821, Loss: 0.9476
+Epoch 822/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.95] 
+Epoch 822, Loss: 0.9431
+Epoch 823/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.986]
+Epoch 823, Loss: 0.9479
+Epoch 824/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.943]
+Epoch 824, Loss: 0.9438
+Epoch 825/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.986]
+Epoch 825, Loss: 0.9485
+Epoch 826/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.941]
+Epoch 826, Loss: 0.9463
+Epoch 827/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.971]
+Epoch 827, Loss: 0.9510
+Epoch 828/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.94] 
+Epoch 828, Loss: 0.9469
+Epoch 829/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.968]
+Epoch 829, Loss: 0.9513
+Epoch 830/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.988]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c997c22cd0>
+Epoch 830, Loss: 0.9552
+Epoch 831/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.95] 
+Epoch 831, Loss: 0.9463
+Epoch 832/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.984]
+Epoch 832, Loss: 0.9490
+Epoch 833/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.98] 
+Epoch 833, Loss: 0.9542
+Epoch 834/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.986]
+Epoch 834, Loss: 0.9603
+Epoch 835/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=1.01] 
+Epoch 835, Loss: 0.9572
+Epoch 836/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.971]
+Epoch 836, Loss: 0.9511
+Epoch 837/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.979]
+Epoch 837, Loss: 0.9548
+Epoch 838/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.971]
+Epoch 838, Loss: 0.9517
+Epoch 839/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.947]
+Epoch 839, Loss: 0.9481
+Epoch 840/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.98] 
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c997d76010>
+Epoch 840, Loss: 0.9549
+Epoch 841/1500: 100% 16/16 [00:08<00:00,  1.93batch/s, loss=0.946]
+Epoch 841, Loss: 0.9484
+Epoch 842/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.965]
+Epoch 842, Loss: 0.9490
+Epoch 843/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.971]
+Epoch 843, Loss: 0.9473
+Epoch 844/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.964]
+Epoch 844, Loss: 0.9416
+Epoch 845/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.97] 
+Epoch 845, Loss: 0.9492
+Epoch 846/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.942]
+Epoch 846, Loss: 0.9489
+Epoch 847/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.986]
+Epoch 847, Loss: 0.9464
+Epoch 848/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.937]
+Epoch 848, Loss: 0.9525
+Epoch 849/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.978]
+Epoch 849, Loss: 0.9525
+Epoch 850/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.948]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c980b0d6d0>
+Epoch 850, Loss: 0.9481
+Epoch 851/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.938]
+Epoch 851, Loss: 0.9433
+Epoch 852/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.96] 
+Epoch 852, Loss: 0.9481
+Epoch 853/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.947]
+Epoch 853, Loss: 0.9406
+Epoch 854/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.965]
+Epoch 854, Loss: 0.9436
+Epoch 855/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.934]
+Epoch 855, Loss: 0.9507
+Epoch 856/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.962]
+Epoch 856, Loss: 0.9493
+Epoch 857/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.97] 
+Epoch 857, Loss: 0.9475
+Epoch 858/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.972]
+Epoch 858, Loss: 0.9424
+Epoch 859/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.972]
+Epoch 859, Loss: 0.9475
+Epoch 860/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.935]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c997c22810>
+Epoch 860, Loss: 0.9477
+Epoch 861/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.941]
+Epoch 861, Loss: 0.9386
+Epoch 862/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.964]
+Epoch 862, Loss: 0.9467
+Epoch 863/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.972]
+Epoch 863, Loss: 0.9468
+Epoch 864/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.986]
+Epoch 864, Loss: 0.9473
+Epoch 865/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.945]
+Epoch 865, Loss: 0.9448
+Epoch 866/1500: 100% 16/16 [00:08<00:00,  1.92batch/s, loss=0.976]
+Epoch 866, Loss: 0.9499
+Epoch 867/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.966]
+Epoch 867, Loss: 0.9476
+Epoch 868/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.943]
+Epoch 868, Loss: 0.9495
+Epoch 869/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.947]
+Epoch 869, Loss: 0.9509
+Epoch 870/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.946]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c9882364d0>
+Epoch 870, Loss: 0.9465
+Epoch 871/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.964]
+Epoch 871, Loss: 0.9563
+Epoch 872/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.95] 
+Epoch 872, Loss: 0.9433
+Epoch 873/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.956]
+Epoch 873, Loss: 0.9485
+Epoch 874/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.955]
+Epoch 874, Loss: 0.9462
+Epoch 875/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.925]
+Epoch 875, Loss: 0.9437
+Epoch 876/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.94] 
+Epoch 876, Loss: 0.9487
+Epoch 877/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.943]
+Epoch 877, Loss: 0.9478
+Epoch 878/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.941]
+Epoch 878, Loss: 0.9516
+Epoch 879/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.96] 
+Epoch 879, Loss: 0.9462
+Epoch 880/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.955]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c9978f4d10>
+Epoch 880, Loss: 0.9523
+Epoch 881/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.966]
+Epoch 881, Loss: 0.9446
+Epoch 882/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.948]
+Epoch 882, Loss: 0.9409
+Epoch 883/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.93] 
+Epoch 883, Loss: 0.9451
+Epoch 884/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.917]
+Epoch 884, Loss: 0.9472
+Epoch 885/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.971]
+Epoch 885, Loss: 0.9533
+Epoch 886/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.948]
+Epoch 886, Loss: 0.9374
+Epoch 887/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.951]
+Epoch 887, Loss: 0.9487
+Epoch 888/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.956]
+Epoch 888, Loss: 0.9455
+Epoch 889/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.925]
+Epoch 889, Loss: 0.9439
+Epoch 890/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.963]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c988752ad0>
+Epoch 890, Loss: 0.9489
+Epoch 891/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.961]
+Epoch 891, Loss: 0.9438
+Epoch 892/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.937]
+Epoch 892, Loss: 0.9450
+Epoch 893/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.938]
+Epoch 893, Loss: 0.9437
+Epoch 894/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.928]
+Epoch 894, Loss: 0.9429
+Epoch 895/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.963]
+Epoch 895, Loss: 0.9471
+Epoch 896/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.955]
+Epoch 896, Loss: 0.9450
+Epoch 897/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.968]
+Epoch 897, Loss: 0.9435
+Epoch 898/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.983]
+Epoch 898, Loss: 0.9511
+Epoch 899/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.929]
+Epoch 899, Loss: 0.9475
+Epoch 900/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.973]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c997943550>
+Epoch 900, Loss: 0.9500
+Epoch 901/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.964]
+Epoch 901, Loss: 0.9461
+Epoch 902/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.956]
+Epoch 902, Loss: 0.9431
+Epoch 903/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.972]
+Epoch 903, Loss: 0.9478
+Epoch 904/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.932]
+Epoch 904, Loss: 0.9477
+Epoch 905/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.946]
+Epoch 905, Loss: 0.9491
+Epoch 906/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.972]
+Epoch 906, Loss: 0.9437
+Epoch 907/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.928]
+Epoch 907, Loss: 0.9419
+Epoch 908/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.966]
+Epoch 908, Loss: 0.9467
+Epoch 909/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.971]
+Epoch 909, Loss: 0.9438
+Epoch 910/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.92] 
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c988587010>
+Epoch 910, Loss: 0.9460
+Epoch 911/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.927]
+Epoch 911, Loss: 0.9374
+Epoch 912/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.996]
+Epoch 912, Loss: 0.9484
+Epoch 913/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.949]
+Epoch 913, Loss: 0.9486
+Epoch 914/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.966]
+Epoch 914, Loss: 0.9474
+Epoch 915/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.97] 
+Epoch 915, Loss: 0.9430
+Epoch 916/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.95] 
+Epoch 916, Loss: 0.9416
+Epoch 917/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.964]
+Epoch 917, Loss: 0.9471
+Epoch 918/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.958]
+Epoch 918, Loss: 0.9424
+Epoch 919/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.951]
+Epoch 919, Loss: 0.9414
+Epoch 920/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.952]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c9884c3550>
+Epoch 920, Loss: 0.9477
+Epoch 921/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.961]
+Epoch 921, Loss: 0.9455
+Epoch 922/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.962]
+Epoch 922, Loss: 0.9455
+Epoch 923/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.957]
+Epoch 923, Loss: 0.9432
+Epoch 924/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.969]
+Epoch 924, Loss: 0.9442
+Epoch 925/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.964]
+Epoch 925, Loss: 0.9499
+Epoch 926/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.955]
+Epoch 926, Loss: 0.9495
+Epoch 927/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.958]
+Epoch 927, Loss: 0.9512
+Epoch 928/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.932]
+Epoch 928, Loss: 0.9417
+Epoch 929/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.971]
+Epoch 929, Loss: 0.9487
+Epoch 930/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.941]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c997b9b550>
+Epoch 930, Loss: 0.9438
+Epoch 931/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.953]
+Epoch 931, Loss: 0.9467
+Epoch 932/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.919]
+Epoch 932, Loss: 0.9447
+Epoch 933/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.937]
+Epoch 933, Loss: 0.9435
+Epoch 934/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.967]
+Epoch 934, Loss: 0.9492
+Epoch 935/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.972]
+Epoch 935, Loss: 0.9473
+Epoch 936/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.942]
+Epoch 936, Loss: 0.9470
+Epoch 937/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.948]
+Epoch 937, Loss: 0.9465
+Epoch 938/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.936]
+Epoch 938, Loss: 0.9411
+Epoch 939/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.948]
+Epoch 939, Loss: 0.9423
+Epoch 940/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.966]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c99c233550>
+Epoch 940, Loss: 0.9441
+Epoch 941/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.943]
+Epoch 941, Loss: 0.9453
+Epoch 942/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.97] 
+Epoch 942, Loss: 0.9503
+Epoch 943/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.953]
+Epoch 943, Loss: 0.9456
+Epoch 944/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.962]
+Epoch 944, Loss: 0.9466
+Epoch 945/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.949]
+Epoch 945, Loss: 0.9503
+Epoch 946/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.954]
+Epoch 946, Loss: 0.9484
+Epoch 947/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.939]
+Epoch 947, Loss: 0.9456
+Epoch 948/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.968]
+Epoch 948, Loss: 0.9367
+Epoch 949/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.954]
+Epoch 949, Loss: 0.9462
+Epoch 950/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.98] 
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c997d97250>
+Epoch 950, Loss: 0.9420
+Epoch 951/1500: 100% 16/16 [00:08<00:00,  1.92batch/s, loss=0.975]
+Epoch 951, Loss: 0.9495
+Epoch 952/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.956]
+Epoch 952, Loss: 0.9450
+Epoch 953/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.966]
+Epoch 953, Loss: 0.9450
+Epoch 954/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.974]
+Epoch 954, Loss: 0.9462
+Epoch 955/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.93] 
+Epoch 955, Loss: 0.9466
+Epoch 956/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.958]
+Epoch 956, Loss: 0.9470
+Epoch 957/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.941]
+Epoch 957, Loss: 0.9456
+Epoch 958/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.92] 
+Epoch 958, Loss: 0.9423
+Epoch 959/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.934]
+Epoch 959, Loss: 0.9387
+Epoch 960/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.935]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c9997c8cd0>
+Epoch 960, Loss: 0.9404
+Epoch 961/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.958]
+Epoch 961, Loss: 0.9430
+Epoch 962/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.931]
+Epoch 962, Loss: 0.9392
+Epoch 963/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.969]
+Epoch 963, Loss: 0.9473
+Epoch 964/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.955]
+Epoch 964, Loss: 0.9497
+Epoch 965/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.928]
+Epoch 965, Loss: 0.9412
+Epoch 966/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.923]
+Epoch 966, Loss: 0.9451
+Epoch 967/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.966]
+Epoch 967, Loss: 0.9446
+Epoch 968/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.936]
+Epoch 968, Loss: 0.9464
+Epoch 969/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.976]
+Epoch 969, Loss: 0.9428
+Epoch 970/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.934]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c988283550>
+Epoch 970, Loss: 0.9448
+Epoch 971/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.961]
+Epoch 971, Loss: 0.9486
+Epoch 972/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.943]
+Epoch 972, Loss: 0.9479
+Epoch 973/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.966]
+Epoch 973, Loss: 0.9466
+Epoch 974/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.957]
+Epoch 974, Loss: 0.9423
+Epoch 975/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.93] 
+Epoch 975, Loss: 0.9428
+Epoch 976/1500: 100% 16/16 [00:08<00:00,  1.92batch/s, loss=0.945]
+Epoch 976, Loss: 0.9453
+Epoch 977/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.926]
+Epoch 977, Loss: 0.9424
+Epoch 978/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.944]
+Epoch 978, Loss: 0.9416
+Epoch 979/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.953]
+Epoch 979, Loss: 0.9441
+Epoch 980/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.939]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c99413b550>
+Epoch 980, Loss: 0.9445
+Epoch 981/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.937]
+Epoch 981, Loss: 0.9440
+Epoch 982/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.949]
+Epoch 982, Loss: 0.9455
+Epoch 983/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.937]
+Epoch 983, Loss: 0.9396
+Epoch 984/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.931]
+Epoch 984, Loss: 0.9386
+Epoch 985/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.939]
+Epoch 985, Loss: 0.9437
+Epoch 986/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.972]
+Epoch 986, Loss: 0.9396
+Epoch 987/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.969]
+Epoch 987, Loss: 0.9456
+Epoch 988/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.945]
+Epoch 988, Loss: 0.9432
+Epoch 989/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.95] 
+Epoch 989, Loss: 0.9386
+Epoch 990/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.953]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c9882cb550>
+Epoch 990, Loss: 0.9475
+Epoch 991/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.935]
+Epoch 991, Loss: 0.9448
+Epoch 992/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.932]
+Epoch 992, Loss: 0.9404
+Epoch 993/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.935]
+Epoch 993, Loss: 0.9425
+Epoch 994/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.936]
+Epoch 994, Loss: 0.9361
+Epoch 995/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.955]
+Epoch 995, Loss: 0.9399
+Epoch 996/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.968]
+Epoch 996, Loss: 0.9456
+Epoch 997/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.972]
+Epoch 997, Loss: 0.9484
+Epoch 998/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.945]
+Epoch 998, Loss: 0.9454
+Epoch 999/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.938]
+Epoch 999, Loss: 0.9452
+Epoch 1000/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.978]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c995ee78d0>
+Epoch 1000, Loss: 0.9441
+Epoch 1001/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.952]
+Epoch 1001, Loss: 0.9457
+Epoch 1002/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.964]
+Epoch 1002, Loss: 0.9435
+Epoch 1003/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.985]
+Epoch 1003, Loss: 0.9459
+Epoch 1004/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.936]
+Epoch 1004, Loss: 0.9445
+Epoch 1005/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.941]
+Epoch 1005, Loss: 0.9510
+Epoch 1006/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.953]
+Epoch 1006, Loss: 0.9458
+Epoch 1007/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.929]
+Epoch 1007, Loss: 0.9413
+Epoch 1008/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.954]
+Epoch 1008, Loss: 0.9447
+Epoch 1009/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.952]
+Epoch 1009, Loss: 0.9463
+Epoch 1010/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.952]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c9978cea90>
+Epoch 1010, Loss: 0.9451
+Epoch 1011/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.929]
+Epoch 1011, Loss: 0.9483
+Epoch 1012/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.947]
+Epoch 1012, Loss: 0.9411
+Epoch 1013/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.965]
+Epoch 1013, Loss: 0.9451
+Epoch 1014/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.957]
+Epoch 1014, Loss: 0.9443
+Epoch 1015/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.959]
+Epoch 1015, Loss: 0.9421
+Epoch 1016/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.951]
+Epoch 1016, Loss: 0.9454
+Epoch 1017/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.956]
+Epoch 1017, Loss: 0.9468
+Epoch 1018/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.95] 
+Epoch 1018, Loss: 0.9491
+Epoch 1019/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.962]
+Epoch 1019, Loss: 0.9495
+Epoch 1020/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.959]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c99c1234d0>
+Epoch 1020, Loss: 0.9448
+Epoch 1021/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.95] 
+Epoch 1021, Loss: 0.9469
+Epoch 1022/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.915]
+Epoch 1022, Loss: 0.9391
+Epoch 1023/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.94] 
+Epoch 1023, Loss: 0.9447
+Epoch 1024/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.957]
+Epoch 1024, Loss: 0.9457
+Epoch 1025/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.958]
+Epoch 1025, Loss: 0.9443
+Epoch 1026/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.957]
+Epoch 1026, Loss: 0.9393
+Epoch 1027/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.964]
+Epoch 1027, Loss: 0.9400
+Epoch 1028/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.966]
+Epoch 1028, Loss: 0.9398
+Epoch 1029/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.928]
+Epoch 1029, Loss: 0.9418
+Epoch 1030/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.965]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c997a056d0>
+Epoch 1030, Loss: 0.9451
+Epoch 1031/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.967]
+Epoch 1031, Loss: 0.9430
+Epoch 1032/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.98] 
+Epoch 1032, Loss: 0.9437
+Epoch 1033/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.994]
+Epoch 1033, Loss: 0.9461
+Epoch 1034/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.979]
+Epoch 1034, Loss: 0.9526
+Epoch 1035/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.956]
+Epoch 1035, Loss: 0.9438
+Epoch 1036/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.949]
+Epoch 1036, Loss: 0.9448
+Epoch 1037/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=1.01] 
+Epoch 1037, Loss: 0.9511
+Epoch 1038/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.951]
+Epoch 1038, Loss: 0.9376
+Epoch 1039/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.968]
+Epoch 1039, Loss: 0.9488
+Epoch 1040/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.934]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c9887b56d0>
+Epoch 1040, Loss: 0.9444
+Epoch 1041/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.921]
+Epoch 1041, Loss: 0.9431
+Epoch 1042/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.971]
+Epoch 1042, Loss: 0.9437
+Epoch 1043/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.968]
+Epoch 1043, Loss: 0.9454
+Epoch 1044/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.968]
+Epoch 1044, Loss: 0.9460
+Epoch 1045/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.933]
+Epoch 1045, Loss: 0.9446
+Epoch 1046/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.932]
+Epoch 1046, Loss: 0.9519
+Epoch 1047/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.945]
+Epoch 1047, Loss: 0.9385
+Epoch 1048/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.941]
+Epoch 1048, Loss: 0.9389
+Epoch 1049/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.953]
+Epoch 1049, Loss: 0.9474
+Epoch 1050/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.926]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c9884156d0>
+Epoch 1050, Loss: 0.9432
+Epoch 1051/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.972]
+Epoch 1051, Loss: 0.9488
+Epoch 1052/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.968]
+Epoch 1052, Loss: 0.9468
+Epoch 1053/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.948]
+Epoch 1053, Loss: 0.9415
+Epoch 1054/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.93] 
+Epoch 1054, Loss: 0.9414
+Epoch 1055/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.966]
+Epoch 1055, Loss: 0.9419
+Epoch 1056/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.941]
+Epoch 1056, Loss: 0.9462
+Epoch 1057/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.951]
+Epoch 1057, Loss: 0.9472
+Epoch 1058/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.946]
+Epoch 1058, Loss: 0.9423
+Epoch 1059/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.967]
+Epoch 1059, Loss: 0.9493
+Epoch 1060/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.949]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c99798ff90>
+Epoch 1060, Loss: 0.9417
+Epoch 1061/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.971]
+Epoch 1061, Loss: 0.9464
+Epoch 1062/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.965]
+Epoch 1062, Loss: 0.9444
+Epoch 1063/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.963]
+Epoch 1063, Loss: 0.9444
+Epoch 1064/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.961]
+Epoch 1064, Loss: 0.9397
+Epoch 1065/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.971]
+Epoch 1065, Loss: 0.9437
+Epoch 1066/1500: 100% 16/16 [00:08<00:00,  1.91batch/s, loss=0.946]
+Epoch 1066, Loss: 0.9481
+Epoch 1067/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.926]
+Epoch 1067, Loss: 0.9373
+Epoch 1068/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.931]
+Epoch 1068, Loss: 0.9408
+Epoch 1069/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.927]
+Epoch 1069, Loss: 0.9421
+Epoch 1070/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.921]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c999713550>
+Epoch 1070, Loss: 0.9396
+Epoch 1071/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.937]
+Epoch 1071, Loss: 0.9397
+Epoch 1072/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.967]
+Epoch 1072, Loss: 0.9433
+Epoch 1073/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.96] 
+Epoch 1073, Loss: 0.9470
+Epoch 1074/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.951]
+Epoch 1074, Loss: 0.9425
+Epoch 1075/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.932]
+Epoch 1075, Loss: 0.9428
+Epoch 1076/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.95] 
+Epoch 1076, Loss: 0.9410
+Epoch 1077/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.974]
+Epoch 1077, Loss: 0.9425
+Epoch 1078/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.957]
+Epoch 1078, Loss: 0.9444
+Epoch 1079/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.962]
+Epoch 1079, Loss: 0.9407
+Epoch 1080/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.914]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c997953550>
+Epoch 1080, Loss: 0.9377
+Epoch 1081/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.944]
+Epoch 1081, Loss: 0.9501
+Epoch 1082/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.952]
+Epoch 1082, Loss: 0.9474
+Epoch 1083/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.925]
+Epoch 1083, Loss: 0.9405
+Epoch 1084/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.962]
+Epoch 1084, Loss: 0.9412
+Epoch 1085/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.919]
+Epoch 1085, Loss: 0.9366
+Epoch 1086/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.961]
+Epoch 1086, Loss: 0.9440
+Epoch 1087/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.976]
+Epoch 1087, Loss: 0.9479
+Epoch 1088/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.952]
+Epoch 1088, Loss: 0.9437
+Epoch 1089/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.96] 
+Epoch 1089, Loss: 0.9483
+Epoch 1090/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.942]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c99790d6d0>
+Epoch 1090, Loss: 0.9404
+Epoch 1091/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.953]
+Epoch 1091, Loss: 0.9440
+Epoch 1092/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.941]
+Epoch 1092, Loss: 0.9360
+Epoch 1093/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.945]
+Epoch 1093, Loss: 0.9437
+Epoch 1094/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.949]
+Epoch 1094, Loss: 0.9446
+Epoch 1095/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.959]
+Epoch 1095, Loss: 0.9434
+Epoch 1096/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.908]
+Epoch 1096, Loss: 0.9351
+Epoch 1097/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.933]
+Epoch 1097, Loss: 0.9421
+Epoch 1098/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.971]
+Epoch 1098, Loss: 0.9425
+Epoch 1099/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.954]
+Epoch 1099, Loss: 0.9389
+Epoch 1100/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.929]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c997c0b550>
+Epoch 1100, Loss: 0.9425
+Epoch 1101/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.938]
+Epoch 1101, Loss: 0.9422
+Epoch 1102/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.957]
+Epoch 1102, Loss: 0.9434
+Epoch 1103/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.954]
+Epoch 1103, Loss: 0.9383
+Epoch 1104/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.946]
+Epoch 1104, Loss: 0.9422
+Epoch 1105/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.979]
+Epoch 1105, Loss: 0.9464
+Epoch 1106/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.961]
+Epoch 1106, Loss: 0.9468
+Epoch 1107/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.945]
+Epoch 1107, Loss: 0.9410
+Epoch 1108/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.945]
+Epoch 1108, Loss: 0.9420
+Epoch 1109/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.963]
+Epoch 1109, Loss: 0.9488
+Epoch 1110/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.953]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c98877d6d0>
+Epoch 1110, Loss: 0.9422
+Epoch 1111/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.923]
+Epoch 1111, Loss: 0.9409
+Epoch 1112/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.975]
+Epoch 1112, Loss: 0.9435
+Epoch 1113/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.935]
+Epoch 1113, Loss: 0.9421
+Epoch 1114/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.941]
+Epoch 1114, Loss: 0.9395
+Epoch 1115/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.96] 
+Epoch 1115, Loss: 0.9393
+Epoch 1116/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.964]
+Epoch 1116, Loss: 0.9438
+Epoch 1117/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=1]    
+Epoch 1117, Loss: 0.9471
+Epoch 1118/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.944]
+Epoch 1118, Loss: 0.9464
+Epoch 1119/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.952]
+Epoch 1119, Loss: 0.9456
+Epoch 1120/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.941]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c998ead650>
+Epoch 1120, Loss: 0.9417
+Epoch 1121/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.955]
+Epoch 1121, Loss: 0.9419
+Epoch 1122/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.939]
+Epoch 1122, Loss: 0.9415
+Epoch 1123/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.947]
+Epoch 1123, Loss: 0.9354
+Epoch 1124/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.951]
+Epoch 1124, Loss: 0.9460
+Epoch 1125/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.985]
+Epoch 1125, Loss: 0.9429
+Epoch 1126/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.935]
+Epoch 1126, Loss: 0.9374
+Epoch 1127/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.975]
+Epoch 1127, Loss: 0.9479
+Epoch 1128/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.973]
+Epoch 1128, Loss: 0.9472
+Epoch 1129/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.93] 
+Epoch 1129, Loss: 0.9441
+Epoch 1130/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.967]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c9979bd6d0>
+Epoch 1130, Loss: 0.9408
+Epoch 1131/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.949]
+Epoch 1131, Loss: 0.9419
+Epoch 1132/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.938]
+Epoch 1132, Loss: 0.9447
+Epoch 1133/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.946]
+Epoch 1133, Loss: 0.9449
+Epoch 1134/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.92] 
+Epoch 1134, Loss: 0.9419
+Epoch 1135/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.968]
+Epoch 1135, Loss: 0.9386
+Epoch 1136/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.957]
+Epoch 1136, Loss: 0.9417
+Epoch 1137/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.947]
+Epoch 1137, Loss: 0.9378
+Epoch 1138/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.943]
+Epoch 1138, Loss: 0.9402
+Epoch 1139/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.939]
+Epoch 1139, Loss: 0.9392
+Epoch 1140/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.931]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c9886e5450>
+Epoch 1140, Loss: 0.9409
+Epoch 1141/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.974]
+Epoch 1141, Loss: 0.9448
+Epoch 1142/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.949]
+Epoch 1142, Loss: 0.9418
+Epoch 1143/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.982]
+Epoch 1143, Loss: 0.9464
+Epoch 1144/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.933]
+Epoch 1144, Loss: 0.9412
+Epoch 1145/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.949]
+Epoch 1145, Loss: 0.9404
+Epoch 1146/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.957]
+Epoch 1146, Loss: 0.9419
+Epoch 1147/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.958]
+Epoch 1147, Loss: 0.9449
+Epoch 1148/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.931]
+Epoch 1148, Loss: 0.9379
+Epoch 1149/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.964]
+Epoch 1149, Loss: 0.9433
+Epoch 1150/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.927]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c9881a56d0>
+Epoch 1150, Loss: 0.9497
+Epoch 1151/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.941]
+Epoch 1151, Loss: 0.9375
+Epoch 1152/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.981]
+Epoch 1152, Loss: 0.9441
+Epoch 1153/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.959]
+Epoch 1153, Loss: 0.9407
+Epoch 1154/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.951]
+Epoch 1154, Loss: 0.9365
+Epoch 1155/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.974]
+Epoch 1155, Loss: 0.9417
+Epoch 1156/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.954]
+Epoch 1156, Loss: 0.9414
+Epoch 1157/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.936]
+Epoch 1157, Loss: 0.9416
+Epoch 1158/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.967]
+Epoch 1158, Loss: 0.9369
+Epoch 1159/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.955]
+Epoch 1159, Loss: 0.9443
+Epoch 1160/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.931]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c99c220e90>
+Epoch 1160, Loss: 0.9396
+Epoch 1161/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.932]
+Epoch 1161, Loss: 0.9453
+Epoch 1162/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.991]
+Epoch 1162, Loss: 0.9439
+Epoch 1163/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.956]
+Epoch 1163, Loss: 0.9435
+Epoch 1164/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.977]
+Epoch 1164, Loss: 0.9452
+Epoch 1165/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.959]
+Epoch 1165, Loss: 0.9440
+Epoch 1166/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.954]
+Epoch 1166, Loss: 0.9395
+Epoch 1167/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.951]
+Epoch 1167, Loss: 0.9411
+Epoch 1168/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.943]
+Epoch 1168, Loss: 0.9395
+Epoch 1169/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.966]
+Epoch 1169, Loss: 0.9486
+Epoch 1170/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.954]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c99973d6d0>
+Epoch 1170, Loss: 0.9399
+Epoch 1171/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.966]
+Epoch 1171, Loss: 0.9448
+Epoch 1172/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.926]
+Epoch 1172, Loss: 0.9429
+Epoch 1173/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.968]
+Epoch 1173, Loss: 0.9448
+Epoch 1174/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.951]
+Epoch 1174, Loss: 0.9423
+Epoch 1175/1500: 100% 16/16 [00:08<00:00,  1.94batch/s, loss=0.962]
+Epoch 1175, Loss: 0.9414
+Epoch 1176/1500: 100% 16/16 [00:08<00:00,  1.94batch/s, loss=0.96] 
+Epoch 1176, Loss: 0.9431
+Epoch 1177/1500: 100% 16/16 [00:08<00:00,  1.94batch/s, loss=0.967]
+Epoch 1177, Loss: 0.9416
+Epoch 1178/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.969]
+Epoch 1178, Loss: 0.9432
+Epoch 1179/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.967]
+Epoch 1179, Loss: 0.9411
+Epoch 1180/1500: 100% 16/16 [00:08<00:00,  1.93batch/s, loss=0.959]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c995e53f90>
+Epoch 1180, Loss: 0.9379
+Epoch 1181/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.929]
+Epoch 1181, Loss: 0.9350
+Epoch 1182/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.935]
+Epoch 1182, Loss: 0.9350
+Epoch 1183/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.954]
+Epoch 1183, Loss: 0.9461
+Epoch 1184/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.98] 
+Epoch 1184, Loss: 0.9435
+Epoch 1185/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.923]
+Epoch 1185, Loss: 0.9385
+Epoch 1186/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.914]
+Epoch 1186, Loss: 0.9391
+Epoch 1187/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.972]
+Epoch 1187, Loss: 0.9452
+Epoch 1188/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.949]
+Epoch 1188, Loss: 0.9409
+Epoch 1189/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.965]
+Epoch 1189, Loss: 0.9413
+Epoch 1190/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.953]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79ca99983550>
+Epoch 1190, Loss: 0.9395
+Epoch 1191/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.952]
+Epoch 1191, Loss: 0.9364
+Epoch 1192/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.956]
+Epoch 1192, Loss: 0.9383
+Epoch 1193/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.954]
+Epoch 1193, Loss: 0.9440
+Epoch 1194/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.937]
+Epoch 1194, Loss: 0.9402
+Epoch 1195/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.932]
+Epoch 1195, Loss: 0.9414
+Epoch 1196/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.966]
+Epoch 1196, Loss: 0.9459
+Epoch 1197/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.96] 
+Epoch 1197, Loss: 0.9430
+Epoch 1198/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.976]
+Epoch 1198, Loss: 0.9433
+Epoch 1199/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.944]
+Epoch 1199, Loss: 0.9443
+Epoch 1200/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.929]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c99780b550>
+Epoch 1200, Loss: 0.9415
+Epoch 1201/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.909]
+Epoch 1201, Loss: 0.9404
+Epoch 1202/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.938]
+Epoch 1202, Loss: 0.9412
+Epoch 1203/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.943]
+Epoch 1203, Loss: 0.9489
+Epoch 1204/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.943]
+Epoch 1204, Loss: 0.9382
+Epoch 1205/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.933]
+Epoch 1205, Loss: 0.9418
+Epoch 1206/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.971]
+Epoch 1206, Loss: 0.9425
+Epoch 1207/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.922]
+Epoch 1207, Loss: 0.9386
+Epoch 1208/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.987]
+Epoch 1208, Loss: 0.9413
+Epoch 1209/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.97] 
+Epoch 1209, Loss: 0.9414
+Epoch 1210/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.921]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c98876b550>
+Epoch 1210, Loss: 0.9380
+Epoch 1211/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.959]
+Epoch 1211, Loss: 0.9387
+Epoch 1212/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.935]
+Epoch 1212, Loss: 0.9409
+Epoch 1213/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.946]
+Epoch 1213, Loss: 0.9433
+Epoch 1214/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.913]
+Epoch 1214, Loss: 0.9410
+Epoch 1215/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.957]
+Epoch 1215, Loss: 0.9403
+Epoch 1216/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.971]
+Epoch 1216, Loss: 0.9416
+Epoch 1217/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.951]
+Epoch 1217, Loss: 0.9440
+Epoch 1218/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.968]
+Epoch 1218, Loss: 0.9352
+Epoch 1219/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.961]
+Epoch 1219, Loss: 0.9418
+Epoch 1220/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.947]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c98839c550>
+Epoch 1220, Loss: 0.9425
+Epoch 1221/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.947]
+Epoch 1221, Loss: 0.9380
+Epoch 1222/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.953]
+Epoch 1222, Loss: 0.9386
+Epoch 1223/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.921]
+Epoch 1223, Loss: 0.9351
+Epoch 1224/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=1.01] 
+Epoch 1224, Loss: 0.9454
+Epoch 1225/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.964]
+Epoch 1225, Loss: 0.9407
+Epoch 1226/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.951]
+Epoch 1226, Loss: 0.9390
+Epoch 1227/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.957]
+Epoch 1227, Loss: 0.9446
+Epoch 1228/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.97] 
+Epoch 1228, Loss: 0.9412
+Epoch 1229/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.962]
+Epoch 1229, Loss: 0.9465
+Epoch 1230/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.945]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c9886e7110>
+Epoch 1230, Loss: 0.9429
+Epoch 1231/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.92] 
+Epoch 1231, Loss: 0.9438
+Epoch 1232/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.964]
+Epoch 1232, Loss: 0.9415
+Epoch 1233/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.939]
+Epoch 1233, Loss: 0.9429
+Epoch 1234/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.952]
+Epoch 1234, Loss: 0.9434
+Epoch 1235/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.966]
+Epoch 1235, Loss: 0.9445
+Epoch 1236/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.94] 
+Epoch 1236, Loss: 0.9390
+Epoch 1237/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.939]
+Epoch 1237, Loss: 0.9393
+Epoch 1238/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.941]
+Epoch 1238, Loss: 0.9471
+Epoch 1239/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.94] 
+Epoch 1239, Loss: 0.9390
+Epoch 1240/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.944]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c98821b550>
+Epoch 1240, Loss: 0.9465
+Epoch 1241/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.938]
+Epoch 1241, Loss: 0.9381
+Epoch 1242/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.909]
+Epoch 1242, Loss: 0.9358
+Epoch 1243/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.934]
+Epoch 1243, Loss: 0.9357
+Epoch 1244/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.968]
+Epoch 1244, Loss: 0.9402
+Epoch 1245/1500: 100% 16/16 [00:08<00:00,  1.94batch/s, loss=0.941]
+Epoch 1245, Loss: 0.9372
+Epoch 1246/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.931]
+Epoch 1246, Loss: 0.9401
+Epoch 1247/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.955]
+Epoch 1247, Loss: 0.9396
+Epoch 1248/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.959]
+Epoch 1248, Loss: 0.9369
+Epoch 1249/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.949]
+Epoch 1249, Loss: 0.9413
+Epoch 1250/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.935]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c98837f390>
+Epoch 1250, Loss: 0.9370
+Epoch 1251/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.944]
+Epoch 1251, Loss: 0.9375
+Epoch 1252/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.933]
+Epoch 1252, Loss: 0.9373
+Epoch 1253/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.962]
+Epoch 1253, Loss: 0.9424
+Epoch 1254/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.946]
+Epoch 1254, Loss: 0.9435
+Epoch 1255/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.957]
+Epoch 1255, Loss: 0.9439
+Epoch 1256/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.94] 
+Epoch 1256, Loss: 0.9383
+Epoch 1257/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.944]
+Epoch 1257, Loss: 0.9353
+Epoch 1258/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.995]
+Epoch 1258, Loss: 0.9409
+Epoch 1259/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.921]
+Epoch 1259, Loss: 0.9449
+Epoch 1260/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.95] 
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c99c1956d0>
+Epoch 1260, Loss: 0.9383
+Epoch 1261/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.914]
+Epoch 1261, Loss: 0.9319
+Epoch 1262/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.958]
+Epoch 1262, Loss: 0.9373
+Epoch 1263/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.961]
+Epoch 1263, Loss: 0.9431
+Epoch 1264/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.932]
+Epoch 1264, Loss: 0.9355
+Epoch 1265/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.959]
+Epoch 1265, Loss: 0.9401
+Epoch 1266/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.996]
+Epoch 1266, Loss: 0.9412
+Epoch 1267/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.944]
+Epoch 1267, Loss: 0.9419
+Epoch 1268/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.944]
+Epoch 1268, Loss: 0.9352
+Epoch 1269/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.948]
+Epoch 1269, Loss: 0.9348
+Epoch 1270/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.95] 
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c99418d6d0>
+Epoch 1270, Loss: 0.9401
+Epoch 1271/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.954]
+Epoch 1271, Loss: 0.9357
+Epoch 1272/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.936]
+Epoch 1272, Loss: 0.9365
+Epoch 1273/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.937]
+Epoch 1273, Loss: 0.9354
+Epoch 1274/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.946]
+Epoch 1274, Loss: 0.9405
+Epoch 1275/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.965]
+Epoch 1275, Loss: 0.9386
+Epoch 1276/1500: 100% 16/16 [00:08<00:00,  2.00batch/s, loss=0.924]
+Epoch 1276, Loss: 0.9372
+Epoch 1277/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.947]
+Epoch 1277, Loss: 0.9488
+Epoch 1278/1500: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=0.957]
+Epoch 1278, Loss: 0.9339
+Epoch 1279/1500: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=0.945]
+Epoch 1279, Loss: 0.9401
+Epoch 1280/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.934]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c997952110>
+Epoch 1280, Loss: 0.9350
+Epoch 1281/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.949]
+Epoch 1281, Loss: 0.9320
+Epoch 1282/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.957]
+Epoch 1282, Loss: 0.9366
+Epoch 1283/1500: 100% 16/16 [00:08<00:00,  1.94batch/s, loss=0.928]
+Epoch 1283, Loss: 0.9392
+Epoch 1284/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.949]
+Epoch 1284, Loss: 0.9404
+Epoch 1285/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.933]
+Epoch 1285, Loss: 0.9392
+Epoch 1286/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.939]
+Epoch 1286, Loss: 0.9369
+Epoch 1287/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.945]
+Epoch 1287, Loss: 0.9397
+Epoch 1288/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.948]
+Epoch 1288, Loss: 0.9378
+Epoch 1289/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.936]
+Epoch 1289, Loss: 0.9385
+Epoch 1290/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.92] 
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c997d8b550>
+Epoch 1290, Loss: 0.9365
+Epoch 1291/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.952]
+Epoch 1291, Loss: 0.9354
+Epoch 1292/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.938]
+Epoch 1292, Loss: 0.9441
+Epoch 1293/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.924]
+Epoch 1293, Loss: 0.9352
+Epoch 1294/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.91] 
+Epoch 1294, Loss: 0.9377
+Epoch 1295/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.944]
+Epoch 1295, Loss: 0.9389
+Epoch 1296/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.99] 
+Epoch 1296, Loss: 0.9380
+Epoch 1297/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.942]
+Epoch 1297, Loss: 0.9388
+Epoch 1298/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.936]
+Epoch 1298, Loss: 0.9336
+Epoch 1299/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.958]
+Epoch 1299, Loss: 0.9420
+Epoch 1300/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.943]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c998ed39d0>
+Epoch 1300, Loss: 0.9373
+Epoch 1301/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.966]
+Epoch 1301, Loss: 0.9408
+Epoch 1302/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.952]
+Epoch 1302, Loss: 0.9429
+Epoch 1303/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.948]
+Epoch 1303, Loss: 0.9375
+Epoch 1304/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.915]
+Epoch 1304, Loss: 0.9389
+Epoch 1305/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.939]
+Epoch 1305, Loss: 0.9374
+Epoch 1306/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.982]
+Epoch 1306, Loss: 0.9388
+Epoch 1307/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.937]
+Epoch 1307, Loss: 0.9402
+Epoch 1308/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.978]
+Epoch 1308, Loss: 0.9404
+Epoch 1309/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.921]
+Epoch 1309, Loss: 0.9348
+Epoch 1310/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.958]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c988398410>
+Epoch 1310, Loss: 0.9400
+Epoch 1311/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.928]
+Epoch 1311, Loss: 0.9371
+Epoch 1312/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.948]
+Epoch 1312, Loss: 0.9413
+Epoch 1313/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.926]
+Epoch 1313, Loss: 0.9404
+Epoch 1314/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.961]
+Epoch 1314, Loss: 0.9413
+Epoch 1315/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.934]
+Epoch 1315, Loss: 0.9408
+Epoch 1316/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.959]
+Epoch 1316, Loss: 0.9384
+Epoch 1317/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.935]
+Epoch 1317, Loss: 0.9366
+Epoch 1318/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.951]
+Epoch 1318, Loss: 0.9314
+Epoch 1319/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.941]
+Epoch 1319, Loss: 0.9447
+Epoch 1320/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.923]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c9884ada90>
+Epoch 1320, Loss: 0.9390
+Epoch 1321/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.951]
+Epoch 1321, Loss: 0.9382
+Epoch 1322/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.976]
+Epoch 1322, Loss: 0.9375
+Epoch 1323/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.948]
+Epoch 1323, Loss: 0.9427
+Epoch 1324/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.938]
+Epoch 1324, Loss: 0.9333
+Epoch 1325/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.951]
+Epoch 1325, Loss: 0.9421
+Epoch 1326/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.949]
+Epoch 1326, Loss: 0.9393
+Epoch 1327/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.915]
+Epoch 1327, Loss: 0.9414
+Epoch 1328/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.934]
+Epoch 1328, Loss: 0.9328
+Epoch 1329/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.948]
+Epoch 1329, Loss: 0.9426
+Epoch 1330/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.971]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c998eaee10>
+Epoch 1330, Loss: 0.9392
+Epoch 1331/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.96] 
+Epoch 1331, Loss: 0.9422
+Epoch 1332/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.978]
+Epoch 1332, Loss: 0.9379
+Epoch 1333/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.929]
+Epoch 1333, Loss: 0.9341
+Epoch 1334/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.95] 
+Epoch 1334, Loss: 0.9410
+Epoch 1335/1500: 100% 16/16 [00:08<00:00,  1.92batch/s, loss=0.971]
+Epoch 1335, Loss: 0.9359
+Epoch 1336/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.922]
+Epoch 1336, Loss: 0.9383
+Epoch 1337/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.949]
+Epoch 1337, Loss: 0.9410
+Epoch 1338/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.934]
+Epoch 1338, Loss: 0.9369
+Epoch 1339/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.97] 
+Epoch 1339, Loss: 0.9411
+Epoch 1340/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.923]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c9809c3550>
+Epoch 1340, Loss: 0.9326
+Epoch 1341/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.936]
+Epoch 1341, Loss: 0.9373
+Epoch 1342/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.932]
+Epoch 1342, Loss: 0.9394
+Epoch 1343/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.92] 
+Epoch 1343, Loss: 0.9384
+Epoch 1344/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.947]
+Epoch 1344, Loss: 0.9430
+Epoch 1345/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.927]
+Epoch 1345, Loss: 0.9388
+Epoch 1346/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.941]
+Epoch 1346, Loss: 0.9395
+Epoch 1347/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.938]
+Epoch 1347, Loss: 0.9370
+Epoch 1348/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.955]
+Epoch 1348, Loss: 0.9421
+Epoch 1349/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.929]
+Epoch 1349, Loss: 0.9374
+Epoch 1350/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.947]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c980ac56d0>
+Epoch 1350, Loss: 0.9427
+Epoch 1351/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.952]
+Epoch 1351, Loss: 0.9424
+Epoch 1352/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.948]
+Epoch 1352, Loss: 0.9382
+Epoch 1353/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.941]
+Epoch 1353, Loss: 0.9379
+Epoch 1354/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.986]
+Epoch 1354, Loss: 0.9429
+Epoch 1355/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.944]
+Epoch 1355, Loss: 0.9387
+Epoch 1356/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.929]
+Epoch 1356, Loss: 0.9407
+Epoch 1357/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.968]
+Epoch 1357, Loss: 0.9384
+Epoch 1358/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.947]
+Epoch 1358, Loss: 0.9370
+Epoch 1359/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.944]
+Epoch 1359, Loss: 0.9366
+Epoch 1360/1500: 100% 16/16 [00:08<00:00,  1.93batch/s, loss=0.925]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c988105410>
+Epoch 1360, Loss: 0.9369
+Epoch 1361/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.941]
+Epoch 1361, Loss: 0.9373
+Epoch 1362/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.934]
+Epoch 1362, Loss: 0.9384
+Epoch 1363/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.94] 
+Epoch 1363, Loss: 0.9381
+Epoch 1364/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.934]
+Epoch 1364, Loss: 0.9299
+Epoch 1365/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.948]
+Epoch 1365, Loss: 0.9416
+Epoch 1366/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.958]
+Epoch 1366, Loss: 0.9390
+Epoch 1367/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.933]
+Epoch 1367, Loss: 0.9363
+Epoch 1368/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.981]
+Epoch 1368, Loss: 0.9355
+Epoch 1369/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.928]
+Epoch 1369, Loss: 0.9357
+Epoch 1370/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.92] 
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c980aa56d0>
+Epoch 1370, Loss: 0.9432
+Epoch 1371/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.934]
+Epoch 1371, Loss: 0.9431
+Epoch 1372/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.948]
+Epoch 1372, Loss: 0.9374
+Epoch 1373/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.935]
+Epoch 1373, Loss: 0.9356
+Epoch 1374/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.941]
+Epoch 1374, Loss: 0.9370
+Epoch 1375/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.971]
+Epoch 1375, Loss: 0.9384
+Epoch 1376/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.982]
+Epoch 1376, Loss: 0.9438
+Epoch 1377/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.971]
+Epoch 1377, Loss: 0.9415
+Epoch 1378/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.937]
+Epoch 1378, Loss: 0.9419
+Epoch 1379/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.942]
+Epoch 1379, Loss: 0.9400
+Epoch 1380/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.924]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c98098b550>
+Epoch 1380, Loss: 0.9348
+Epoch 1381/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.95] 
+Epoch 1381, Loss: 0.9398
+Epoch 1382/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.941]
+Epoch 1382, Loss: 0.9371
+Epoch 1383/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.96] 
+Epoch 1383, Loss: 0.9320
+Epoch 1384/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.96] 
+Epoch 1384, Loss: 0.9418
+Epoch 1385/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.963]
+Epoch 1385, Loss: 0.9358
+Epoch 1386/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.961]
+Epoch 1386, Loss: 0.9363
+Epoch 1387/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.93] 
+Epoch 1387, Loss: 0.9365
+Epoch 1388/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.927]
+Epoch 1388, Loss: 0.9356
+Epoch 1389/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.962]
+Epoch 1389, Loss: 0.9408
+Epoch 1390/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.965]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c988110050>
+Epoch 1390, Loss: 0.9345
+Epoch 1391/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.95] 
+Epoch 1391, Loss: 0.9359
+Epoch 1392/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.938]
+Epoch 1392, Loss: 0.9399
+Epoch 1393/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.951]
+Epoch 1393, Loss: 0.9395
+Epoch 1394/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.95] 
+Epoch 1394, Loss: 0.9378
+Epoch 1395/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.954]
+Epoch 1395, Loss: 0.9389
+Epoch 1396/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.929]
+Epoch 1396, Loss: 0.9362
+Epoch 1397/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.942]
+Epoch 1397, Loss: 0.9362
+Epoch 1398/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.935]
+Epoch 1398, Loss: 0.9423
+Epoch 1399/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.947]
+Epoch 1399, Loss: 0.9414
+Epoch 1400/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.931]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c9884c9710>
+Epoch 1400, Loss: 0.9377
+Epoch 1401/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.964]
+Epoch 1401, Loss: 0.9423
+Epoch 1402/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.964]
+Epoch 1402, Loss: 0.9399
+Epoch 1403/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.96] 
+Epoch 1403, Loss: 0.9384
+Epoch 1404/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.937]
+Epoch 1404, Loss: 0.9367
+Epoch 1405/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.922]
+Epoch 1405, Loss: 0.9360
+Epoch 1406/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.933]
+Epoch 1406, Loss: 0.9362
+Epoch 1407/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.926]
+Epoch 1407, Loss: 0.9433
+Epoch 1408/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.971]
+Epoch 1408, Loss: 0.9416
+Epoch 1409/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.938]
+Epoch 1409, Loss: 0.9386
+Epoch 1410/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.93] 
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c9886356d0>
+Epoch 1410, Loss: 0.9342
+Epoch 1411/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.935]
+Epoch 1411, Loss: 0.9322
+Epoch 1412/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.962]
+Epoch 1412, Loss: 0.9407
+Epoch 1413/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.969]
+Epoch 1413, Loss: 0.9385
+Epoch 1414/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.944]
+Epoch 1414, Loss: 0.9333
+Epoch 1415/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.975]
+Epoch 1415, Loss: 0.9473
+Epoch 1416/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.949]
+Epoch 1416, Loss: 0.9346
+Epoch 1417/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.971]
+Epoch 1417, Loss: 0.9424
+Epoch 1418/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.957]
+Epoch 1418, Loss: 0.9361
+Epoch 1419/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.933]
+Epoch 1419, Loss: 0.9349
+Epoch 1420/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.939]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c99c122e90>
+Epoch 1420, Loss: 0.9357
+Epoch 1421/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.968]
+Epoch 1421, Loss: 0.9369
+Epoch 1422/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.938]
+Epoch 1422, Loss: 0.9334
+Epoch 1423/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.972]
+Epoch 1423, Loss: 0.9405
+Epoch 1424/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.939]
+Epoch 1424, Loss: 0.9441
+Epoch 1425/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.927]
+Epoch 1425, Loss: 0.9325
+Epoch 1426/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.948]
+Epoch 1426, Loss: 0.9424
+Epoch 1427/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.937]
+Epoch 1427, Loss: 0.9351
+Epoch 1428/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=1.01] 
+Epoch 1428, Loss: 0.9413
+Epoch 1429/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.952]
+Epoch 1429, Loss: 0.9415
+Epoch 1430/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.931]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c997bc6d10>
+Epoch 1430, Loss: 0.9367
+Epoch 1431/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.911]
+Epoch 1431, Loss: 0.9376
+Epoch 1432/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.996]
+Epoch 1432, Loss: 0.9366
+Epoch 1433/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.933]
+Epoch 1433, Loss: 0.9352
+Epoch 1434/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.952]
+Epoch 1434, Loss: 0.9347
+Epoch 1435/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.967]
+Epoch 1435, Loss: 0.9435
+Epoch 1436/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.96] 
+Epoch 1436, Loss: 0.9367
+Epoch 1437/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.957]
+Epoch 1437, Loss: 0.9380
+Epoch 1438/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.918]
+Epoch 1438, Loss: 0.9345
+Epoch 1439/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.931]
+Epoch 1439, Loss: 0.9341
+Epoch 1440/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.968]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c995e23d90>
+Epoch 1440, Loss: 0.9428
+Epoch 1441/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.96] 
+Epoch 1441, Loss: 0.9316
+Epoch 1442/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.921]
+Epoch 1442, Loss: 0.9384
+Epoch 1443/1500: 100% 16/16 [00:08<00:00,  1.91batch/s, loss=0.985]
+Epoch 1443, Loss: 0.9401
+Epoch 1444/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.939]
+Epoch 1444, Loss: 0.9342
+Epoch 1445/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.927]
+Epoch 1445, Loss: 0.9351
+Epoch 1446/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.93] 
+Epoch 1446, Loss: 0.9346
+Epoch 1447/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.939]
+Epoch 1447, Loss: 0.9358
+Epoch 1448/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.951]
+Epoch 1448, Loss: 0.9313
+Epoch 1449/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.95] 
+Epoch 1449, Loss: 0.9440
+Epoch 1450/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.959]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c99795f390>
+Epoch 1450, Loss: 0.9397
+Epoch 1451/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.949]
+Epoch 1451, Loss: 0.9334
+Epoch 1452/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.956]
+Epoch 1452, Loss: 0.9401
+Epoch 1453/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.916]
+Epoch 1453, Loss: 0.9356
+Epoch 1454/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.955]
+Epoch 1454, Loss: 0.9330
+Epoch 1455/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.952]
+Epoch 1455, Loss: 0.9414
+Epoch 1456/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.934]
+Epoch 1456, Loss: 0.9423
+Epoch 1457/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.946]
+Epoch 1457, Loss: 0.9382
+Epoch 1458/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.926]
+Epoch 1458, Loss: 0.9356
+Epoch 1459/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.951]
+Epoch 1459, Loss: 0.9379
+Epoch 1460/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.986]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c997aab550>
+Epoch 1460, Loss: 0.9394
+Epoch 1461/1500: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=0.944]
+Epoch 1461, Loss: 0.9319
+Epoch 1462/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.956]
+Epoch 1462, Loss: 0.9359
+Epoch 1463/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.999]
+Epoch 1463, Loss: 0.9421
+Epoch 1464/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.942]
+Epoch 1464, Loss: 0.9350
+Epoch 1465/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.948]
+Epoch 1465, Loss: 0.9392
+Epoch 1466/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.952]
+Epoch 1466, Loss: 0.9431
+Epoch 1467/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.952]
+Epoch 1467, Loss: 0.9410
+Epoch 1468/1500: 100% 16/16 [00:08<00:00,  1.93batch/s, loss=0.935]
+Epoch 1468, Loss: 0.9338
+Epoch 1469/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.951]
+Epoch 1469, Loss: 0.9366
+Epoch 1470/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.935]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c997943890>
+Epoch 1470, Loss: 0.9365
+Epoch 1471/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.956]
+Epoch 1471, Loss: 0.9357
+Epoch 1472/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.944]
+Epoch 1472, Loss: 0.9420
+Epoch 1473/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.926]
+Epoch 1473, Loss: 0.9350
+Epoch 1474/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.913]
+Epoch 1474, Loss: 0.9344
+Epoch 1475/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.948]
+Epoch 1475, Loss: 0.9420
+Epoch 1476/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.98] 
+Epoch 1476, Loss: 0.9367
+Epoch 1477/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.965]
+Epoch 1477, Loss: 0.9379
+Epoch 1478/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.939]
+Epoch 1478, Loss: 0.9406
+Epoch 1479/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.937]
+Epoch 1479, Loss: 0.9353
+Epoch 1480/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.951]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c988592450>
+Epoch 1480, Loss: 0.9405
+Epoch 1481/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.923]
+Epoch 1481, Loss: 0.9378
+Epoch 1482/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.937]
+Epoch 1482, Loss: 0.9378
+Epoch 1483/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.931]
+Epoch 1483, Loss: 0.9363
+Epoch 1484/1500: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=0.951]
+Epoch 1484, Loss: 0.9338
+Epoch 1485/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.923]
+Epoch 1485, Loss: 0.9320
+Epoch 1486/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.936]
+Epoch 1486, Loss: 0.9356
+Epoch 1487/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.944]
+Epoch 1487, Loss: 0.9396
+Epoch 1488/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.951]
+Epoch 1488, Loss: 0.9334
+Epoch 1489/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.934]
+Epoch 1489, Loss: 0.9326
+Epoch 1490/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.939]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c9881a4d50>
+Epoch 1490, Loss: 0.9385
+Epoch 1491/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.946]
+Epoch 1491, Loss: 0.9335
+Epoch 1492/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.951]
+Epoch 1492, Loss: 0.9407
+Epoch 1493/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.943]
+Epoch 1493, Loss: 0.9411
+Epoch 1494/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.93] 
+Epoch 1494, Loss: 0.9359
+Epoch 1495/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.94] 
+Epoch 1495, Loss: 0.9382
+Epoch 1496/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.969]
+Epoch 1496, Loss: 0.9399
+Epoch 1497/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.931]
+Epoch 1497, Loss: 0.9382
+Epoch 1498/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.987]
+Epoch 1498, Loss: 0.9417
+Epoch 1499/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.985]
+Epoch 1499, Loss: 0.9432
+Epoch 1500/1500: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=0.936]
+torch.Size([256, 4, 4])
+(256, 3)
+<wandb.sdk.data_types.image.Image object at 0x79c99c2f56d0>
+Epoch 1500, Loss: 0.9412
+WARNING:root:Only 108 Image will be uploaded.
+WARNING:root:Only 108 Image will be uploaded.

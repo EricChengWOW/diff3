@@ -1,0 +1,72 @@
+Epoch 1/100: 100% 16/16 [00:08<00:00,  1.95batch/s, loss=11.4]
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([20, 256, 4]) torch.Size([20, 256, 4])
+tensor([[[[-0.9190, -0.1814, -0.3499, -0.7714],
+          [-0.3392, -0.0880,  0.9366,  0.5514],
+          [-0.2007,  0.9795,  0.0194,  1.0000],
+          [ 0.0000,  0.0000,  0.0000,  1.0000]],
+
+         [[ 0.8022,  0.1703, -0.5723, -0.5699],
+          [-0.3326, -0.6685, -0.6652,  0.3823],
+          [-0.4958,  0.7239, -0.4797, -1.0000],
+          [ 0.0000,  0.0000,  0.0000,  1.0000]],
+
+         [[-0.8538, -0.1238, -0.5056, -0.1784],
+          [-0.3715, -0.5354,  0.7585,  1.0000],
+          [-0.3646,  0.8355,  0.4111, -0.8873],
+          [ 0.0000,  0.0000,  0.0000,  1.0000]],
+
+         ...,
+
+         [[-0.6654,  0.6016,  0.4419,  0.8957],
+          [-0.3681, -0.7795,  0.5069,  0.2668],
+          [ 0.6494,  0.1747,  0.7401,  0.3056],
+          [ 0.0000,  0.0000,  0.0000,  1.0000]],
+
+         [[ 0.5063,  0.3860, -0.7712,  1.0000],
+          [ 0.7124,  0.3167,  0.6262,  0.5784],
+          [ 0.4859, -0.8664, -0.1147, -0.5436],
+          [ 0.0000,  0.0000,  0.0000,  1.0000]],
+
+         [[-0.6033, -0.7905, -0.1054, -0.1276],
+          [-0.7896,  0.5736,  0.2180, -0.5740],
+          [-0.1119,  0.2147, -0.9702, -0.2075],
+          [ 0.0000,  0.0000,  0.0000,  1.0000]]]], device='cuda:0')
+(1, 256, 3)
+(256,)
+<wandb.sdk.data_types.image.Image object at 0x7ba6a4f545d0>
+Figure(1200x800)
+Epoch 1, Loss: 18.9888
+Epoch 2/100:  12% 2/16 [00:01<00:09,  1.51batch/s, loss=11.4]
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+Traceback (most recent call last):
+  File "/content/drive/MyDrive/diff3/src/train.py", line 100, in <module>
+    main()
+  File "/content/drive/MyDrive/diff3/src/train.py", line 94, in main
+    diffusion.train(dataloader, optimizer, args.device, num_timesteps=args.num_timesteps, epochs=args.num_epochs, log_wandb=args.wandb, project_name="Diff3", run_name=run_name)
+  File "/content/drive/MyDrive/diff3/src/DDPM_Diff.py", line 851, in train
+    loss.backward()
+  File "/usr/local/lib/python3.11/dist-packages/torch/_tensor.py", line 626, in backward
+    torch.autograd.backward(
+  File "/usr/local/lib/python3.11/dist-packages/torch/autograd/__init__.py", line 347, in backward
+    _engine_run_backward(
+  File "/usr/local/lib/python3.11/dist-packages/torch/autograd/graph.py", line 823, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

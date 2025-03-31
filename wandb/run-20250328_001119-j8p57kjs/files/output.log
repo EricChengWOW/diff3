@@ -1,0 +1,22 @@
+Epoch 1/100:   0% 0/16 [00:00<?, ?batch/s]/content/drive/MyDrive/diff3/src/DDPM_Diff.py:225: UserWarning: Using a target size (torch.Size([32, 256, 3])) that is different to the input size (torch.Size([32, 256, 4])). This will likely lead to incorrect results due to broadcasting. Please ensure they have the same size.
+torch.Size([32, 256, 3])
+  loss1 = F.l1_loss(predicted_score1_spatial, epsilon1)
+Epoch 1/100:   0% 0/16 [00:00<?, ?batch/s]
+Traceback (most recent call last):
+  File "/content/drive/MyDrive/diff3/src/train.py", line 100, in <module>
+    main()
+  File "/content/drive/MyDrive/diff3/src/train.py", line 94, in main
+    diffusion.train(dataloader, optimizer, args.device, num_timesteps=args.num_timesteps, epochs=args.num_epochs, log_wandb=args.wandb, project_name="Diff3", run_name=run_name)
+  File "/content/drive/MyDrive/diff3/src/DDPM_Diff.py", line 843, in train
+    loss, trans_loss, rot_loss, trans_x0_loss, rot_x0_loss = self.compute_loss(
+                                                             ^^^^^^^^^^^^^^^^^^
+  File "/content/drive/MyDrive/diff3/src/DDPM_Diff.py", line 225, in compute_loss
+    loss1 = F.l1_loss(predicted_score1_spatial, epsilon1)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/torch/nn/functional.py", line 3810, in l1_loss
+    expanded_input, expanded_target = torch.broadcast_tensors(input, target)
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/torch/functional.py", line 76, in broadcast_tensors
+    return _VF.broadcast_tensors(tensors)  # type: ignore[attr-defined]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: The size of tensor a (4) must match the size of tensor b (3) at non-singleton dimension 2

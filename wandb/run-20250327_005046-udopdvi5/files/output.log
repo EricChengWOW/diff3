@@ -1,0 +1,26 @@
+Epoch 1/10: 100% 16/16 [00:08<00:00,  1.91batch/s, loss=7.76]
+Epoch 1, Loss: 18.5584
+Epoch 2/10: 100% 16/16 [00:07<00:00,  2.09batch/s, loss=5.24]
+Epoch 2, Loss: 7.4821
+Epoch 3/10: 100% 16/16 [00:07<00:00,  2.08batch/s, loss=3.54]
+Epoch 3, Loss: 4.9434
+Epoch 4/10: 100% 16/16 [00:07<00:00,  2.06batch/s, loss=3.02]
+Epoch 4, Loss: 3.4204
+Epoch 5/10: 100% 16/16 [00:07<00:00,  2.05batch/s, loss=2.15]
+finish sampling
+<wandb.sdk.data_types.image.Image object at 0x7a88aa204490>
+Figure(1200x800)
+Epoch 5, Loss: 2.4484
+Epoch 6/10: 100% 16/16 [00:07<00:00,  2.03batch/s, loss=2.46]
+Epoch 6, Loss: 2.1851
+Epoch 7/10: 100% 16/16 [00:07<00:00,  2.01batch/s, loss=3.07]
+Epoch 7, Loss: 2.0081
+Epoch 8/10: 100% 16/16 [00:08<00:00,  2.00batch/s, loss=1.85]
+Epoch 8, Loss: 1.8700
+Epoch 9/10: 100% 16/16 [00:07<00:00,  2.00batch/s, loss=1.72]
+Epoch 9, Loss: 1.7470
+Epoch 10/10: 100% 16/16 [00:07<00:00,  2.01batch/s, loss=1.57]
+finish sampling
+<wandb.sdk.data_types.image.Image object at 0x7a88aa14c490>
+Figure(1200x800)
+Epoch 10, Loss: 1.5187

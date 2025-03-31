@@ -50,7 +50,7 @@ def parse_arguments():
     parser.add_argument("--wandb", action='store_true', help="Log training loss to wandb")
     parser.add_argument("--diffusion_type", type=str, default="DDPM", help="The Diffusion algorithm and scheduler to use [DDPM, DDPM_Continuous]")
     parser.add_argument("--path_signature_depth", type=int, default=3, help="The depth of path signature transformation")
-
+    parser.add_argument("--use_timestamp", action='store_true', default=True, help="Enable the use of timestamp in L_dataset")
     return parser.parse_args()
 
 def main():

@@ -1,0 +1,16 @@
+{"time":"2025-03-27T00:50:46.870948721Z","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"/content/drive/MyDrive/diff3/wandb/run-20250327_005046-udopdvi5/logs/debug-core.log"}
+{"time":"2025-03-27T00:50:46.995292843Z","level":"INFO","msg":"created new stream","id":"udopdvi5"}
+{"time":"2025-03-27T00:50:46.995863845Z","level":"INFO","msg":"stream: started","id":"udopdvi5"}
+{"time":"2025-03-27T00:50:46.99589453Z","level":"INFO","msg":"sender: started","stream_id":"udopdvi5"}
+{"time":"2025-03-27T00:50:46.99588859Z","level":"INFO","msg":"writer: Do: started","stream_id":"udopdvi5"}
+{"time":"2025-03-27T00:50:46.995933517Z","level":"INFO","msg":"handler: started","stream_id":"udopdvi5"}
+{"time":"2025-03-27T00:50:47.167571428Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-27T00:52:10.930097721Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-27T00:52:10.930841381Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-27T00:52:11.39406893Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-03-27T00:52:11.565911766Z","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2025-03-27T00:52:11.571953362Z","level":"INFO","msg":"stream: closing","id":"udopdvi5"}
+{"time":"2025-03-27T00:52:11.572115652Z","level":"INFO","msg":"handler: closed","stream_id":"udopdvi5"}
+{"time":"2025-03-27T00:52:11.572168267Z","level":"INFO","msg":"sender: closed","stream_id":"udopdvi5"}
+{"time":"2025-03-27T00:52:11.572154759Z","level":"INFO","msg":"writer: Close: closed","stream_id":"udopdvi5"}
+{"time":"2025-03-27T00:52:11.573368207Z","level":"INFO","msg":"stream: closed","id":"udopdvi5"}

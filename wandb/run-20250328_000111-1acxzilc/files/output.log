@@ -1,0 +1,129 @@
+Epoch 1/100: 100% 16/16 [00:09<00:00,  1.73batch/s, loss=6.93]
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([20, 256, 4]) torch.Size([20, 256, 4])
+tensor([[[[-0.8349,  0.2525, -0.4892,  0.6667],
+          [ 0.0869, -0.8170, -0.5700, -0.3734],
+          [-0.5436, -0.5184,  0.6602, -1.0000],
+          [ 0.0000,  0.0000,  0.0000,  1.0000]],
+
+         [[-0.6947,  0.7009,  0.1616, -0.2385],
+          [ 0.6553,  0.7093, -0.2596,  1.0000],
+          [-0.2966, -0.0745, -0.9521,  0.6218],
+          [ 0.0000,  0.0000,  0.0000,  1.0000]],
+
+         [[-0.3492,  0.9305, -0.1101, -0.0623],
+          [-0.5555, -0.3002, -0.7754, -0.0879],
+          [-0.7546, -0.2096,  0.6218,  0.3400],
+          [ 0.0000,  0.0000,  0.0000,  1.0000]],
+
+         ...,
+
+         [[ 0.9903,  0.1104,  0.0848,  0.4775],
+          [ 0.0226, -0.7289,  0.6843,  1.0000],
+          [ 0.1374, -0.6757, -0.7243,  0.4494],
+          [ 0.0000,  0.0000,  0.0000,  1.0000]],
+
+         [[-0.1679,  0.0922,  0.9815, -0.9601],
+          [ 0.8478, -0.4945,  0.1915, -0.4517],
+          [ 0.5030,  0.8643,  0.0049, -0.6264],
+          [ 0.0000,  0.0000,  0.0000,  1.0000]],
+
+         [[ 0.3919,  0.1131,  0.9130, -0.1661],
+          [ 0.2442, -0.9696,  0.0153,  0.1647],
+          [ 0.8870,  0.2170, -0.4076,  1.0000],
+          [ 0.0000,  0.0000,  0.0000,  1.0000]]]], device='cuda:0')
+(1, 256, 3)
+(256,)
+<wandb.sdk.data_types.image.Image object at 0x7e9c23d6ca10>
+Figure(1200x800)
+Epoch 1, Loss: 10.3305
+Epoch 2/100:  56% 9/16 [00:04<00:03,  2.09batch/s, loss=6.22]Exception ignored in: <generator object tqdm.__iter__ at 0x7e9c302d7ba0>
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+torch.Size([32, 256, 4]) torch.Size([32, 256, 4])
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/dist-packages/tqdm/std.py", line 1196, in __iter__
+    self.close()
+  File "/usr/local/lib/python3.11/dist-packages/tqdm/std.py", line 1265, in close
+    def close(self):
+
+KeyboardInterrupt:
+Epoch 2/100:  56% 9/16 [00:04<00:03,  2.06batch/s, loss=6.22]
+Traceback (most recent call last):
+  File "/content/drive/MyDrive/diff3/src/train.py", line 100, in <module>
+    main()
+  File "/content/drive/MyDrive/diff3/src/train.py", line 94, in main
+    diffusion.train(dataloader, optimizer, args.device, num_timesteps=args.num_timesteps, epochs=args.num_epochs, log_wandb=args.wandb, project_name="Diff3", run_name=run_name)
+  File "/content/drive/MyDrive/diff3/src/DDPM_Diff.py", line 845, in train
+    loss, trans_loss, rot_loss, trans_x0_loss, rot_x0_loss = self.compute_loss(
+                                                             ^^^^^^^^^^^^^^^^^^
+  File "/content/drive/MyDrive/diff3/src/DDPM_Diff.py", line 213, in compute_loss
+    predicted_score1, predicted_score2 = self.score_model(x1_t_model, vt_model, t)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/content/drive/MyDrive/diff3/src/unet.py", line 271, in forward
+    out2 = self.unet2(data2, time)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/content/drive/MyDrive/diff3/src/unet.py", line 239, in forward
+    x = self.mid_block2(x, time_emb)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/content/drive/MyDrive/diff3/src/unet.py", line 122, in forward
+    h = self.block1(x, scale_shift=scale_shift)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/content/drive/MyDrive/diff3/src/unet.py", line 95, in forward
+    x = self.proj(x)
+        ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/content/drive/MyDrive/diff3/src/unet.py", line 47, in forward
+    normalized_weight = (weight - mean) * (var + eps).rsqrt()
+                                          ^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

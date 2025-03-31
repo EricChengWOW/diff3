@@ -1,0 +1,16 @@
+{"time":"2025-03-28T01:51:57.221894195Z","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"/content/drive/MyDrive/diff3/wandb/run-20250328_015157-zpm8ms49/logs/debug-core.log"}
+{"time":"2025-03-28T01:51:57.36112684Z","level":"INFO","msg":"created new stream","id":"zpm8ms49"}
+{"time":"2025-03-28T01:51:57.361732246Z","level":"INFO","msg":"stream: started","id":"zpm8ms49"}
+{"time":"2025-03-28T01:51:57.361761817Z","level":"INFO","msg":"writer: Do: started","stream_id":"zpm8ms49"}
+{"time":"2025-03-28T01:51:57.361795719Z","level":"INFO","msg":"handler: started","stream_id":"zpm8ms49"}
+{"time":"2025-03-28T01:51:57.361813776Z","level":"INFO","msg":"sender: started","stream_id":"zpm8ms49"}
+{"time":"2025-03-28T01:51:57.641565735Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-28T01:53:34.320248315Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-28T01:53:34.320941948Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-28T01:53:35.321690068Z","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading media/images/All R3 Plots_170_6d4b467f7c7d02f7bcff.png","runtime_seconds":1.181884976,"progress":"63.8KB/63.8KB"},{"desc":"uploading media/images/All R3 Plots_170_b3ff1125bfda09daaf24.png","runtime_seconds":1.181869958,"progress":"63.9KB/63.9KB"},{"desc":"uploading media/images/All R3 Plots_170_d9bf85b5bfa5220218b4.png","runtime_seconds":1.18186539,"progress":"64.0KB/64.0KB"},{"desc":"uploading media/images/All R3 Plots_170_ee90d9b26fc033ba91d7.png","runtime_seconds":1.18186175,"progress":"63.9KB/63.9KB"},{"desc":"uploading media/images/All R3 Plots_170_06acdb1d7cd2b6003659.png","runtime_seconds":1.181857363,"progress":"63.9KB/63.9KB"},{"desc":"uploading media/images/All R3 Plots_170_9ad7984821f67c9dff99.png","runtime_seconds":1.110721699,"progress":"64.0KB/64.0KB"},{"desc":"uploading media/images/All R3 Plots_170_463fb9cf2632760016fa.png","runtime_seconds":1.11070634,"progress":"64.0KB/64.0KB"},{"desc":"uploading media/images/All R3 Plots_170_538d2d8a6a36c74c0bd8.png","runtime_seconds":1.110700849,"progress":"64.1KB/64.1KB"},{"desc":"uploading media/images/All R3 Plots_170_be0e4cd92271ce1d3338.png","runtime_seconds":1.110697405,"progress":"63.9KB/63.9KB"},{"desc":"uploading media/images/All SE(3) Plots_170_13f9254afafe605c7d41.png","runtime_seconds":1.029007386,"progress":"114.8KB/114.8KB"}],"total_operations":22}}
+{"time":"2025-03-28T01:53:36.112114929Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-03-28T01:53:36.40137734Z","level":"INFO","msg":"stream: closing","id":"zpm8ms49"}
+{"time":"2025-03-28T01:53:36.401516113Z","level":"INFO","msg":"handler: closed","stream_id":"zpm8ms49"}
+{"time":"2025-03-28T01:53:36.401569987Z","level":"INFO","msg":"sender: closed","stream_id":"zpm8ms49"}
+{"time":"2025-03-28T01:53:36.401543959Z","level":"INFO","msg":"writer: Close: closed","stream_id":"zpm8ms49"}
+{"time":"2025-03-28T01:53:36.402589612Z","level":"INFO","msg":"stream: closed","id":"zpm8ms49"}

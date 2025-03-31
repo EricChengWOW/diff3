@@ -1,0 +1,11 @@
+Epoch 1/10: 100% 16/16 [00:08<00:00,  1.94batch/s, loss=3.29]
+torch.Size([256, 4, 4])
+Traceback (most recent call last):
+  File "/content/drive/MyDrive/diff3/src/train.py", line 100, in <module>
+    main()
+  File "/content/drive/MyDrive/diff3/src/train.py", line 94, in main
+    diffusion.train(dataloader, optimizer, args.device, num_timesteps=args.num_timesteps, epochs=args.num_epochs, log_wandb=args.wandb, project_name="Diff3", run_name=run_name)
+  File "/content/drive/MyDrive/diff3/src/DDPM_Diff.py", line 890, in train
+    trajectory = np.array([generated_se3[0][:, :, :3, 3].detach().cpu().numpy()])
+                           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+IndexError: too many indices for tensor of dimension 3

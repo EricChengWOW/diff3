@@ -1,0 +1,16 @@
+{"time":"2025-03-27T02:04:34.313191821Z","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"/content/drive/MyDrive/diff3/wandb/run-20250327_020434-hv6crxul/logs/debug-core.log"}
+{"time":"2025-03-27T02:04:34.449613579Z","level":"INFO","msg":"created new stream","id":"hv6crxul"}
+{"time":"2025-03-27T02:04:34.450326149Z","level":"INFO","msg":"stream: started","id":"hv6crxul"}
+{"time":"2025-03-27T02:04:34.450366888Z","level":"INFO","msg":"sender: started","stream_id":"hv6crxul"}
+{"time":"2025-03-27T02:04:34.450351117Z","level":"INFO","msg":"writer: Do: started","stream_id":"hv6crxul"}
+{"time":"2025-03-27T02:04:34.45039856Z","level":"INFO","msg":"handler: started","stream_id":"hv6crxul"}
+{"time":"2025-03-27T02:04:34.724611406Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-27T02:05:23.154594205Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-27T02:05:23.155296034Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-27T02:05:23.582109213Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-03-27T02:05:23.675737612Z","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2025-03-27T02:05:23.680359669Z","level":"INFO","msg":"stream: closing","id":"hv6crxul"}
+{"time":"2025-03-27T02:05:23.680490747Z","level":"INFO","msg":"handler: closed","stream_id":"hv6crxul"}
+{"time":"2025-03-27T02:05:23.680538185Z","level":"INFO","msg":"writer: Close: closed","stream_id":"hv6crxul"}
+{"time":"2025-03-27T02:05:23.680566559Z","level":"INFO","msg":"sender: closed","stream_id":"hv6crxul"}
+{"time":"2025-03-27T02:05:23.681521131Z","level":"INFO","msg":"stream: closed","id":"hv6crxul"}

@@ -1,0 +1,22 @@
+2025-03-28 00:18:20,162 INFO    MainThread:10051 [wandb_setup.py:_flush():67] Current SDK version is 0.19.8
+2025-03-28 00:18:20,164 INFO    MainThread:10051 [wandb_setup.py:_flush():67] Configure stats pid to 10051
+2025-03-28 00:18:20,164 INFO    MainThread:10051 [wandb_setup.py:_flush():67] Loading settings from /root/.config/wandb/settings
+2025-03-28 00:18:20,165 INFO    MainThread:10051 [wandb_setup.py:_flush():67] Loading settings from /content/drive/MyDrive/diff3/wandb/settings
+2025-03-28 00:18:20,165 INFO    MainThread:10051 [wandb_setup.py:_flush():67] Loading settings from environment variables
+2025-03-28 00:18:20,165 INFO    MainThread:10051 [wandb_init.py:setup_run_log_directory():647] Logging user logs to /content/drive/MyDrive/diff3/wandb/run-20250328_001820-wk7cm67w/logs/debug.log
+2025-03-28 00:18:20,166 INFO    MainThread:10051 [wandb_init.py:setup_run_log_directory():648] Logging internal logs to /content/drive/MyDrive/diff3/wandb/run-20250328_001820-wk7cm67w/logs/debug-internal.log
+2025-03-28 00:18:20,166 INFO    MainThread:10051 [wandb_init.py:init():761] calling init triggers
+2025-03-28 00:18:20,166 INFO    MainThread:10051 [wandb_init.py:init():766] wandb.init called with sweep_config: {}
+config: {'epochs': 100, 'learning_rate': 0.0001, '_wandb': {}}
+2025-03-28 00:18:20,166 INFO    MainThread:10051 [wandb_init.py:init():784] starting backend
+2025-03-28 00:18:20,166 INFO    MainThread:10051 [wandb_init.py:init():788] sending inform_init request
+2025-03-28 00:18:20,171 INFO    MainThread:10051 [backend.py:_multiprocessing_setup():101] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2025-03-28 00:18:20,172 INFO    MainThread:10051 [wandb_init.py:init():798] backend started and connected
+2025-03-28 00:18:20,173 INFO    MainThread:10051 [wandb_init.py:init():891] updated telemetry
+2025-03-28 00:18:20,220 INFO    MainThread:10051 [wandb_init.py:init():915] communicating run to backend with 90.0 second timeout
+2025-03-28 00:18:20,627 INFO    MainThread:10051 [wandb_init.py:init():990] starting run threads in backend
+2025-03-28 00:18:20,998 INFO    MainThread:10051 [wandb_run.py:_console_start():2375] atexit reg
+2025-03-28 00:18:21,000 INFO    MainThread:10051 [wandb_run.py:_redirect():2227] redirect: wrap_raw
+2025-03-28 00:18:21,001 INFO    MainThread:10051 [wandb_run.py:_redirect():2292] Wrapping output streams.
+2025-03-28 00:18:21,002 INFO    MainThread:10051 [wandb_run.py:_redirect():2315] Redirects installed.
+2025-03-28 00:18:21,006 INFO    MainThread:10051 [wandb_init.py:init():1032] run started, returning control to user process

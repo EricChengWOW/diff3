@@ -1,0 +1,40 @@
+Epoch 1/10: 100% 16/16 [00:08<00:00,  1.94batch/s, loss=2.38]
+(1, 3, 4)
+<wandb.sdk.data_types.image.Image object at 0x7eae252abad0>
+Epoch 1, Loss: 3.8294
+Epoch 2/10: 100% 16/16 [00:07<00:00,  2.14batch/s, loss=2.03]
+(1, 3, 4)
+<wandb.sdk.data_types.image.Image object at 0x7eae25239210>
+Epoch 2, Loss: 2.5609
+Epoch 3/10: 100% 16/16 [00:07<00:00,  2.14batch/s, loss=2.04]
+(1, 3, 4)
+<wandb.sdk.data_types.image.Image object at 0x7eae24f91850>
+Epoch 3, Loss: 2.2273
+Epoch 4/10: 100% 16/16 [00:07<00:00,  2.12batch/s, loss=1.78]
+(1, 3, 4)
+<wandb.sdk.data_types.image.Image object at 0x7eae24ec93d0>
+Epoch 4, Loss: 1.9270
+Epoch 5/10: 100% 16/16 [00:07<00:00,  2.11batch/s, loss=1.88]
+(1, 3, 4)
+<wandb.sdk.data_types.image.Image object at 0x7eae24df7a90>
+Epoch 5, Loss: 1.8077
+Epoch 6/10: 100% 16/16 [00:07<00:00,  2.11batch/s, loss=1.55]
+(1, 3, 4)
+<wandb.sdk.data_types.image.Image object at 0x7eae24d32190>
+Epoch 6, Loss: 1.6865
+Epoch 7/10: 100% 16/16 [00:07<00:00,  2.09batch/s, loss=1.64]
+(1, 3, 4)
+<wandb.sdk.data_types.image.Image object at 0x7eae248c7e10>
+Epoch 7, Loss: 1.6208
+Epoch 8/10: 100% 16/16 [00:07<00:00,  2.09batch/s, loss=1.49]
+(1, 3, 4)
+<wandb.sdk.data_types.image.Image object at 0x7eae24b806d0>
+Epoch 8, Loss: 1.5840
+Epoch 9/10: 100% 16/16 [00:07<00:00,  2.09batch/s, loss=1.46]
+(1, 3, 4)
+<wandb.sdk.data_types.image.Image object at 0x7eae24e53110>
+Epoch 9, Loss: 1.4940
+Epoch 10/10: 100% 16/16 [00:07<00:00,  2.08batch/s, loss=1.48]
+(1, 3, 4)
+<wandb.sdk.data_types.image.Image object at 0x7eae24f3ecd0>
+Epoch 10, Loss: 1.4597

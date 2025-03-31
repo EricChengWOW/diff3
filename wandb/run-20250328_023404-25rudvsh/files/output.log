@@ -1,0 +1,121 @@
+Epoch 1/400: 100% 16/16 [00:08<00:00,  1.87batch/s, loss=2.6] 
+torch.Size([1, 256, 4, 4])
+(1, 1, 256, 3)
+<wandb.sdk.data_types.image.Image object at 0x7d00640f3950>
+Epoch 1, Loss: 3.6461
+Epoch 2/400: 100% 16/16 [00:07<00:00,  2.04batch/s, loss=2.35]
+torch.Size([1, 256, 4, 4])
+(1, 1, 256, 3)
+<wandb.sdk.data_types.image.Image object at 0x7d0060700e50>
+Epoch 2, Loss: 2.5833
+Epoch 3/400: 100% 16/16 [00:07<00:00,  2.04batch/s, loss=1.99]
+torch.Size([1, 256, 4, 4])
+(1, 1, 256, 3)
+<wandb.sdk.data_types.image.Image object at 0x7d0060721450>
+Epoch 3, Loss: 2.1984
+Epoch 4/400: 100% 16/16 [00:07<00:00,  2.03batch/s, loss=1.84]
+torch.Size([1, 256, 4, 4])
+(1, 1, 256, 3)
+<wandb.sdk.data_types.image.Image object at 0x7d006053b390>
+Epoch 4, Loss: 1.9211
+Epoch 5/400: 100% 16/16 [00:07<00:00,  2.03batch/s, loss=1.77]
+torch.Size([1, 256, 4, 4])
+(1, 1, 256, 3)
+<wandb.sdk.data_types.image.Image object at 0x7d006030df50>
+Epoch 5, Loss: 1.7971
+Epoch 6/400: 100% 16/16 [00:07<00:00,  2.02batch/s, loss=1.69]
+torch.Size([1, 256, 4, 4])
+(1, 1, 256, 3)
+<wandb.sdk.data_types.image.Image object at 0x7d0060135f50>
+Epoch 6, Loss: 1.7000
+Epoch 7/400: 100% 16/16 [00:08<00:00,  1.99batch/s, loss=1.55]
+torch.Size([1, 256, 4, 4])
+(1, 1, 256, 3)
+<wandb.sdk.data_types.image.Image object at 0x7d00600a5390>
+Epoch 7, Loss: 1.5936
+Epoch 8/400: 100% 16/16 [00:07<00:00,  2.02batch/s, loss=1.6] 
+torch.Size([1, 256, 4, 4])
+(1, 1, 256, 3)
+<wandb.sdk.data_types.image.Image object at 0x7d006045cd90>
+Epoch 8, Loss: 1.5387
+Epoch 9/400: 100% 16/16 [00:07<00:00,  2.01batch/s, loss=1.45]
+torch.Size([1, 256, 4, 4])
+(1, 1, 256, 3)
+<wandb.sdk.data_types.image.Image object at 0x7d0060535f50>
+Epoch 9, Loss: 1.4917
+Epoch 10/400: 100% 16/16 [00:07<00:00,  2.01batch/s, loss=1.42]
+torch.Size([1, 256, 4, 4])
+(1, 1, 256, 3)
+<wandb.sdk.data_types.image.Image object at 0x7d00606cd250>
+Epoch 10, Loss: 1.4334
+Epoch 11/400: 100% 16/16 [00:07<00:00,  2.01batch/s, loss=1.48]
+torch.Size([1, 256, 4, 4])
+(1, 1, 256, 3)
+<wandb.sdk.data_types.image.Image object at 0x7d00641634d0>
+Epoch 11, Loss: 1.4106
+Epoch 12/400: 100% 16/16 [00:07<00:00,  2.02batch/s, loss=1.36]
+torch.Size([1, 256, 4, 4])
+(1, 1, 256, 3)
+<wandb.sdk.data_types.image.Image object at 0x7d005f001050>
+Epoch 12, Loss: 1.3651
+Epoch 13/400: 100% 16/16 [00:07<00:00,  2.01batch/s, loss=1.3] 
+torch.Size([1, 256, 4, 4])
+(1, 1, 256, 3)
+<wandb.sdk.data_types.image.Image object at 0x7d005ef4e090>
+Epoch 13, Loss: 1.3268
+Epoch 14/400: 100% 16/16 [00:07<00:00,  2.01batch/s, loss=1.31]
+torch.Size([1, 256, 4, 4])
+(1, 1, 256, 3)
+<wandb.sdk.data_types.image.Image object at 0x7d005eeabcd0>
+Epoch 14, Loss: 1.3220
+Epoch 15/400: 100% 16/16 [00:07<00:00,  2.01batch/s, loss=1.27]
+torch.Size([1, 256, 4, 4])
+(1, 1, 256, 3)
+<wandb.sdk.data_types.image.Image object at 0x7d00506ec410>
+Epoch 15, Loss: 1.2863
+Epoch 16/400: 100% 16/16 [00:07<00:00,  2.02batch/s, loss=1.21]
+torch.Size([1, 256, 4, 4])
+(1, 1, 256, 3)
+<wandb.sdk.data_types.image.Image object at 0x7d005ed400d0>
+Epoch 16, Loss: 1.2821
+Epoch 17/400: 100% 16/16 [00:07<00:00,  2.01batch/s, loss=1.26]
+torch.Size([1, 256, 4, 4])
+(1, 1, 256, 3)
+<wandb.sdk.data_types.image.Image object at 0x7d005ee71510>
+Epoch 17, Loss: 1.2579
+Epoch 18/400: 100% 16/16 [00:07<00:00,  2.01batch/s, loss=1.18]
+torch.Size([1, 256, 4, 4])
+(1, 1, 256, 3)
+<wandb.sdk.data_types.image.Image object at 0x7d005f03df50>
+Epoch 18, Loss: 1.2358
+Epoch 19/400: 100% 16/16 [00:07<00:00,  2.01batch/s, loss=1.24]
+torch.Size([1, 256, 4, 4])
+(1, 1, 256, 3)
+<wandb.sdk.data_types.image.Image object at 0x7d0064125510>
+Epoch 19, Loss: 1.2272
+Epoch 20/400: 100% 16/16 [00:07<00:00,  2.01batch/s, loss=1.16]
+torch.Size([1, 256, 4, 4])
+(1, 1, 256, 3)
+<wandb.sdk.data_types.image.Image object at 0x7d006051abd0>
+Epoch 20, Loss: 1.2030
+Epoch 21/400: 100% 16/16 [00:07<00:00,  2.01batch/s, loss=1.13]
+torch.Size([1, 256, 4, 4])
+(1, 1, 256, 3)
+<wandb.sdk.data_types.image.Image object at 0x7d0064158110>
+Epoch 21, Loss: 1.1808
+Epoch 22/400: 100% 16/16 [00:07<00:00,  2.01batch/s, loss=1.19]
+torch.Size([1, 256, 4, 4])
+(1, 1, 256, 3)
+<wandb.sdk.data_types.image.Image object at 0x7d006034ef50>
+Epoch 22, Loss: 1.1968
+Epoch 23/400: 100% 16/16 [00:07<00:00,  2.01batch/s, loss=1.12]
+torch.Size([1, 256, 4, 4])
+(1, 1, 256, 3)
+<wandb.sdk.data_types.image.Image object at 0x7d00606b62d0>
+Epoch 23, Loss: 1.1904
+Epoch 24/400: 100% 16/16 [00:08<00:00,  1.98batch/s, loss=1.18]
+torch.Size([1, 256, 4, 4])
+(1, 1, 256, 3)
+<wandb.sdk.data_types.image.Image object at 0x7d00603606d0>
+Epoch 24, Loss: 1.1554
+Epoch 25/400: 100% 16/16 [00:07<00:00,  2.01batch/s, loss=1.2] 

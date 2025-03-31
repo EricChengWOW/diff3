@@ -1,0 +1,40 @@
+Epoch 1/5: 100% 16/16 [00:08<00:00,  1.97batch/s, loss=9.55]
+finish sampling
+[[[0. 0. 0. 1.]
+  [0. 0. 0. 1.]
+  [0. 0. 0. 1.]]]
+<wandb.sdk.data_types.image.Image object at 0x7fb068207150>
+Figure(1200x800)
+Epoch 1, Loss: 14.3944
+Epoch 2/5: 100% 16/16 [00:07<00:00,  2.17batch/s, loss=9.04]
+finish sampling
+[[[0. 0. 0. 1.]
+  [0. 0. 0. 1.]
+  [0. 0. 0. 1.]]]
+<wandb.sdk.data_types.image.Image object at 0x7fb064ab19d0>
+Figure(1200x800)
+Epoch 2, Loss: 8.5356
+Epoch 3/5: 100% 16/16 [00:07<00:00,  2.16batch/s, loss=4.23]
+finish sampling
+[[[0. 0. 0. 1.]
+  [0. 0. 0. 1.]
+  [0. 0. 0. 1.]]]
+<wandb.sdk.data_types.image.Image object at 0x7fb064995a10>
+Figure(1200x800)
+Epoch 3, Loss: 5.5866
+Epoch 4/5: 100% 16/16 [00:07<00:00,  2.14batch/s, loss=2.73]
+finish sampling
+[[[0. 0. 0. 1.]
+  [0. 0. 0. 1.]
+  [0. 0. 0. 1.]]]
+<wandb.sdk.data_types.image.Image object at 0x7fb068222050>
+Figure(1200x800)
+Epoch 4, Loss: 3.5658
+Epoch 5/5: 100% 16/16 [00:07<00:00,  2.13batch/s, loss=2.23]
+finish sampling
+[[[0. 0. 0. 1.]
+  [0. 0. 0. 1.]
+  [0. 0. 0. 1.]]]
+<wandb.sdk.data_types.image.Image object at 0x7fb0648389d0>
+Figure(1200x800)
+Epoch 5, Loss: 2.6729
