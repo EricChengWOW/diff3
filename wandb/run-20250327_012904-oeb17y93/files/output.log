@@ -1,5 +1,0 @@
-Epoch 1/1: 100% 16/16 [00:08<00:00,  1.96batch/s, loss=8.44]
-finish sampling
-<wandb.sdk.data_types.image.Image object at 0x7f6323f4ad50>
-Figure(1200x800)
-Epoch 1, Loss: 14.1077

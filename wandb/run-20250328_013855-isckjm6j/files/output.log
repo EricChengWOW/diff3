@@ -1,7 +1,0 @@
-Epoch 1/1: 100% 16/16 [00:08<00:00,  1.93batch/s, loss=2.69]
-30
-(1, 256, 3)
-(256,)
-<wandb.sdk.data_types.image.Image object at 0x78a18035bad0>
-Figure(1200x800)
-Epoch 1, Loss: 3.6239
